@@ -45,5 +45,4 @@ public class Configuration {
         return properties.get(key);
     }
 
-
 }
