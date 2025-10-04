@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added ConfigurationBinder">
+    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added Nested Configuration Binder">
       <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
@@ -217,7 +217,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759560103449</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Added Nested Configuration Binder">
+      <option name="closed" value="true" />
+      <created>1759561044938</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1759561044938</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -237,6 +245,7 @@
     <MESSAGE value="misc updated" />
     <MESSAGE value="application.properties added" />
     <MESSAGE value="Added ConfigurationBinder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added ConfigurationBinder" />
+    <MESSAGE value="Added Nested Configuration Binder" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Nested Configuration Binder" />
   </component>
 </project>

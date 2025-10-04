@@ -27,7 +27,7 @@ public class AppTest extends TestCase {
 
     public void  testNestedConfigurationProperties(){
         ServerConfig serverConfig = ConfigurationBinder.bind(ServerConfig.class);
-
         System.out.println(serverConfig.getSsl().getKeyStore());
+        assertEquals("mykeystore.jks", serverConfig.getSsl().getKeyStore());
     }
 }
