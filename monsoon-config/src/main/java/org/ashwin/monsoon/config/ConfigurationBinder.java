@@ -11,27 +11,34 @@ public class ConfigurationBinder {
 
         ConfigurationProperties cp = clazz.getAnnotation(ConfigurationProperties.class);
         String prefix = cp.prefix().isEmpty() ? "" : cp.prefix() + ".";
-        
         try {
             T config = clazz.getDeclaredConstructor().newInstance();
-            
-            for (Field field : clazz.getDeclaredFields()) {
-                field.setAccessible(true);
-                String propertyName = prefix + field.getName();
-                String propertyValue = Configuration.get(propertyName);
-                
-                if (propertyValue != null) {
-                    Object value = convertToType(propertyValue, field.getType());
-                    field.set(config, value);
-                }
-            }
-            
+            bindFields(config, prefix);
             return config;
         } catch (Exception e) {
             throw new RuntimeException("Failed to bind configuration: " + e.getMessage(), e);
         }
     }
-    
+
+    private static <T> void bindFields(T config, String prefix) throws Exception {
+        for (Field field : config.getClass().getDeclaredFields()) {
+            field.setAccessible(true);
+            String propertyName = prefix + field.getName();
+            String propertyValue = Configuration.get(propertyName);
+            if (propertyValue != null) {
+                Object value = convertToType(propertyValue, field.getType());
+                field.set(config, value);
+            } else {
+                boolean hasNested = Configuration.hasPrefix(propertyName);
+                if (hasNested){
+                    Object nested = field.getType().getDeclaredConstructor().newInstance();
+                    bindFields(nested, propertyName + ".");
+                    field.set(config, nested);
+                }
+            }
+        }
+    }
+
     private static Object convertToType(String value, Class<?> targetType) {
         if (targetType == String.class) {
             return value;

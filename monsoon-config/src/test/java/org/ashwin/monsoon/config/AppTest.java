@@ -4,6 +4,7 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.ashwin.monsoon.config.test1.DatabaseConfig;
+import org.ashwin.monsoon.config.test1.ServerConfig;
 
 /**
  * Unit test for simple App.
@@ -22,5 +23,11 @@ public class AppTest extends TestCase {
         DatabaseConfig databaseConfig = ConfigurationBinder.bind(DatabaseConfig.class);
         System.out.println(databaseConfig.getUrl());
         assertEquals("jdbc:sqlite:test.db", databaseConfig.getUrl());
+    }
+
+    public void  testNestedConfigurationProperties(){
+        ServerConfig serverConfig = ConfigurationBinder.bind(ServerConfig.class);
+
+        System.out.println(serverConfig.getSsl().getKeyStore());
     }
 }
