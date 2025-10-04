@@ -2,9 +2,12 @@ package org.ashwin.monsoon.core;
 
 import org.ashwin.monsoon.core.annotations.Component;
 import org.ashwin.monsoon.core.annotations.ComponentScan;
+import org.ashwin.monsoon.core.annotations.Inject;
 import org.ashwin.monsoon.core.annotations.Singleton;
 
 import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -53,15 +56,18 @@ public class ApplicationContext {
     }
 
     private void registerSingletonBean(Class<?> clazz) throws Exception {
-        if (clazz.isAnnotationPresent(Component.class) && clazz.isAnnotationPresent(Singleton.class)){
+        if (isComponent(clazz) && clazz.isAnnotationPresent(Singleton.class)){
             Object instance;
             instance = clazz.getDeclaredConstructor().newInstance();
+            injectDependencies(instance);
             singletonBeanRegistry.put(clazz, instance);
         }
     }
 
+
+
     public <T> T getBean(Class<T> clazz) throws Exception {
-        if (!clazz.isAnnotationPresent(Component.class)){
+        if (!isComponent(clazz)){
             throw new RuntimeException("Class is not a Component: " + clazz.getName());
         }
 
@@ -73,7 +79,32 @@ public class ApplicationContext {
         }else{
             Object instance;
             instance = clazz.getDeclaredConstructor().newInstance();
+            injectDependencies(instance);
             return clazz.cast(instance);
         }
+    }
+
+    private void injectDependencies(Object instance) throws Exception {
+        for (Field field : instance.getClass().getDeclaredFields()) {
+            if (field.isAnnotationPresent(Inject.class)){
+                Object dependency = getBean(field.getType());
+                if ( dependency == null) {
+                    throw new RuntimeException("Dependency not found: " + field.getType().getName());
+                }
+                field.setAccessible(true);
+                field.set(instance, dependency);
+            }
+        }
+    }
+
+    private boolean isComponent(Class<?> clazz) {
+        if (clazz.isAnnotationPresent(Component.class)) return true;
+
+        for (Annotation ann : clazz.getAnnotations()){
+            if ( ann.annotationType().isAnnotationPresent(Component.class)){
+                return true;
+            }
+        }
+        return false;
     }
 }

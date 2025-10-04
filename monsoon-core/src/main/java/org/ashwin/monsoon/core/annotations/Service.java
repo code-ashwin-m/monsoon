@@ -7,6 +7,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
-@Component
-public @interface Singleton {
+@Component  // treat Service as a Component
+public @interface Service {
 }

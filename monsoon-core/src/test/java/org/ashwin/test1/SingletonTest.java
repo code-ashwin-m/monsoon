@@ -1,9 +1,7 @@
 package org.ashwin.test1;
 
-import org.ashwin.monsoon.core.annotations.Component;
 import org.ashwin.monsoon.core.annotations.Singleton;
 
-@Component
 @Singleton
 public class SingletonTest {
     private int count = 0;

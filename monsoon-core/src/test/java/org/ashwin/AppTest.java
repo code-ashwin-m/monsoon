@@ -5,6 +5,7 @@ import org.ashwin.monsoon.core.ApplicationContext;
 import org.ashwin.monsoon.core.annotations.ComponentScan;
 import org.ashwin.test1.PrototypeTest;
 import org.ashwin.test1.SingletonTest;
+import org.ashwin.testInjection.GreetingService;
 
 /**
  * Unit test for simple App.
@@ -45,5 +46,13 @@ public class AppTest extends TestCase {
 
         assertEquals(100, prototypeTest1.getCount());
         assertEquals(200, prototypeTest2.getCount());
+    }
+
+    public void testInjection() throws Exception {
+        ApplicationContext context = new ApplicationContext(AppTest.class);
+        GreetingService greetingService = context.getBean(GreetingService.class);
+        System.out.println(greetingService.getGreeting());
+
+        assertEquals("Hello User1", greetingService.getGreeting());
     }
 }
