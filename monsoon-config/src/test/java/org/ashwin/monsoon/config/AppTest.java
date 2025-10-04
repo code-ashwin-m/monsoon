@@ -43,4 +43,8 @@ public class AppTest extends TestCase {
         }
         assertEquals("localhost", serverListConfig.getServers().get(0).getHost());
     }
+
+    public void testConfigurationEnvironmentVariable(){
+
+    }
 }

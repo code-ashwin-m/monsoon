@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="array ConfigurationProperties bug fix">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/DatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +26,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="04-configuration-module" />
+        <entry key="$PROJECT_DIR$" value="05-configuration-array-list-binding" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -65,7 +66,7 @@
     "Maven.monsoon-config [clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "05-configuration-array-list-binding",
+    "git-widget-placeholder": "06-configuration-environment-variable",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -75,7 +76,7 @@
       <recent name="org.ashwin.monsoon.core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.testConfigurationPropertiesAnn">
+  <component name="RunManager" selected="JUnit.AppTest.testConfigurationArray">
     <configuration name="AppTest.testConfiguration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-config" />
       <extension name="coverage">
@@ -158,10 +159,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.testConfigurationPropertiesAnn" />
-        <item itemvalue="JUnit.AppTest.testConfiguration" />
         <item itemvalue="JUnit.AppTest.testConfigurationArray" />
         <item itemvalue="JUnit.AppTest.testNestedConfigurationProperties" />
+        <item itemvalue="JUnit.AppTest.testConfigurationPropertiesAnn" />
+        <item itemvalue="JUnit.AppTest.testConfiguration" />
         <item itemvalue="JUnit.AppTest.testSingleton" />
       </list>
     </recent_temporary>
@@ -247,7 +248,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759567364909</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="array ConfigurationProperties bug fix">
+      <option name="closed" value="true" />
+      <created>1759567516418</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1759567516418</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

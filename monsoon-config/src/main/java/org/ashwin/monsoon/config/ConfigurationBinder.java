@@ -29,7 +29,6 @@ public class ConfigurationBinder {
     private static <T> void bindFields(T config, String prefix) throws Exception {
         for (Field field : config.getClass().getDeclaredFields()) {
             String propertyName = getPropertyName(config, prefix, field);
-//            System.out.println("Property name: " + propertyName);
             field.setAccessible(true);
 
             if (List.class.isAssignableFrom(field.getType())){
