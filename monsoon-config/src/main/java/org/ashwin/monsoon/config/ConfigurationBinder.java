@@ -56,8 +56,8 @@ public class ConfigurationBinder {
             } else {
                 String propertyValue = Configuration.get(propertyName);
                 if ((propertyValue == null || propertyValue.isEmpty()) && field.isAnnotationPresent(Value.class)){
-                    String defaultValueExpr = field.getAnnotation(Value.class).value();
-                    propertyValue = resolveExpression(defaultValueExpr);
+                    String defaultValue = field.getAnnotation(Value.class).value();
+                    propertyValue = defaultValue;
                 }
                 if (propertyValue != null) {
                     Object value = convertToType(propertyValue, field.getType());
@@ -123,18 +123,4 @@ public class ConfigurationBinder {
         throw new UnsupportedOperationException("Unsupported type: " + targetType.getName());
     }
 
-    private static String resolveExpression(String defaultValueExpr) {
-        // Expected format: ${key:default}
-        if (!defaultValueExpr.startsWith("${") || !defaultValueExpr.endsWith("}")) {
-            throw new IllegalArgumentException("Invalid expression format: " + defaultValueExpr);
-        }
-        String[] parts = defaultValueExpr.substring(2, defaultValueExpr.length() - 1).split(":");
-        if (parts.length != 2) {
-            throw new IllegalArgumentException("Invalid expression format: " + defaultValueExpr);
-        }
-        String key = parts[0].trim();
-        String defaultValue = parts[1].trim();
-        String value = Configuration.get(key);
-        return value != null ? value : defaultValue;
-    }
 }

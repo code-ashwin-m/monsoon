@@ -7,7 +7,7 @@ import org.ashwin.monsoon.config.annotations.Value;
 public class DatabaseConfig {
     private String driver;
     private String url;
-    @Value("${username:root}")
+    @Value("root")
     private String username;
     private String password;
 
