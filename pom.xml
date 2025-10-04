@@ -12,6 +12,7 @@
   <modules>
     <module>monsoon-core</module>
     <module>monsoon-config</module>
+      <module>monsoon-db</module>
   </modules>
 
   <properties>

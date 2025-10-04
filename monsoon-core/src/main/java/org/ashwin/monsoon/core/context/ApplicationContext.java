@@ -1,4 +1,4 @@
-package org.ashwin.monsoon.core;
+package org.ashwin.monsoon.core.context;
 
 import org.ashwin.monsoon.core.annotations.Component;
 import org.ashwin.monsoon.core.annotations.ComponentScan;
@@ -16,6 +16,7 @@ import java.util.Map;
 
 public class ApplicationContext {
     private final Map<Class<?>, Object> singletonBeanRegistry = new HashMap<>();
+    private final List<BeanPostProcessor> processors = new ArrayList<>();
 
     public ApplicationContext(Class<?> mainClass) throws Exception {
         if (!mainClass.isAnnotationPresent(ComponentScan.class)){
@@ -64,8 +65,6 @@ public class ApplicationContext {
         }
     }
 
-
-
     public <T> T getBean(Class<T> clazz) throws Exception {
         if (!isComponent(clazz)){
             throw new RuntimeException("Class is not a Component: " + clazz.getName());
@@ -77,8 +76,12 @@ public class ApplicationContext {
             }
             return clazz.cast(singletonBeanRegistry.get(clazz));
         }else{
-            Object instance;
-            instance = clazz.getDeclaredConstructor().newInstance();
+            Object instance = null;
+            if (clazz.isInterface()){
+                instance = applyProcessor(clazz, instance);
+            }else{
+                instance = clazz.getDeclaredConstructor().newInstance();
+            }
             injectDependencies(instance);
             return clazz.cast(instance);
         }
@@ -106,5 +109,16 @@ public class ApplicationContext {
             }
         }
         return false;
+    }
+
+    public void addBeanPostProcessor(BeanPostProcessor processor){
+        processors.add(processor);
+    }
+
+    private Object applyProcessor(Class<?> clazz, Object instance) {
+        for (BeanPostProcessor processor : processors) {
+            instance = processor.postProcess(clazz, instance);
+        }
+        return instance;
     }
 }

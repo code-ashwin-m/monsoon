@@ -1,7 +1,7 @@
 package org.ashwin;
 
 import junit.framework.TestCase;
-import org.ashwin.monsoon.core.ApplicationContext;
+import org.ashwin.monsoon.core.context.ApplicationContext;
 import org.ashwin.monsoon.core.annotations.ComponentScan;
 import org.ashwin.test1.PrototypeTest;
 import org.ashwin.test1.SingletonTest;

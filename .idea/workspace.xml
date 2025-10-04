@@ -4,13 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Environment variable added">
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/resources/application-dev.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/resources/application-prd.properties" afterDir="false" />
+    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Profile added">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/context/BeanPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/DefaultIdGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/EntityMeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/RepositoryPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/RepositoryProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Column.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/GeneratedId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Id.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/IdGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Repository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/enums/GenerationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/interfaces/BaseDatabaseConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/interfaces/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/DbConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/context/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,15 +42,16 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="06-configuration-environment-variable" />
+        <entry key="$PROJECT_DIR$" value="07-configuration-profiles" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -56,6 +79,9 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "JUnit.AppTest (1).executor": "Run",
+    "JUnit.AppTest (2).executor": "Run",
+    "JUnit.AppTest.executor": "Run",
     "JUnit.AppTest.testApp.executor": "Run",
     "JUnit.AppTest.testConfiguration.executor": "Run",
     "JUnit.AppTest.testConfigurationArray.executor": "Run",
@@ -66,24 +92,48 @@
     "JUnit.AppTest.testSingleton.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.monsoon-config [clean].executor": "Run",
+    "Maven.monsoon-config [install].executor": "Run",
+    "Maven.monsoon-db [clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "07-configuration-profiles",
+    "git-widget-placeholder": "08-database",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon/monsoon-config/src/test/resources"
+    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon/monsoon-db/src/main/java/org/ashwin/monsoon/db"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db" />
+      <recent name="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations" />
       <recent name="$PROJECT_DIR$/monsoon-config/src/test/resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.ashwin.monsoon.db" />
       <recent name="org.ashwin.monsoon.config" />
       <recent name="org.ashwin.monsoon.core" />
     </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.ashwin.monsoon.db" />
+      <recent name="org.ashwin.monsoon.db.annotations" />
+    </key>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.testConfigurationArray">
-    <configuration name="AppTest.testConfiguration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AppTest.testApp">
+    <configuration name="AppTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest (2)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-config" />
       <extension name="coverage">
         <pattern>
@@ -93,7 +143,37 @@
       </extension>
       <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
       <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
-      <option name="METHOD_NAME" value="testConfiguration" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-db" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.monsoon.db.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.db" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.db.AppTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-db" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.monsoon.db.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.db" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.db.AppTest" />
+      <option name="METHOD_NAME" value="testApp" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,61 +195,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testConfigurationPropertiesAnn" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="monsoon-config" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ashwin.monsoon.config.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
-      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
-      <option name="METHOD_NAME" value="testConfigurationPropertiesAnn" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppTest.testNestedConfigurationProperties" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="monsoon-config" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ashwin.monsoon.config.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
-      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
-      <option name="METHOD_NAME" value="testNestedConfigurationProperties" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="AppTest.testSingleton" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="monsoon-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ashwin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ashwin" />
-      <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
-      <option name="METHOD_NAME" value="testSingleton" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AppTest.testApp" />
+        <item itemvalue="JUnit.AppTest (1)" />
+        <item itemvalue="JUnit.AppTest (2)" />
+        <item itemvalue="JUnit.AppTest" />
         <item itemvalue="JUnit.AppTest.testConfigurationArray" />
-        <item itemvalue="JUnit.AppTest.testNestedConfigurationProperties" />
-        <item itemvalue="JUnit.AppTest.testConfigurationPropertiesAnn" />
-        <item itemvalue="JUnit.AppTest.testConfiguration" />
-        <item itemvalue="JUnit.AppTest.testSingleton" />
       </list>
     </recent_temporary>
   </component>
@@ -270,7 +302,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759568930055</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Profile added">
+      <option name="closed" value="true" />
+      <created>1759570512290</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1759570512290</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -295,6 +335,7 @@
     <MESSAGE value="Added array ConfigurationProperties" />
     <MESSAGE value="array ConfigurationProperties bug fix" />
     <MESSAGE value="Environment variable added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Environment variable added" />
+    <MESSAGE value="Profile added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Profile added" />
   </component>
 </project>

@@ -7,6 +7,7 @@
         <version>1.0</version>
     </parent>
 
+    <groupId>org.ashwin.monsoon</groupId>
     <artifactId>monsoon-core</artifactId>
     <packaging>jar</packaging>
 
