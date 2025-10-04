@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added Nested Configuration Binder">
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerConfig.java" afterDir="false" />
+    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added assert">
+      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerListConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" afterDir="false" />
@@ -28,7 +28,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="03-dependency-injection" />
+        <entry key="$PROJECT_DIR$" value="04-configuration-module" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -58,6 +58,7 @@
   "keyToString": {
     "JUnit.AppTest.testApp.executor": "Run",
     "JUnit.AppTest.testConfiguration.executor": "Run",
+    "JUnit.AppTest.testConfigurationArray.executor": "Run",
     "JUnit.AppTest.testConfigurationPropertiesAnn.executor": "Run",
     "JUnit.AppTest.testInjection.executor": "Run",
     "JUnit.AppTest.testNestedConfigurationProperties.executor": "Run",
@@ -67,7 +68,7 @@
     "Maven.monsoon-config [clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "04-configuration-module",
+    "git-widget-placeholder": "05-configuration-array-list-binding",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -77,7 +78,7 @@
       <recent name="org.ashwin.monsoon.core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.testNestedConfigurationProperties">
+  <component name="RunManager" selected="JUnit.AppTest.testConfigurationArray">
     <configuration name="AppTest.testConfiguration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-config" />
       <extension name="coverage">
@@ -89,6 +90,22 @@
       <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
       <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
       <option name="METHOD_NAME" value="testConfiguration" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testConfigurationArray" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-config" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.monsoon.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
+      <option name="METHOD_NAME" value="testConfigurationArray" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -126,22 +143,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="AppTest.testPrototype" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="monsoon-core" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.ashwin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="org.ashwin" />
-      <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
-      <option name="METHOD_NAME" value="testPrototype" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="AppTest.testSingleton" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-core" />
       <extension name="coverage">
@@ -160,11 +161,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AppTest.testConfigurationArray" />
         <item itemvalue="JUnit.AppTest.testNestedConfigurationProperties" />
         <item itemvalue="JUnit.AppTest.testConfigurationPropertiesAnn" />
         <item itemvalue="JUnit.AppTest.testConfiguration" />
         <item itemvalue="JUnit.AppTest.testSingleton" />
-        <item itemvalue="JUnit.AppTest.testPrototype" />
       </list>
     </recent_temporary>
   </component>
@@ -225,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759561044938</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Added assert">
+      <option name="closed" value="true" />
+      <created>1759561219869</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1759561219869</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -246,6 +255,7 @@
     <MESSAGE value="application.properties added" />
     <MESSAGE value="Added ConfigurationBinder" />
     <MESSAGE value="Added Nested Configuration Binder" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Nested Configuration Binder" />
+    <MESSAGE value="Added assert" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added assert" />
   </component>
 </project>

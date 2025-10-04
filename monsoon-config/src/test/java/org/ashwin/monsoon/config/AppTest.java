@@ -5,6 +5,7 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import org.ashwin.monsoon.config.test1.DatabaseConfig;
 import org.ashwin.monsoon.config.test1.ServerConfig;
+import org.ashwin.monsoon.config.test1.ServerListConfig;
 
 /**
  * Unit test for simple App.
@@ -29,5 +30,16 @@ public class AppTest extends TestCase {
         ServerConfig serverConfig = ConfigurationBinder.bind(ServerConfig.class);
         System.out.println(serverConfig.getSsl().getKeyStore());
         assertEquals("mykeystore.jks", serverConfig.getSsl().getKeyStore());
+    }
+
+    public void testConfigurationArray() {
+        ServerListConfig serverListConfig = ConfigurationBinder.bind(ServerListConfig.class);
+
+        for (ServerListConfig.ServerConfig config : serverListConfig.getServers()){
+            System.out.println("host: " + config.getHost());
+            System.out.println("port: " + config.getPort());
+            System.out.println("tag: " + config.getTag());
+        }
+        assertEquals("localhost", serverListConfig.getServers().get(0).getHost());
     }
 }

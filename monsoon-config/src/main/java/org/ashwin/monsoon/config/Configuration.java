@@ -46,11 +46,12 @@ public class Configuration {
     }
 
     public static boolean hasPrefix(String prefix) {
+        boolean result = false;
         for ( String key : properties.keySet()){
-            if (key.startsWith(prefix + ".")){
-                return true;
+            if (key.startsWith(prefix)){
+                result = true;
             }
         }
-        return false;
+        return result;
     }
 }
