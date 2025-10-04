@@ -22,6 +22,7 @@ public class AppTest extends TestCase {
 
     public void testConfigurationPropertiesAnn(){
         DatabaseConfig databaseConfig = ConfigurationBinder.bind(DatabaseConfig.class);
+        System.out.println(databaseConfig.getUsername());
         System.out.println(databaseConfig.getUrl());
         assertEquals("jdbc:sqlite:test.db", databaseConfig.getUrl());
     }

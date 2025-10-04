@@ -1,6 +1,8 @@
 package org.ashwin.monsoon.config;
 
 import org.ashwin.monsoon.config.annotations.ConfigurationProperties;
+import org.ashwin.monsoon.config.annotations.Value;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
@@ -27,6 +29,7 @@ public class ConfigurationBinder {
     private static <T> void bindFields(T config, String prefix) throws Exception {
         for (Field field : config.getClass().getDeclaredFields()) {
             String propertyName = getPropertyName(config, prefix, field);
+//            System.out.println("Property name: " + propertyName);
             field.setAccessible(true);
 
             if (List.class.isAssignableFrom(field.getType())){
@@ -52,6 +55,10 @@ public class ConfigurationBinder {
                 field.set(config, list);
             } else {
                 String propertyValue = Configuration.get(propertyName);
+                if ((propertyValue == null || propertyValue.isEmpty()) && field.isAnnotationPresent(Value.class)){
+                    String defaultValueExpr = field.getAnnotation(Value.class).value();
+                    propertyValue = resolveExpression(defaultValueExpr);
+                }
                 if (propertyValue != null) {
                     Object value = convertToType(propertyValue, field.getType());
                     field.set(config, value);
@@ -73,8 +80,7 @@ public class ConfigurationBinder {
         if (prefix.isEmpty()){
             propertyName = field.getName();
         } else if (config.getClass().isAnnotationPresent(ConfigurationProperties.class)) {
-            ConfigurationProperties cp = config.getClass().getAnnotation(ConfigurationProperties.class);
-            if (cp.prefix().equals(prefix)){
+            if (prefix.equals(field.getName())){
                 propertyName = prefix;
             } else {
                 propertyName = prefix + "." + field.getName();
@@ -115,5 +121,20 @@ public class ConfigurationBinder {
             return Enum.valueOf((Class<? extends Enum>) targetType, value);
         }
         throw new UnsupportedOperationException("Unsupported type: " + targetType.getName());
+    }
+
+    private static String resolveExpression(String defaultValueExpr) {
+        // Expected format: ${key:default}
+        if (!defaultValueExpr.startsWith("${") || !defaultValueExpr.endsWith("}")) {
+            throw new IllegalArgumentException("Invalid expression format: " + defaultValueExpr);
+        }
+        String[] parts = defaultValueExpr.substring(2, defaultValueExpr.length() - 1).split(":");
+        if (parts.length != 2) {
+            throw new IllegalArgumentException("Invalid expression format: " + defaultValueExpr);
+        }
+        String key = parts[0].trim();
+        String defaultValue = parts[1].trim();
+        String value = Configuration.get(key);
+        return value != null ? value : defaultValue;
     }
 }

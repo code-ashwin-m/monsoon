@@ -4,13 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added assert">
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerListConfig.java" afterDir="false" />
+    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Added array ConfigurationProperties">
+      <change afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/annotations/Value.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/DatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/DatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerListConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerListConfig.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,8 +20,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="AnnotationType" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -234,7 +234,15 @@
       <option name="project" value="LOCAL" />
       <updated>1759561219869</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Added array ConfigurationProperties">
+      <option name="closed" value="true" />
+      <created>1759565916784</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1759565916784</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -256,6 +264,7 @@
     <MESSAGE value="Added ConfigurationBinder" />
     <MESSAGE value="Added Nested Configuration Binder" />
     <MESSAGE value="Added assert" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added assert" />
+    <MESSAGE value="Added array ConfigurationProperties" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added array ConfigurationProperties" />
   </component>
 </project>

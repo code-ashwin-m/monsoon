@@ -1,6 +1,7 @@
 package org.ashwin.monsoon.config.test1;
 
 import org.ashwin.monsoon.config.annotations.ConfigurationProperties;
+import org.ashwin.monsoon.config.annotations.Value;
 
 import java.util.List;
 

@@ -1,11 +1,13 @@
 package org.ashwin.monsoon.config.test1;
 
 import org.ashwin.monsoon.config.annotations.ConfigurationProperties;
+import org.ashwin.monsoon.config.annotations.Value;
 
 @ConfigurationProperties(prefix = "db")
 public class DatabaseConfig {
     private String driver;
     private String url;
+    @Value("${username:root}")
     private String username;
     private String password;
 
