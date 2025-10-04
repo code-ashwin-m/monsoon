@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="misc updated">
-      <change afterPath="$PROJECT_DIR$/monsoon-config/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,10 +55,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AppTest.testApp.executor": "Run",
+    "JUnit.AppTest.testConfiguration.executor": "Run",
     "JUnit.AppTest.testInjection.executor": "Run",
     "JUnit.AppTest.testPrototype.executor": "Run",
     "JUnit.AppTest.testSingleton.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.monsoon-config [clean].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "04-configuration-module",
@@ -70,10 +69,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.ashwin.monsoon.config" />
       <recent name="org.ashwin.monsoon.core" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.testInjection">
+  <component name="RunManager" selected="JUnit.AppTest.testConfiguration">
     <configuration name="AppTest.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-core" />
       <extension name="coverage">
@@ -85,6 +85,22 @@
       <option name="PACKAGE_NAME" value="org.ashwin" />
       <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
       <option name="METHOD_NAME" value="testApp" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testConfiguration" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-config" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.monsoon.config.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin.monsoon.config" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.monsoon.config.AppTest" />
+      <option name="METHOD_NAME" value="testConfiguration" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -140,10 +156,10 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.testInjection" />
-        <item itemvalue="JUnit.AppTest.testPrototype" />
+        <item itemvalue="JUnit.AppTest.testConfiguration" />
         <item itemvalue="JUnit.AppTest.testSingleton" />
-        <item itemvalue="JUnit.AppTest.testApp" />
+        <item itemvalue="JUnit.AppTest.testPrototype" />
+        <item itemvalue="JUnit.AppTest.testInjection" />
         <item itemvalue="JUnit.AppTest.testApp" />
       </list>
     </recent_temporary>
