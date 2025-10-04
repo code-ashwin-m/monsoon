@@ -4,20 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/ComponentScan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="Scan Package with @ComponentScan">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Singleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/PrototypeTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/SingletonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/Test.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,8 +27,25 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="01-scan-package" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "code-ashwin-m"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/code-ashwin-m/monsson.git",
+    "accountId": "7e949a82-f4f3-4991-849e-fb69e4ce103f"
+  }
+}]]></component>
   <component name="ProjectColorInfo"><![CDATA[{
   "associatedIndex": 5
 }]]></component>
@@ -47,10 +58,12 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.AppTest.testApp.executor": "Run",
+    "JUnit.AppTest.testPrototype.executor": "Run",
+    "JUnit.AppTest.testSingleton.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "02-register-bean",
     "kotlin-language-version-configured": "true"
   }
 }]]></component>
@@ -59,12 +72,12 @@
       <recent name="org.ashwin.monsoon.core" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.AppTest.testPrototype">
     <configuration name="AppTest.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="monsoon-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.ashwin.*" />
+          <option name="PATTERN" value="org.ashwin.test1.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -76,8 +89,43 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="AppTest.testPrototype" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
+      <option name="METHOD_NAME" value="testPrototype" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppTest.testSingleton" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.ashwin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="org.ashwin" />
+      <option name="MAIN_CLASS_NAME" value="org.ashwin.AppTest" />
+      <option name="METHOD_NAME" value="testSingleton" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AppTest.testPrototype" />
+        <item itemvalue="JUnit.AppTest.testSingleton" />
+        <item itemvalue="JUnit.AppTest.testApp" />
         <item itemvalue="JUnit.AppTest.testApp" />
       </list>
     </recent_temporary>
@@ -91,6 +139,15 @@
       <option name="presentableId" value="Default" />
       <updated>1759548203778</updated>
     </task>
+    <task id="LOCAL-00001" summary="Scan Package with @ComponentScan">
+      <option name="closed" value="true" />
+      <created>1759551471855</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759551471855</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -103,5 +160,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Scan Package with @ComponentScan" />
+    <option name="LAST_COMMIT_MESSAGE" value="Scan Package with @ComponentScan" />
   </component>
 </project>
