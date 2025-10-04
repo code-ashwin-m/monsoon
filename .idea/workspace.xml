@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1f8541d0-2807-4bc9-8307-e308b8c276d4" name="Changes" comment="@Singleton added">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Inject.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/testInjection/GreetingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/testInjection/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Singleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Singleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/SingletonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/SingletonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,40 +28,40 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "code-ashwin-m"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;code-ashwin-m&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/code-ashwin-m/monsson.git",
-    "accountId": "7e949a82-f4f3-4991-849e-fb69e4ce103f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/code-ashwin-m/monsson.git&quot;,
+    &quot;accountId&quot;: &quot;7e949a82-f4f3-4991-849e-fb69e4ce103f&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 5
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
   <component name="ProjectId" id="33aHL4O77W5DagV1JD3CDzb5njd" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JUnit.AppTest.testApp.executor": "Run",
-    "JUnit.AppTest.testInjection.executor": "Run",
-    "JUnit.AppTest.testPrototype.executor": "Run",
-    "JUnit.AppTest.testSingleton.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "03-dependency-injection",
-    "kotlin-language-version-configured": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.AppTest.testApp.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppTest.testInjection.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppTest.testPrototype.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppTest.testSingleton.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;03-dependency-injection&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org.ashwin.monsoon.core" />
