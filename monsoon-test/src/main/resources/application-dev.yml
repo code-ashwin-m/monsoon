@@ -1,0 +1,4 @@
+db:
+  url: jdbc:sqlite:test123.db
+  username: dev-root
+  password: root

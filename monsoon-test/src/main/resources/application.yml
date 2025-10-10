@@ -1,8 +1,12 @@
+app:
+  profiles:
+    active: dev
+
 db:
   driver: org.sqlite.JDBC
   url: jdbc:sqlite:test.db
-  username: "root"
-  password: "root"
+  username: root
+  password: root
 
 server:
   host: localhost

@@ -20,6 +20,14 @@ public class ApplicationConfig {
                 input = ApplicationConfig.class.getClassLoader().getResourceAsStream("application.yml");
                 if (input != null ) {
                     loadYML(input);
+
+                    String profile = get("app.profiles.active", "dev");
+                    System.out.println("Profile: " + profile);
+                    String profileFile = "application-" + profile + ".yml";
+                    input = ApplicationConfig.class.getClassLoader().getResourceAsStream(profileFile);
+                    if (input != null){
+                        loadYML(input);
+                    }
                 } else {
                     System.out.println("application.properties or application.yml not found");
                 }
@@ -62,6 +70,10 @@ public class ApplicationConfig {
 
     public static String get(String key) {
         return properties.get(key);
+    }
+
+    public static String get(String key, String defaultValue) {
+        return properties.getOrDefault(key, defaultValue);
     }
 
     public static boolean hasPrefix(String prefix) {

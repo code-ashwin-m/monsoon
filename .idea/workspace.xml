@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="@ConfigurationProperties implemented">
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerListConfig.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="List binding added">
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application-dev.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application1.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,28 +49,32 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.monsoon.test.App.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AppTest.testApp.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-test [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-test [package].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;09-clean&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.org.monsoon.test.App.executor": "Run",
+    "JUnit.AppTest.testApp.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.monsoon [install].executor": "Run",
+    "Maven.monsoon [package].executor": "Run",
+    "Maven.monsoon-core [install].executor": "Run",
+    "Maven.monsoon-test [install].executor": "Run",
+    "Maven.monsoon-test [package].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "09-clean",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon/monsoon-test/src/main/resources",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.monsoon.framework.core.context" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-test/src/main/resources" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.monsoon.test" />
@@ -162,13 +165,22 @@
       <option name="project" value="LOCAL" />
       <updated>1760075906877</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="List binding added">
+      <option name="closed" value="true" />
+      <created>1760077619940</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1760077619940</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean new project" />
     <MESSAGE value="ComponentScan implemented" />
     <MESSAGE value="@ConfigurationProperties implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="@ConfigurationProperties implemented" />
+    <MESSAGE value="List binding added" />
+    <option name="LAST_COMMIT_MESSAGE" value="List binding added" />
   </component>
 </project>
