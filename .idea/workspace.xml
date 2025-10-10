@@ -4,23 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="ComponentScan implemented">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ConfigurationProperties.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestDatabaseConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application1.properties" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="@ConfigurationProperties implemented">
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerListConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -164,12 +154,21 @@
       <option name="project" value="LOCAL" />
       <updated>1760069732396</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="@ConfigurationProperties implemented">
+      <option name="closed" value="true" />
+      <created>1760075906877</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1760075906877</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean new project" />
     <MESSAGE value="ComponentScan implemented" />
-    <option name="LAST_COMMIT_MESSAGE" value="ComponentScan implemented" />
+    <MESSAGE value="@ConfigurationProperties implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="@ConfigurationProperties implemented" />
   </component>
 </project>

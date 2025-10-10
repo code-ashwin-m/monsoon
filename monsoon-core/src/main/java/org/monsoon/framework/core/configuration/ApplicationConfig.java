@@ -4,6 +4,7 @@ import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
@@ -49,6 +50,10 @@ public class ApplicationConfig {
             Object val = e.getValue();
             if (val instanceof Map) {
                 flatten(key, (Map<String, Object>) val);
+            } else if (val instanceof List) {
+                for (int i = 0; i < ((List<?>) val).size(); i++) {
+                    flatten(key + "[" + i + "]", (Map<String, Object>) ((List<?>) val).get(i));
+                }
             } else {
                 properties.put(key, val.toString());
             }

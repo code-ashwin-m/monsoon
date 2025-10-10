@@ -34,5 +34,18 @@ public class App
         System.out.println(dbConfig.getUrl());
         System.out.println(dbConfig.getUsername());
         System.out.println(dbConfig.getPassword());
+
+        TestServerConfig serverConfig = ConfigurationBinder.bind(TestServerConfig.class);
+        System.out.println(serverConfig.getHost());
+        System.out.println(serverConfig.getPort());
+        System.out.println(serverConfig.getSsl().isEnabled());
+        System.out.println(serverConfig.getSsl().getKeyStore());
+
+        TestServerListConfig serverListConfig = ConfigurationBinder.bind(TestServerListConfig.class);
+        System.out.println(serverListConfig.getServers().size());
+        for (TestServerListConfig.ServerConfig server : serverListConfig.getServers()) {
+            System.out.println(server.getHost());
+            System.out.println(server.getPort());
+        }
     }
 }
