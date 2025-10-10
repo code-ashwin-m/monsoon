@@ -1,4 +1,4 @@
-package org.monsoon.test;
+package org.monsoon.test.coretest;
 
 import org.monsoon.framework.core.annotations.Autowired;
 import org.monsoon.framework.core.annotations.Component;

@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
@@ -81,5 +82,9 @@ public class ScanPackageUtil {
             }
         }
         return classes;
+    }
+
+    public static List<Class<?>> scanMonsoonPackageForClasses() throws Exception {
+        return scanAllPackageForClasses("org.monsoon.framework");
     }
 }

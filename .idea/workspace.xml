@@ -4,9 +4,46 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Config profile added">
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Config env variable added">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/BeanPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/ConnectionFactory.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/DatabaseConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/DefaultIdGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/EntityMeta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Entity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/GeneratedId.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Id.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Repository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/enums/GenerationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateTable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/SQLData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/UpdateRecord.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/interfaces/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/interfaces/IdGenerator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-db/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestUserEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/UUIDGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Autowired.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Autowired.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ScanPackageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ScanPackageUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponent.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestComponent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestComponentSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestDatabaseConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestDatabaseConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestServerConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerListConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestServerListConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +53,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -49,7 +86,9 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.App.executor": "Run",
+    "Application.DBTest.executor": "Run",
     "Application.org.monsoon.test.App.executor": "Run",
+    "Application.org.monsoon.test.coretest.App.executor": "Run",
     "JUnit.AppTest.testApp.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.monsoon [install].executor": "Run",
@@ -68,17 +107,22 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.monsoon.test.dbtest" />
       <recent name="org.monsoon.framework.core.context" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/monsoon-test/src/main/resources" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.monsoon.framework.db" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.monsoon.test" />
+      <recent name="org.monsoon.framework.db.annotations" />
       <recent name="org.monsoon.framework.core.annotations" />
+      <recent name="org.monsoon.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.org.monsoon.test.App">
+  <component name="RunManager" selected="Application.DBTest">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.App" />
       <module name="monsoon-core" />
@@ -92,12 +136,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.monsoon.test.App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.monsoon.test.App" />
+    <configuration name="DBTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.test.dbtest.DBTest" />
       <module name="monsoon-test" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.monsoon.test.*" />
+          <option name="PATTERN" value="org.monsoon.test.dbtest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.monsoon.test.coretest.App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.test.coretest.App" />
+      <module name="monsoon-test" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.test.coretest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -123,7 +180,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.org.monsoon.test.App" />
+        <item itemvalue="Application.DBTest" />
+        <item itemvalue="Application.org.monsoon.test.coretest.App" />
         <item itemvalue="JUnit.AppTest.testApp" />
         <item itemvalue="Application.App" />
       </list>
@@ -178,7 +236,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760078708774</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Config env variable added">
+      <option name="closed" value="true" />
+      <created>1760079053417</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1760079053417</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -187,6 +253,7 @@
     <MESSAGE value="@ConfigurationProperties implemented" />
     <MESSAGE value="List binding added" />
     <MESSAGE value="Config profile added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Config profile added" />
+    <MESSAGE value="Config env variable added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Config env variable added" />
   </component>
 </project>

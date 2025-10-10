@@ -1,4 +1,4 @@
-package org.monsoon.test;
+package org.monsoon.test.coretest;
 
 import org.monsoon.framework.core.annotations.Component;
 import org.monsoon.framework.core.annotations.Singleton;

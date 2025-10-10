@@ -1,4 +1,4 @@
-package org.monsoon.test;
+package org.monsoon.test.coretest;
 
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.MonsoonApplication;

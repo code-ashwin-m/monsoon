@@ -2,7 +2,9 @@ package org.monsoon.framework.core.annotations;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.FIELD, ElementType.CONSTRUCTOR})
+@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Autowired {
+@Component
+public @interface Service {
+    String name() default "";
 }
