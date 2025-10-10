@@ -4,12 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="List binding added">
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application-dev.yml" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Config profile added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application1.properties" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -173,7 +170,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760077619940</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Config profile added">
+      <option name="closed" value="true" />
+      <created>1760078708774</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1760078708774</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -181,6 +186,7 @@
     <MESSAGE value="ComponentScan implemented" />
     <MESSAGE value="@ConfigurationProperties implemented" />
     <MESSAGE value="List binding added" />
-    <option name="LAST_COMMIT_MESSAGE" value="List binding added" />
+    <MESSAGE value="Config profile added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Config profile added" />
   </component>
 </project>

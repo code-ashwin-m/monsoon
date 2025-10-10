@@ -28,6 +28,11 @@ public class ApplicationConfig {
                     if (input != null){
                         loadYML(input);
                     }
+
+                    Map<String, String> env = System.getenv();
+                    for (String key : env.keySet()) {
+                        properties.put(normalizeEnvKey(key), env.get(key));
+                    }
                 } else {
                     System.out.println("application.properties or application.yml not found");
                 }
@@ -35,6 +40,10 @@ public class ApplicationConfig {
         } catch ( Exception ex) {
             ex.printStackTrace();
         }
+    }
+
+    private static String normalizeEnvKey(String key) {
+        return key.toLowerCase().replace("_", ".");
     }
 
     private static void loadProperties(InputStream input) throws Exception {
