@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Added db - delete and read">
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Delete.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Query.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Update.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Added db - @Query, @Update, @Delete added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryProxy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/DeleteRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/DeleteRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/UpdateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/UpdateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestService.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -234,7 +224,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760102551434</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Added db - @Query, @Update, @Delete added">
+      <option name="closed" value="true" />
+      <created>1760104147135</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1760104147135</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -246,6 +244,7 @@
     <MESSAGE value="Config env variable added" />
     <MESSAGE value="Added db - create and update" />
     <MESSAGE value="Added db - delete and read" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added db - delete and read" />
+    <MESSAGE value="Added db - @Query, @Update, @Delete added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added db - @Query, @Update, @Delete added" />
   </component>
 </project>

@@ -32,7 +32,7 @@ public class UpdateRecord {
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
         GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;
 
-        SQLData sqlData = generateSQL(entity, meta, isGenerated, gid);
+        SQLData sqlData = generateSQL(entity, meta);
         System.out.println(sqlData.getSql());
 
         try (PreparedStatement stmt = conn.prepareStatement(sqlData.getSql())) {
@@ -50,7 +50,7 @@ public class UpdateRecord {
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
         GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;
 
-        SQLData sqlData = generateSQL(entities.get(0), meta, isGenerated, gid);
+        SQLData sqlData = generateSQL(entities.get(0), meta);
         String sql = sqlData.getSql();
         System.out.println(sql);
 
@@ -58,7 +58,7 @@ public class UpdateRecord {
 
             // Prepare batch
             for (Object entity : entities) {
-                SQLData data = generateSQL(entity, meta, isGenerated, gid);
+                SQLData data = generateSQL(entity, meta);
 
                 // Bind values
                 List<Object> values = data.getValues();
@@ -86,7 +86,7 @@ public class UpdateRecord {
     }
 
 
-    private static SQLData generateSQL(Object entity, EntityMeta meta, boolean isGenerated, GeneratedId gid) throws Exception {
+    private static SQLData generateSQL(Object entity, EntityMeta meta) throws Exception {
         StringBuilder sql = new StringBuilder("UPDATE " + meta.getTableName() + " SET ");
         List<Object> values = new ArrayList<>();
 
