@@ -1,13 +1,12 @@
 package org.monsoon.framework.core;
 
-import org.monsoon.framework.core.configuration.MonsoonApplication;
-import org.monsoon.framework.core.context.AnnotationConfigApplicationContext;
+import org.monsoon.framework.core.annotations.MonsoonApplication;
+import org.monsoon.framework.core.context.ApplicationContextFromConfigClass;
 import org.monsoon.framework.core.context.ApplicationContext;
-import org.monsoon.framework.core.context.Context;
 
 public class Monsoon {
     private Class<?> mainClass;
-    private Context context;
+    private ApplicationContext context;
 
     public Monsoon(Class<?> mainClass) {
         this.mainClass = mainClass;
@@ -23,7 +22,7 @@ public class Monsoon {
     }
 
     private ApplicationContext createApplicationContext() throws Exception {
-        ApplicationContext context = new AnnotationConfigApplicationContext(mainClass);
+        ApplicationContext context = new ApplicationContextFromConfigClass(mainClass);
         this.context = context;
         return context;
     }

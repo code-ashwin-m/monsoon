@@ -4,67 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/MonsoonApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/AnnotationConfigApplicationContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/Context.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/test/java/org/monsoon/test/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Clean new project">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Autowired.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ComponentScan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Singleton.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ScanPackageUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/Configuration.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/ConfigurationBinder.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/annotations/ConfigurationProperties.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/main/java/org/ashwin/monsoon/config/annotations/Value.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/DatabaseConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/java/org/ashwin/monsoon/config/test1/ServerListConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/resources/application-dev.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/resources/application-prd.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-config/src/test/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Component.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/ComponentScan.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Inject.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Service.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/annotations/Singleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/context/ApplicationContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/ashwin/monsoon/core/context/BeanPostProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/PrototypeTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/test1/SingletonTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/testInjection/GreetingService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/ashwin/testInjection/UserService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/ConnectionFactory.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/DefaultIdGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/EntityMeta.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/RepositoryPostProcessor.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/RepositoryProxy.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Column.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Entity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/GeneratedId.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Id.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/IdGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/annotations/Repository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/enums/GenerationType.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/interfaces/BaseDatabaseConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/ashwin/monsoon/db/interfaces/BaseRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/DbConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/java/org/ashwin/monsoon/db/test1/TestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/test/resources/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/AnnotationConfigApplicationContext.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/BeanDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,53 +30,64 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "code-ashwin-m"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;code-ashwin-m&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/code-ashwin-m/monsson.git",
-    "accountId": "7e949a82-f4f3-4991-849e-fb69e4ce103f"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/code-ashwin-m/monsson.git&quot;,
+    &quot;accountId&quot;: &quot;7e949a82-f4f3-4991-849e-fb69e4ce103f&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="33h9MOspmE1hXcGTTl6zIQkRlSg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.App.executor": "Run",
-    "Application.org.monsoon.test.App.executor": "Run",
-    "JUnit.AppTest.testApp.executor": "Run",
-    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
-    "Maven.monsoon [install].executor": "Run",
-    "Maven.monsoon [package].executor": "Run",
-    "Maven.monsoon-core [install].executor": "Run",
-    "Maven.monsoon-test [install].executor": "Run",
-    "Maven.monsoon-test [package].executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "09-clean",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.App.executor&quot;: &quot;Run&quot;,
+    &quot;Application.org.monsoon.test.App.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AppTest.testApp.executor&quot;: &quot;Run&quot;,
+    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monsoon [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monsoon [package].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monsoon-core [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monsoon-test [install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.monsoon-test [package].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;09-clean&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
-}]]></component>
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.monsoon.framework.core.context" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.monsoon.test" />
+      <recent name="org.monsoon.framework.core.annotations" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.org.monsoon.test.App">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.App" />
@@ -181,6 +148,19 @@
       <option name="presentableId" value="Default" />
       <updated>1759758387534</updated>
     </task>
+    <task id="LOCAL-00001" summary="Clean new project">
+      <option name="closed" value="true" />
+      <created>1759764339265</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1759764339265</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Clean new project" />
+    <option name="LAST_COMMIT_MESSAGE" value="Clean new project" />
   </component>
 </project>

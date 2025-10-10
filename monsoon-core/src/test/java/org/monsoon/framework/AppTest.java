@@ -3,7 +3,7 @@ package org.monsoon.framework;
 import junit.framework.TestCase;
 import org.monsoon.framework.core.context.ApplicationContext;
 import org.monsoon.framework.core.Monsoon;
-import org.monsoon.framework.core.configuration.MonsoonApplication;
+import org.monsoon.framework.core.annotations.MonsoonApplication;
 
 @MonsoonApplication
 public class AppTest extends TestCase {
