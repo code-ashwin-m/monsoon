@@ -10,6 +10,8 @@ public class DBTest {
         ApplicationContext context = Monsoon.run(DBTest.class);
 
         TestService service = context.getBean(TestService.class);
-        service.update();
+//        service.createOne();
+//        service.createMany();
+        service.findUser();
     }
 }

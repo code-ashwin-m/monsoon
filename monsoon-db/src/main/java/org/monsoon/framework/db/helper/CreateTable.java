@@ -18,6 +18,19 @@ public class CreateTable {
         String url = conn.getMetaData().getURL().toLowerCase();
         String dbType = detectDbType(url);
 
+        SQLData sqlData = generateSQL(meta, dbType);
+        String sql = sqlData.getSql();
+
+        System.out.println(sql);
+
+        try (Statement stmt = conn.createStatement()) {
+            stmt.executeUpdate(sql);
+        }
+
+        return true;
+    }
+
+    private static SQLData generateSQL(EntityMeta meta, String dbType) {
         List<String> uniqueDefs = new ArrayList<>();
         List<String> uniqueComboDefs = new ArrayList<>();
 
@@ -64,13 +77,7 @@ public class CreateTable {
 
         sql.append(")");
 
-        System.out.println(sql.toString());
-
-        try (Statement stmt = conn.createStatement()) {
-            stmt.executeUpdate(sql.toString());
-        }
-
-        return true;
+        return new SQLData(sql.toString(), null);
     }
 
     private static String detectDbType(String url) {

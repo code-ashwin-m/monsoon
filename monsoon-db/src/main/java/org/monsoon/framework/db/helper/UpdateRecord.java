@@ -3,15 +3,19 @@ package org.monsoon.framework.db.helper;
 import org.monsoon.framework.db.EntityMeta;
 import org.monsoon.framework.db.annotations.Column;
 import org.monsoon.framework.db.annotations.GeneratedId;
+import org.monsoon.framework.db.enums.GenerationType;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UpdateRecord {
     public static Object updateOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
+        if (entity == null) return false;
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
         GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;
 
@@ -27,9 +31,43 @@ public class UpdateRecord {
 
         return true;
     }
-    public static Object updateMany(Connection conn, EntityMeta meta, Object entities) throws Exception {
-        for (Object entity: (List) entities){
-            updateOne(conn, meta, entity);
+    public static Object updateMany(Connection conn, EntityMeta meta, List entities) throws Exception {
+        if (entities == null || entities.isEmpty()) return false;
+
+        boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
+        GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;
+
+        SQLData sqlData = generateSQL(entities.get(0), meta, isGenerated, gid);
+        String sql = sqlData.getSql();
+        System.out.println(sql);
+
+        try (PreparedStatement stmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
+
+            // Prepare batch
+            for (Object entity : entities) {
+                SQLData data = generateSQL(entity, meta, isGenerated, gid);
+
+                // Bind values
+                List<Object> values = data.getValues();
+                for (int i = 0; i < values.size(); i++) {
+                    stmt.setObject(i + 1, values.get(i));
+                }
+                stmt.addBatch();
+            }
+
+            // Execute batch
+            stmt.executeBatch();
+
+            // Handle auto-generated IDs (if needed)
+            if (isGenerated && gid.strategy() == GenerationType.AUTO) {
+                ResultSet keys = stmt.getGeneratedKeys();
+                int index = 0;
+                while (keys.next() && index < entities.size()) {
+                    Object idValue = keys.getObject(1);
+                    meta.getIdField().set(entities.get(index), idValue);
+                    index++;
+                }
+            }
         }
         return true;
     }

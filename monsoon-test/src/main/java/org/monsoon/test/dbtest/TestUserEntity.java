@@ -13,14 +13,17 @@ public class TestUserEntity {
     @GeneratedId(strategy = GenerationType.CUSTOM, generator = UUIDGenerator.class)
     private String id;
 
-    @Column( name = "first_name", uniqueCombo = true)
+    @Column( name = "firstName", uniqueCombo = true)
     private String firstName;
 
-    @Column( name = "last_name", uniqueCombo = true)
+    @Column( name = "lastName", uniqueCombo = true)
     private String lastName;
 
     @Column( name = "email", unique = true)
     private String email;
+
+    public TestUserEntity() {
+    }
 
     public TestUserEntity(String id, String firstName, String lastName, String email) {
         this.id = id;

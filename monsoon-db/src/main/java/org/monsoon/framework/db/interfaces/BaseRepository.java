@@ -9,8 +9,8 @@ public interface BaseRepository<T> {
     boolean createMany(List<T> entities);
     boolean update(T entity);
     boolean updateMany(List<T> entities);
-    boolean delete(T entity);
-    boolean deleteById(Object id);
-    List<T> getAll();
-    T getById(Object id);
+    boolean deleteOne(T entity);
+    boolean deleteMany(List<T> entities);
+    List<T> findAll();
+    T findById(Object id);
 }
