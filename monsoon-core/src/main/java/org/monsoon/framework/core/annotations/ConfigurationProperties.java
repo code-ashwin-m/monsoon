@@ -2,8 +2,8 @@ package org.monsoon.framework.core.annotations;
 
 import java.lang.annotation.*;
 
-@Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Component {
-    String name() default "";
+@Target(ElementType.TYPE)
+public @interface ConfigurationProperties {
+    String prefix();
 }

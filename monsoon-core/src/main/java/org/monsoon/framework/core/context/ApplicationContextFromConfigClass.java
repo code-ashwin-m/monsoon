@@ -36,7 +36,9 @@ public class ApplicationContextFromConfigClass implements ApplicationContext {
     }
 
     private void registerComponents(Class<?> clazz) {
-        String beanName = Introspector.decapitalize(clazz.getSimpleName());
+        Component component = clazz.getAnnotation(Component.class);
+        String beanName = component.name();
+        if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
         Boolean isSingleton = isAnnotationPresent(clazz, Singleton.class);
         BeanDefinition def = new BeanDefinition(isSingleton, clazz, beanName);
         beanDefinitions.put(beanName, def);
@@ -54,14 +56,16 @@ public class ApplicationContextFromConfigClass implements ApplicationContext {
     }
 
     @Override
-    public <T> T getBean(String beanName, Class<T> beanClass) throws Exception {
-        return beanClass.cast(getBean(beanName));
+    public <T> T getBean(String beanName, Class<T> clazz) throws Exception {
+        return clazz.cast(getBean(beanName));
     }
 
     @Override
-    public <T> T getBean(Class<T> beanClass) throws Exception {
-        String beanName = Introspector.decapitalize(beanClass.getSimpleName());
-        return beanClass.cast(getBean(beanName));
+    public <T> T getBean(Class<T> clazz) throws Exception {
+        Component component = clazz.getAnnotation(Component.class);
+        String beanName = component.name();
+        if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
+        return clazz.cast(getBean(beanName));
     }
 
     @Override

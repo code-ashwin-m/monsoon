@@ -2,6 +2,7 @@ package org.monsoon.test;
 
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.MonsoonApplication;
+import org.monsoon.framework.core.configuration.ConfigurationBinder;
 import org.monsoon.framework.core.context.ApplicationContext;
 
 @MonsoonApplication
@@ -19,10 +20,19 @@ public class App
         System.out.println(component1.getSingleton());
         System.out.println(component2.getSingleton());
 
-        TestComponentSingleton singleton1 = context.getBean("testComponentSingleton", TestComponentSingleton.class);
-        TestComponentSingleton singleton2 = context.getBean("testComponentSingleton", TestComponentSingleton.class);
+        TestComponentSingleton singleton1 = context.getBean("comp1", TestComponentSingleton.class);
+        TestComponentSingleton singleton2 = context.getBean("comp1", TestComponentSingleton.class);
 
         System.out.println(singleton1);
         System.out.println(singleton2);
+
+        TestComponentSingleton singleton3 = Monsoon.getInstance().getContext().getBean("comp1", TestComponentSingleton.class);
+        System.out.println(singleton3);
+
+        TestDatabaseConfig dbConfig = ConfigurationBinder.bind(TestDatabaseConfig.class);
+        System.out.println(dbConfig.getDriver());
+        System.out.println(dbConfig.getUrl());
+        System.out.println(dbConfig.getUsername());
+        System.out.println(dbConfig.getPassword());
     }
 }

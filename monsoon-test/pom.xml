@@ -25,6 +25,13 @@
             <version>3.8.1</version>
             <scope>test</scope>
         </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.yaml</groupId>-->
+<!--            <artifactId>snakeyaml</artifactId>-->
+<!--            <version>2.5</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>org.monsoon.framework</groupId>
             <artifactId>monsoon-core</artifactId>

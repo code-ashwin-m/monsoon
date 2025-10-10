@@ -1,0 +1,12 @@
+db:
+  driver: org.sqlite.JDBC
+  url: jdbc:sqlite:test.db
+  username: "root"
+  password: "root"
+
+server:
+  host: localhost
+  port: 8080
+  ssl:
+    enabled: true
+    keyStore: mykeystore.jks

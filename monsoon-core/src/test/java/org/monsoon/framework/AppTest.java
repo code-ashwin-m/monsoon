@@ -11,6 +11,5 @@ public class AppTest extends TestCase {
     public void testApp() throws Exception {
         String[] args = {};
         ApplicationContext context = Monsoon.run(AppTest.class, args);
-        System.out.println(context.getClasses());
     }
 }

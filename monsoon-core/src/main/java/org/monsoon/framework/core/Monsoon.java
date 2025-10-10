@@ -7,6 +7,7 @@ import org.monsoon.framework.core.context.ApplicationContext;
 public class Monsoon {
     private Class<?> mainClass;
     private ApplicationContext context;
+    private static Monsoon instance = null;
 
     public Monsoon(Class<?> mainClass) {
         this.mainClass = mainClass;
@@ -15,7 +16,8 @@ public class Monsoon {
     public static ApplicationContext run(Class<?> mainClass, String... args) throws Exception {
         if (mainClass.isAnnotationPresent(MonsoonApplication.class)){
             System.out.println("Monsoon Application");
-            return new Monsoon(mainClass).createApplicationContext();
+            instance = new Monsoon(mainClass);
+            return instance.createApplicationContext();
         } else {
             throw new IllegalArgumentException("Main class is not a Monsoon Application");
         }
@@ -24,6 +26,14 @@ public class Monsoon {
     private ApplicationContext createApplicationContext() throws Exception {
         ApplicationContext context = new ApplicationContextFromConfigClass(mainClass);
         this.context = context;
+        return context;
+    }
+
+    public static Monsoon getInstance(){
+        return instance;
+    }
+
+    public ApplicationContext getContext(){
         return context;
     }
 }

@@ -4,23 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Clean new project">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Autowired.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ComponentScan.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Singleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ScanPackageUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponent.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="ComponentScan implemented">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ConfigurationProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ConfigurationBinder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestDatabaseConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestServerConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application1.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/AnnotationConfigApplicationContext.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/Context.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/BeanDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/TestComponentSingleton.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,8 +31,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="AnnotationType" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -156,11 +156,20 @@
       <option name="project" value="LOCAL" />
       <updated>1759764339265</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="ComponentScan implemented">
+      <option name="closed" value="true" />
+      <created>1760069732396</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1760069732396</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Clean new project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Clean new project" />
+    <MESSAGE value="ComponentScan implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="ComponentScan implemented" />
   </component>
 </project>
