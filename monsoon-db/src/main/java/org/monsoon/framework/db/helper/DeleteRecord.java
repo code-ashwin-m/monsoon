@@ -11,7 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteRecord {
-    public static Object deleteOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
+
+    public static Boolean execute(Connection conn, String sql, Object[] args) throws Exception {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            if (args != null) {
+                for (int i = 0; i < args.length; i++) {
+                    stmt.setObject(i + 1, args[i]);
+                }
+            }
+            stmt.executeUpdate();
+        }
+        return true;
+    }
+
+    public static Boolean deleteOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
         if (entity == null) return false;
 
         SQLData sqlData = generateSQL(entity, meta);
@@ -26,7 +39,7 @@ public class DeleteRecord {
 
         return true;
     }
-    public static Object deleteMany(Connection conn, EntityMeta meta, List entities) throws Exception {
+    public static Boolean deleteMany(Connection conn, EntityMeta meta, List entities) throws Exception {
         if (entities == null || entities.isEmpty()) return false;
 
         SQLData sqlData = generateSQL(entities.get(0), meta);

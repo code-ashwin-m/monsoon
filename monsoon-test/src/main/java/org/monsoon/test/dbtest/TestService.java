@@ -75,4 +75,13 @@ public class TestService {
         TestUserEntity user = users.get(0);
         System.out.println(user);
     }
+
+    public void findUserByName() {
+        TestUserEntity user = repository.findUserByFirstAndLastName("ashwin2", "mavila2");
+        if (user == null) {
+            System.out.println("No user found");
+            return;
+        }
+        System.out.println(user);
+    }
 }

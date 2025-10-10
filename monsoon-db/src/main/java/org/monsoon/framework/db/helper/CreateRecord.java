@@ -16,7 +16,7 @@ import java.util.List;
 
 public class CreateRecord {
 
-    public static Object createOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
+    public static Boolean createOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
         if (entity == null) return false;
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
         GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;
@@ -41,7 +41,7 @@ public class CreateRecord {
         return true;
     }
 
-    public static Object createMany(Connection conn, EntityMeta meta, List entities) throws Exception {
+    public static Boolean createMany(Connection conn, EntityMeta meta, List entities) throws Exception {
         if (entities == null || entities.isEmpty()) return false;
 
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);

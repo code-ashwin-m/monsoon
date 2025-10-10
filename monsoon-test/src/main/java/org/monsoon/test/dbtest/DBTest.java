@@ -12,6 +12,6 @@ public class DBTest {
         TestService service = context.getBean(TestService.class);
 //        service.createOne();
 //        service.createMany();
-        service.findUser();
+        service.findUserByName();
     }
 }

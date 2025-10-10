@@ -11,6 +11,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ReadRecord {
+    public static Object execute(Connection conn, EntityMeta meta, String sql, Object[] args, Class<?> returnType) throws Exception {
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            if (args != null) {
+                for (int i = 0; i < args.length; i++) {
+                    stmt.setObject(i + 1, args[i]);
+                }
+            }
+            ResultSet rs = stmt.executeQuery();
+
+            if (returnType.equals(List.class)) {
+                List<Object> results = new ArrayList<>();
+                while (rs.next()) {
+                    results.add(mapRow(meta, rs));
+                }
+                return results;
+            } else {
+                if (rs.next()) {
+                    return mapRow(meta, rs);
+                }
+                return null;
+            }
+        }
+    }
+
     public static Object findAll(Connection conn, EntityMeta meta) throws Exception {
         SQLData sqlData = generateSQL(meta, null, null);
         String sql = sqlData.getSql();

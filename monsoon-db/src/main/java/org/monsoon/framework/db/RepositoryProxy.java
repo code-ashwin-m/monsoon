@@ -1,5 +1,8 @@
 package org.monsoon.framework.db;
 
+import org.monsoon.framework.db.annotations.Delete;
+import org.monsoon.framework.db.annotations.Query;
+import org.monsoon.framework.db.annotations.Update;
 import org.monsoon.framework.db.helper.*;
 
 import java.lang.reflect.InvocationHandler;
@@ -32,6 +35,17 @@ public class RepositoryProxy implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Connection conn = ConnectionFactory.getConnection(dbConfig);
+
+        if (method.isAnnotationPresent(Query.class)){
+            String sql = method.getAnnotation(Query.class).value();
+            return ReadRecord.execute(conn, meta, sql, args, method.getReturnType());
+        } else if (method.isAnnotationPresent(Update.class)) {
+            String sql = method.getAnnotation(Update.class).value();
+            return UpdateRecord.execute(conn, sql, args);
+        } else if (method.isAnnotationPresent(Delete.class)) {
+            String sql = method.getAnnotation(Delete.class).value();
+            return DeleteRecord.execute(conn, sql, args);
+        }
 
         String methodName = method.getName();
         if (methodName.equals("createTableIfNotExists")){
