@@ -4,6 +4,7 @@ import org.monsoon.framework.db.EntityMeta;
 import org.monsoon.framework.db.annotations.Column;
 import org.monsoon.framework.db.annotations.GeneratedId;
 import org.monsoon.framework.db.enums.GenerationType;
+import org.monsoon.framework.db.interfaces.DataPersister;
 import org.monsoon.framework.db.interfaces.IdGenerator;
 
 import java.lang.reflect.Field;
@@ -110,7 +111,10 @@ public class CreateRecord {
 
             sql.append(columnName);
             placeholders.append("?");
-            values.add(field.get(entity));
+
+            DataPersister<?> convertor = Utils.resolveConvertor(field);
+            Object dbValue = convertor.javaToSql(field.get(entity));
+            values.add(dbValue);
 
             if (i < columns.size() - 1) {
                 sql.append(", ");

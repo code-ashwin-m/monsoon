@@ -2,6 +2,7 @@ package org.monsoon.framework.db.helper;
 
 import org.monsoon.framework.db.EntityMeta;
 import org.monsoon.framework.db.annotations.Column;
+import org.monsoon.framework.db.interfaces.DataPersister;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
@@ -106,33 +107,11 @@ public class ReadRecord {
             field.setAccessible(true);
             Column column = field.getAnnotation(Column.class);
             String columnName = !column.name().isEmpty() ? column.name() : field.getName();
-            Object value = parseValue(rs.getObject(columnName), field.getType());
-            field.set(obj, value);
+
+            DataPersister<?> convertor = Utils.resolveConvertor(field);
+            Object dbValue = convertor.sqlToJava(rs.getObject(columnName));
+            field.set(obj, dbValue);
         }
         return obj;
-    }
-
-    private static Object parseValue(Object object, Class<?> type) {
-        if (type.equals(String.class)) {
-            return object.toString();
-        } else if (type.equals(Integer.class)) {
-            return Integer.parseInt(object.toString());
-        } else if (type.equals(Long.class)) {
-            return Long.parseLong(object.toString());
-        } else if (type.equals(Double.class)) {
-            return Double.parseDouble(object.toString());
-        } else if (type.equals(Float.class)) {
-            return Float.parseFloat(object.toString());
-        } else if (type.equals(Boolean.class)) {
-            return Boolean.parseBoolean(object.toString());
-        } else if (type.equals(LocalDateTime.class)) {
-            return LocalDateTime.parse(object.toString());
-        } else if (type.equals(LocalDate.class)) {
-            return LocalDate.parse(object.toString());
-        } else if (type.equals(LocalTime.class)) {
-            return LocalTime.parse(object.toString());
-        } else {
-            return object;
-        }
     }
 }
