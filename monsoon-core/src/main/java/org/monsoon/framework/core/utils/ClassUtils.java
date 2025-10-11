@@ -5,13 +5,12 @@ import java.io.IOException;
 import java.net.JarURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-public class ScanPackageUtil {
+public class ClassUtils {
 
     public static List<Class<?>> scanAllPackageForClasses(String basePackage) throws Exception {
         List<Class<?>> classes = new ArrayList<>();
@@ -86,5 +85,14 @@ public class ScanPackageUtil {
 
     public static List<Class<?>> scanMonsoonPackageForClasses() throws Exception {
         return scanAllPackageForClasses("org.monsoon.framework");
+    }
+
+    public static boolean isPresent(String className) {
+        try{
+            Class.forName(className, false, Thread.currentThread().getContextClassLoader());
+            return true;
+        } catch (Throwable ex){
+            return false;
+        }
     }
 }

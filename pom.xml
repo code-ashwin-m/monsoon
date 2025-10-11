@@ -13,6 +13,7 @@
     <module>monsoon-core</module>
     <module>monsoon-test</module>
       <module>monsoon-db</module>
+      <module>monsoon-web</module>
   </modules>
 
   <properties>

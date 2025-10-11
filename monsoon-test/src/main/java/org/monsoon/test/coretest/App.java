@@ -5,7 +5,7 @@ import org.monsoon.framework.core.annotations.MonsoonApplication;
 import org.monsoon.framework.core.configuration.ConfigurationBinder;
 import org.monsoon.framework.core.context.ApplicationContext;
 
-@MonsoonApplication
+//@MonsoonApplication
 public class App 
 {
     public static void main( String[] args ) throws Exception {
