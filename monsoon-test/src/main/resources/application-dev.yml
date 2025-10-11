@@ -1,4 +1,5 @@
 db:
+  driver: org.sqlite.JDBC
   url: jdbc:sqlite:test123.db
   username: dev-root
   password: root

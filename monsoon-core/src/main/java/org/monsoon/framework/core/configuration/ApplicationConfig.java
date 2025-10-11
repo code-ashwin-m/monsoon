@@ -21,6 +21,11 @@ public class ApplicationConfig {
                 if (input != null ) {
                     loadYML(input);
 
+                    Map<String, String> env = System.getenv();
+                    for (String key : env.keySet()) {
+                        properties.put(normalizeEnvKey(key), env.get(key));
+                    }
+
                     String profile = get("app.profiles.active", "dev");
                     System.out.println("Profile: " + profile);
                     String profileFile = "application-" + profile + ".yml";
@@ -29,10 +34,7 @@ public class ApplicationConfig {
                         loadYML(input);
                     }
 
-                    Map<String, String> env = System.getenv();
-                    for (String key : env.keySet()) {
-                        properties.put(normalizeEnvKey(key), env.get(key));
-                    }
+
                 } else {
                     System.out.println("application.properties or application.yml not found");
                 }

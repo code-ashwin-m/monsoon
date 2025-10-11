@@ -4,41 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="minor changes">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Controller.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/ApiResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Orchestrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/contollers/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/dto/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/entities/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/helper/GenericMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/helper/UUIDGenerator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/repo/UserRepo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/services/UserService.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="E2E example added">
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application-prd.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/configuration/ApplicationConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/App.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestComponent.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestComponentSingleton.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestDatabaseConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestServerConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/TestServerListConfig.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestRepository.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/TestUserEntity.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/UUIDGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/HelloController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/UserDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/WebTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/test/java/org/monsoon/test/AppTest.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/resources/application-dev.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/resources/application-dev.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -321,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760174371445</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="E2E example added">
+      <option name="closed" value="true" />
+      <created>1760181193652</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1760181193652</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -348,6 +327,7 @@
     <MESSAGE value="Monsoon Web Implemented" />
     <MESSAGE value="Corrected README.md" />
     <MESSAGE value="minor changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes" />
+    <MESSAGE value="E2E example added" />
+    <option name="LAST_COMMIT_MESSAGE" value="E2E example added" />
   </component>
 </project>
