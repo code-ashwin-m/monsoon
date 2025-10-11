@@ -1,7 +1,10 @@
 package org.monsoon.framework.web;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.monsoon.framework.web.annotations.*;
 
 import java.io.InputStream;
@@ -19,7 +22,13 @@ import java.util.regex.Pattern;
 
 public class Dispatcher {
     private final List<Route> routes = new ArrayList<>();
-    private final ObjectMapper objectMapper = new ObjectMapper();
+    private static final ObjectMapper objectMapper = new ObjectMapper();
+
+    static {
+        objectMapper.registerModule(new JavaTimeModule());
+        objectMapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+        objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+    }
 
     public void registerController(Object controller) {
         Class<?> clazz = controller.getClass();

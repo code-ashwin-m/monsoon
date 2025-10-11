@@ -7,6 +7,9 @@ import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -101,9 +104,35 @@ public class ReadRecord {
         Object obj = meta.getEntityClass().getDeclaredConstructor().newInstance();
         for (Field field : meta.getColumns()) {
             field.setAccessible(true);
-            field.set(obj, rs.getObject(field.getAnnotation(Column.class).name()));
+            Column column = field.getAnnotation(Column.class);
+            String columnName = !column.name().isEmpty() ? column.name() : field.getName();
+            Object value = parseValue(rs.getObject(columnName), field.getType());
+            field.set(obj, value);
         }
         return obj;
     }
 
+    private static Object parseValue(Object object, Class<?> type) {
+        if (type.equals(String.class)) {
+            return object.toString();
+        } else if (type.equals(Integer.class)) {
+            return Integer.parseInt(object.toString());
+        } else if (type.equals(Long.class)) {
+            return Long.parseLong(object.toString());
+        } else if (type.equals(Double.class)) {
+            return Double.parseDouble(object.toString());
+        } else if (type.equals(Float.class)) {
+            return Float.parseFloat(object.toString());
+        } else if (type.equals(Boolean.class)) {
+            return Boolean.parseBoolean(object.toString());
+        } else if (type.equals(LocalDateTime.class)) {
+            return LocalDateTime.parse(object.toString());
+        } else if (type.equals(LocalDate.class)) {
+            return LocalDate.parse(object.toString());
+        } else if (type.equals(LocalTime.class)) {
+            return LocalTime.parse(object.toString());
+        } else {
+            return object;
+        }
+    }
 }

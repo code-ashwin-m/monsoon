@@ -41,8 +41,8 @@ public class CreateTable {
         for (int i = 0; i < columns.size(); i++) {
             Field field = columns.get(i);
             Column column = field.getAnnotation(Column.class);
-
-            sql.append(column.name()).append(" ").append(toSqlType(columns.get(i).getType(), dbType));
+            String columnName = !column.name().isEmpty() ? column.name() : field.getName();
+            sql.append(columnName).append(" ").append(toSqlType(columns.get(i).getType(), dbType));
 
             if (columns.get(i).isAnnotationPresent(Id.class)){
                 sql.append(" PRIMARY KEY");

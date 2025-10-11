@@ -1,4 +1,4 @@
-package org.monsoon.test.dbtest;
+package org.monsoon.example.helper;
 
 import org.monsoon.framework.db.interfaces.IdGenerator;
 

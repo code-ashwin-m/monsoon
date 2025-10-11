@@ -26,12 +26,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.xerial</groupId>
-            <artifactId>sqlite-jdbc</artifactId>
-            <version>3.36.0.3</version>
-            <scope>compile</scope>
-        </dependency>
-        <dependency>
             <groupId>org.monsoon.framework</groupId>
             <artifactId>monsoon-core</artifactId>
             <version>1.0</version>
@@ -50,10 +44,34 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.xerial</groupId>
+            <artifactId>sqlite-jdbc</artifactId>
+            <version>3.36.0.3</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.yaml</groupId>
+            <artifactId>snakeyaml</artifactId>
+            <version>2.5</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
             <version>2.20.0</version>
             <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.15.2</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.42</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 
@@ -72,13 +90,14 @@
 <!--                            <createDependencyReducedPom>false</createDependencyReducedPom>-->
 <!--                            <transformers>-->
 <!--                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">-->
-<!--                                    <mainClass>org.monsoon.test.coretest.App</mainClass>-->
+<!--                                    <mainClass>org.monsoon.example.coretest.App</mainClass>-->
 <!--                                </transformer>-->
 <!--                            </transformers>-->
 <!--                        </configuration>-->
 <!--                    </execution>-->
 <!--                </executions>-->
 <!--            </plugin>-->
+            <!-- Maven  Plugin to create WAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

@@ -87,15 +87,16 @@ public class CreateRecord {
         StringBuffer placeholders = new StringBuffer("VALUES (");
 
         List<Field> columns = meta.getColumns();
-        Object idValue = null;
+        Object idValue;
         List<Object> values = new ArrayList<>();
 
         for (int i = 0; i < columns.size(); i++) {
-            columns.get(i).setAccessible(true);
+            Field field = columns.get(i);
+            field.setAccessible(true);
             Column column = columns.get(i).getAnnotation(Column.class);
+            String columnName = !column.name().isEmpty() ? column.name() : field.getName();
 
-
-            if (columns.get(i).equals(meta.getIdField()) && isGenerated){
+            if (field.equals(meta.getIdField()) && isGenerated){
                 if (gid.strategy() == GenerationType.AUTO) {
                     continue; // DB will generate → skip inserting id
                 }
@@ -107,9 +108,9 @@ public class CreateRecord {
                 }
             }
 
-            sql.append(column.name());
+            sql.append(columnName);
             placeholders.append("?");
-            values.add(columns.get(i).get(entity));
+            values.add(field.get(entity));
 
             if (i < columns.size() - 1) {
                 sql.append(", ");
