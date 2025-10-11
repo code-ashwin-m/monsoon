@@ -28,7 +28,7 @@ Monsoon Web is a web framework for Java applications. It is built on top of Mons
 
 2. Create a web application:
 ```java
-@SpringBootApplication
+@MonsoonApplication
 public class MyWebApplication {
     public static void main(String[] args) {
         ApplicationContext context = Monsoon.run(MyWebApplication.class);

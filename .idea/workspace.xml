@@ -4,36 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Minor fix">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/HelloController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/UserDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/webtest/WebTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ApplicationContextFromWeb.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/EmbeddedWebServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/MonsoonServletInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ServletWebAdapter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/PathVariable.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestBody.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestMapping.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestParam.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RestController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/WebServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/services/javax.servlet.ServletContainerInitializer" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContext.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ScanPackageUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/coretest/App.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/test/dbtest/DBTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Monsoon Web Implemented">
+      <change beforePath="$PROJECT_DIR$/monsoon-web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -293,7 +265,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760104147135</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Monsoon Web Implemented">
+      <option name="closed" value="true" />
+      <created>1760173318582</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1760173318582</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,6 +297,7 @@
     <MESSAGE value="Added db - create and update" />
     <MESSAGE value="Added db - delete and read" />
     <MESSAGE value="Added db - @Query, @Update, @Delete added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added db - @Query, @Update, @Delete added" />
+    <MESSAGE value="Monsoon Web Implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="Monsoon Web Implemented" />
   </component>
 </project>
