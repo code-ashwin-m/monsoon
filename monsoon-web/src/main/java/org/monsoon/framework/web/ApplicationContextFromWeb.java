@@ -53,20 +53,19 @@ public class ApplicationContextFromWeb extends ApplicationContextHelper implemen
                 restControllers.add(getBean(def.getBeanClass()));
             }
         }
-        System.out.println(restControllers);
         return startServer();
     }
 
     private Object startServer() throws Exception {
         if (isRunningInsideServletContainer()) {
-            System.out.println("ServletWebAdapter");
+            System.out.println("Detected tomcat server, running app from container.");
             ServletWebAdapter server = new ServletWebAdapter(this);
             for (Object controller: restControllers){
                 server.registerController(controller);
             }
             return server;
         } else {
-            System.out.println("EmbeddedWebServer");
+            System.out.println("Running app from local server");
             EmbeddedWebServer server = new EmbeddedWebServer();
             for (Object controller: restControllers){
                 server.registerController(controller);

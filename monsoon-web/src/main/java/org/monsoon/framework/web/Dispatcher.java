@@ -44,7 +44,6 @@ public class Dispatcher {
     }
 
     public DispatchResult dispatch(String httpMethod, String path, String rawQuery, InputStream bodyStream) throws Exception{
-        System.out.println(path);
         Map<String, String> pathVars = new HashMap<>();
         Route matched = null;
 
