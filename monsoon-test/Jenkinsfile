@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    tools {
+        maven 'Maven'
+    }
+    environment{
+        TOMCAT_USER = "deploy"
+        TOMCAT_PASS = "deploy123"
+        TOMCAT_URL = "http://192.168.1.35:1001/manager/text"
+        WAR_NAME = "myapp.war"
+    }
+    stages {
+        stage ( 'Checkout' ) {
+            steps {
+                git branch: 'main', url: 'http://192.168.1.35:1006/git/ashwinm/monsoon.git', credentialsId: 'gitbucket-cred'
+            }
+        }
+        stage ( 'Compile' ) {
+            steps {
+                script {
+                    // Resolve Maven home dynamically
+                    def mvnHome = tool name: 'Maven', type: 'maven'
+                    env.PATH = "${mvnHome}/bin:${env.PATH}"
+                }
+                sh 'ls -l'
+                sh 'java -version'
+                sh 'mvn -version'
+                sh 'mvn clean package -DskipTests'
+            }
+        }
+        stage ('Deploy to tomcat') {
+            steps{
+                script {
+                    sh 'pwd'
+                    sh 'ls -R . | grep war || true'
+                    def warFile = sh(script: "find . -type f -name '*.war' | head -n 1", returnStdout: true).trim()
+                    echo "WAR file path resolved: '${warFile}'"
+                    sh """
+                        curl -u ${TOMCAT_USER}:${TOMCAT_PASS} --upload-file ${warFile} "${TOMCAT_URL}/deploy?path=/myapp&update=true"
+                    """
+                }
+            }
+        }
+    }
+}
