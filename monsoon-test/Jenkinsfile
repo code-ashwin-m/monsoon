@@ -23,7 +23,7 @@ pipeline {
                 sh 'ls -l'
                 sh 'java -version'
                 sh 'mvn -version'
-                sh 'mvn clean package -DskipTests'
+                sh 'mvn clean package -DskipTests -Dmaven.repo.local=/var/jenkins_home/.m2/repository'
             }
         }
         stage ('Deploy to tomcat') {
