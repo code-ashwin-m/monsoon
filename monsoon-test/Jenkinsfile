@@ -4,8 +4,6 @@ pipeline {
         maven 'Maven'
     }
     environment{
-        TOMCAT_USER = "deploy"
-        TOMCAT_PASS = "deploy123"
         TOMCAT_URL = "http://192.168.1.35:1001/manager/text"
         WAR_NAME = "myapp.war"
     }
@@ -35,9 +33,13 @@ pipeline {
                     sh 'ls -R . | grep war || true'
                     def warFile = sh(script: "find . -type f -name '*.war' | head -n 1", returnStdout: true).trim()
                     echo "WAR file path resolved: '${warFile}'"
-                    sh """
+                    withCredentials([usernamePassword(credentialsId: 'tomcat-cred',
+                                                 usernameVariable: 'TOMCAT_USER',
+                                                 passwordVariable: 'TOMCAT_PASS')]) {
+                        sh """
                         curl -u ${TOMCAT_USER}:${TOMCAT_PASS} --upload-file ${warFile} "${TOMCAT_URL}/deploy?path=/myapp&update=true"
-                    """
+                        """
+                    }
                 }
             }
         }
