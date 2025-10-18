@@ -86,8 +86,8 @@ public interface UserClient {
     @RequestMapping(path = "/comments", method = "GET")
     List<CommentDto> httpList(@QueryParam("postId") Integer postId);
 
-    @RequestMapping(path = "/posts", method = "POST")
-    Post createPost(Post post, @Header("X-Auth-Token") String token);
+    @RequestMapping(path = "/user", method = "GET")
+    ResponseEntity<ClientDto> getUser(@Header("X-Auth-Token") String token);
 }
 
 public class Main {
@@ -95,6 +95,11 @@ public class Main {
         UserClient userClient = HttpServiceProxy.create(UserClient.class);
         ClientDto dto = userClient.httpSimple();
         List<CommentDto> comments = userClient.httpList(1);
+        
+        ResponseEntity<ClientDto> response = userClient.getUser("token");
+        System.out.println(response.getBody());
+        System.out.println(response.getHeaders());
+        System.out.println(response.getStatus());
     }
 }
 ```
