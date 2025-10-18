@@ -5,5 +5,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
 @ComponentScan
+@AutoConfiguration
 public @interface MonsoonApplication {
 }

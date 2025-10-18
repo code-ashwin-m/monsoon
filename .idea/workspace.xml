@@ -4,16 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="Added JDBC for PRD and DEV">
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/datapersister/DataPersisterRegistry.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/datapersister/DefaultDataPersister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/datapersister/LocalDateTimeDataPersister.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/Utils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/interfaces/DataPersister.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="updated Jenkinsfile">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/AutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Bean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Configuration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/SampleModal.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/TestConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/CreateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/helper/ReadRecord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,14 +106,14 @@
       <recent name="org.monsoon.framework.db" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="org.monsoon.example.entities" />
       <recent name="org.monsoon.framework.core.annotations" />
+      <recent name="org.monsoon.example.entities" />
       <recent name="org.monsoon.framework.db.annotations" />
       <recent name="org.monsoon.framework.db.helper" />
       <recent name="org.monsoon.test" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="JUnit.AppTest.testApp">
     <configuration name="DBTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.monsoon.test.dbtest.DBTest" />
       <module name="monsoon-test" />
@@ -152,15 +153,18 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="org.monsoon.test.coretest.App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.monsoon.test.coretest.App" />
-      <module name="monsoon-test" />
+    <configuration name="AppTest.testApp" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="monsoon-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.monsoon.test.coretest.*" />
+          <option name="PATTERN" value="org.monsoon.framework.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="org.monsoon.framework" />
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.AppTest" />
+      <option name="METHOD_NAME" value="testApp" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -183,11 +187,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.AppTest.testApp" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.WebTest" />
         <item itemvalue="Application.DBTest" />
         <item itemvalue="JUnit.WebTest.testApp" />
-        <item itemvalue="Application.org.monsoon.test.coretest.App" />
       </list>
     </recent_temporary>
   </component>
@@ -312,7 +316,47 @@
       <option name="project" value="LOCAL" />
       <updated>1760184723926</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="DataPersister added">
+      <option name="closed" value="true" />
+      <created>1760192238078</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1760192238078</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Compiler java 8 added">
+      <option name="closed" value="true" />
+      <created>1760705210615</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1760705210615</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Added Jenkinsfile">
+      <option name="closed" value="true" />
+      <created>1760708109789</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1760708109789</updated>
+    </task>
+    <task id="LOCAL-00018" summary="updated Jenkinsfile">
+      <option name="closed" value="true" />
+      <created>1760709424370</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1760709424370</updated>
+    </task>
+    <task id="LOCAL-00019" summary="updated Jenkinsfile">
+      <option name="closed" value="true" />
+      <created>1760710900731</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1760710900731</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -341,6 +385,10 @@
     <MESSAGE value="minor changes" />
     <MESSAGE value="E2E example added" />
     <MESSAGE value="Added JDBC for PRD and DEV" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JDBC for PRD and DEV" />
+    <MESSAGE value="DataPersister added" />
+    <MESSAGE value="Compiler java 8 added" />
+    <MESSAGE value="Added Jenkinsfile" />
+    <MESSAGE value="updated Jenkinsfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="updated Jenkinsfile" />
   </component>
 </project>

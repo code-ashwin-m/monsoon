@@ -1,15 +1,13 @@
 package org.monsoon.framework.core.context;
 
-import org.monsoon.framework.core.annotations.Autowired;
-import org.monsoon.framework.core.annotations.Component;
-import org.monsoon.framework.core.annotations.ComponentScan;
-import org.monsoon.framework.core.annotations.Singleton;
+import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.utils.ClassUtils;
 
 import java.beans.Introspector;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.util.*;
 
 public class ApplicationContextHelper {
@@ -21,9 +19,15 @@ public class ApplicationContextHelper {
         Package basePackage = mainClass.getPackage();
         String basePackageName = basePackage.getName();
         List<Class<?>> classes = ClassUtils.scanAllPackageForClasses(basePackageName);
-        classes.addAll(ClassUtils.scanMonsoonPackageForClasses());
+        List<Class<?>> monsoonClasses = ClassUtils.scanMonsoonPackageForClasses();
+        for (Class<?> clazz : monsoonClasses){
+            if (!classes.contains(clazz)) classes.add(clazz);
+        }
         if (isAnnotationPresent(mainClass, ComponentScan.class)){
             scanComponents(classes);
+        }
+        if (isAnnotationPresent(mainClass, AutoConfiguration.class)){
+            scanAutoConfiguration(classes);
         }
         registerBeanPostProcessor(classes);
     }
@@ -45,6 +49,30 @@ public class ApplicationContextHelper {
         Boolean isSingleton = isAnnotationPresent(clazz, Singleton.class);
         BeanDefinition def = new BeanDefinition(isSingleton, clazz, beanName);
         beanDefinitions.put(beanName, def);
+    }
+
+    private void scanAutoConfiguration(List<Class<?>> classes) throws Exception {
+        System.out.println("Scanning for auto configuration");
+        for (Class<?> clazz: classes){
+            if (isAnnotationPresent(clazz, Configuration.class)){
+                System.out.println("Registering configuration for " + clazz.getSimpleName());
+                Object configInstance = clazz.getDeclaredConstructor().newInstance();
+                registerConfiguration(configInstance, clazz);
+            }
+        }
+    }
+
+    private void registerConfiguration(Object configInstance, Class<?> clazz) throws Exception {
+        for (Method method : clazz.getDeclaredMethods()){
+            if (method.isAnnotationPresent(Bean.class)){
+                method.setAccessible(true);
+                String beanName = method.getName();
+                BeanDefinition def = new BeanDefinition(true, method.getReturnType(), beanName);
+                beanDefinitions.put(beanName, def);
+                Object bean = method.invoke(configInstance);
+                singletonBeans.put(beanName, bean);
+            }
+        }
     }
 
     private boolean isAnnotationPresent(Class<?> source, Class<?> target) {
@@ -138,6 +166,7 @@ public class ApplicationContextHelper {
 
     private Object getBean(Class<?> clazz) throws Exception {
         Component component = findAnnotation(clazz, Component.class);
+        if (component == null) return null;
         String beanName = component.name();
         if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
         return getBean(beanName);

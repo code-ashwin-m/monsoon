@@ -57,7 +57,8 @@ public class ClassUtils {
             } else if (file.getName().endsWith(".class")) {
                 String className = basePackage + "." + file.getName().substring(0, file.getName().length() - 6);
                 try {
-                    classes.add(Class.forName(className));
+                    Class<?> clazz = Class.forName(className, false, Thread.currentThread().getContextClassLoader());
+                    classes.add(clazz);
                 } catch (Throwable ignored){}
             }
         }

@@ -11,5 +11,11 @@ public class AppTest extends TestCase {
     public void testApp() throws Exception {
         String[] args = {};
         ApplicationContext context = Monsoon.run(AppTest.class, args);
+
+        SampleModal sampleModal = (SampleModal) context.getBean("sampleModal");
+        SampleModal sampleModal1 = (SampleModal) context.getBean("sampleModal");
+
+        System.out.println(sampleModal);
+        System.out.println(sampleModal1);
     }
 }
