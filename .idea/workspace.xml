@@ -4,17 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="updated Jenkinsfile">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/AutoConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Bean.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Configuration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/SampleModal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/TestConfiguration.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="AutoConfiguration added">
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/dto/ClientDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/dto/CommentDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/http/UserClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/HttpServiceProxy.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/Header.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/HttpService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/QueryParam.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/AppTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Orchestrator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/contollers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/contollers/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/services/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ApplicationContextFromWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ApplicationContextFromWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="AnnotationType" />
         <option value="Class" />
       </list>
     </option>
@@ -106,14 +109,14 @@
       <recent name="org.monsoon.framework.db" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.monsoon.example.dto" />
+      <recent name="org.monsoon.framework.web.annotations" />
       <recent name="org.monsoon.framework.core.annotations" />
       <recent name="org.monsoon.example.entities" />
       <recent name="org.monsoon.framework.db.annotations" />
-      <recent name="org.monsoon.framework.db.helper" />
-      <recent name="org.monsoon.test" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.AppTest.testApp">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="DBTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="org.monsoon.test.dbtest.DBTest" />
       <module name="monsoon-test" />
@@ -187,8 +190,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.AppTest.testApp" />
         <item itemvalue="Application.Main" />
+        <item itemvalue="JUnit.AppTest.testApp" />
         <item itemvalue="Application.WebTest" />
         <item itemvalue="Application.DBTest" />
         <item itemvalue="JUnit.WebTest.testApp" />
@@ -356,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760710900731</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="AutoConfiguration added">
+      <option name="closed" value="true" />
+      <created>1760772277318</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1760772277318</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -389,6 +400,7 @@
     <MESSAGE value="Compiler java 8 added" />
     <MESSAGE value="Added Jenkinsfile" />
     <MESSAGE value="updated Jenkinsfile" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated Jenkinsfile" />
+    <MESSAGE value="AutoConfiguration added" />
+    <option name="LAST_COMMIT_MESSAGE" value="AutoConfiguration added" />
   </component>
 </project>

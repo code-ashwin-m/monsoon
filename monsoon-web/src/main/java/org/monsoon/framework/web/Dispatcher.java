@@ -94,10 +94,10 @@ public class Dispatcher {
             Parameter p = parameters[i];
             if (p.isAnnotationPresent(PathVariable.class)) {
                 String name = p.getAnnotation(PathVariable.class).value();
-                args[i] = pathVars.get(name);
+                args[i] = convertToType(pathVars.get(name), p.getType());
             } else if (p.isAnnotationPresent(RequestParam.class)) {
                 String name = p.getAnnotation(RequestParam.class).value();
-                args[i] = queryParams.get(name);
+                args[i] = convertToType(queryParams.get(name), p.getType());
             } else if (p.isAnnotationPresent(RequestBody.class)) {
                 args[i] = objectMapper.readValue(bodyStream, p.getType());
             } else {
@@ -105,6 +105,14 @@ public class Dispatcher {
             }
         }
         return method.invoke(route.controller, args);
+    }
+
+    private Object convertToType(String s, Class<?> type) {
+        if (type == Integer.class || type == int.class ){
+            return Integer.parseInt(s);
+        } else {
+            return s;
+        }
     }
 
     private Map<String, String> parseQuery(String rawQuery) {

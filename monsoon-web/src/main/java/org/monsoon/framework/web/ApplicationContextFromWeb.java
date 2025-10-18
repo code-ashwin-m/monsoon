@@ -5,7 +5,6 @@ import org.monsoon.framework.core.context.ApplicationContext;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.context.BeanDefinition;
 import org.monsoon.framework.web.annotations.RestController;
-import org.monsoon.framework.web.interfaces.WebServer;
 
 import java.beans.Introspector;
 import java.util.ArrayList;
