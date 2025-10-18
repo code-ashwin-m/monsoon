@@ -7,7 +7,7 @@ Monsoon Web is a web framework for Java applications. It is built on top of Mons
 2. @RequestMapping
 3. @PathVariable
 4. @RequestBody
-5. @RequestParam
+5. @QueryParam
 
 # How to use?
 
@@ -37,7 +37,10 @@ public class MyWebApplication {
 }
 ```
 3. Define REST Controller
+
 ```java
+import java.util.ArrayList;
+
 @RestController
 public class HelloController {
 
@@ -50,6 +53,48 @@ public class HelloController {
     public UserDto createUser(@RequestBody UserDto user) {
         user.setName(user.getName().toUpperCase());
         return user;
+    }
+
+    @RequestMapping(path = "/comments", method = "GET")
+    public ApiResponse httpComments(@QueryParam("postId") Integer postId) {
+        List<CommentDto> result = new ArrayList<>();
+        return ApiResponse.success(result);
+    }
+
+    @RequestMapping(path = "/comments/{postId}", method = "GET")
+    public ApiResponse httpComments1(@PathVariable("postId") Integer postId) {
+        List<CommentDto> result = new ArrayList<>();
+        return ApiResponse.success(result);
+    }
+}
+```
+
+3. HTTP Client Service
+
+Annotations
+1. @HttpService(
+2. @RequestMapping
+3. @QueryParam
+4. @Header
+
+```java
+@HttpService( baseUrl = "https://jsonplaceholder.typicode.com")
+public interface UserClient {
+    @RequestMapping(path = "/todos/1", method = "GET")
+    ClientDto httpSimple();
+
+    @RequestMapping(path = "/comments", method = "GET")
+    List<CommentDto> httpList(@QueryParam("postId") Integer postId);
+
+    @RequestMapping(path = "/posts", method = "POST")
+    Post createPost(Post post, @Header("X-Auth-Token") String token);
+}
+
+public class Main {
+    public static void main(String[] args) {
+        UserClient userClient = HttpServiceProxy.create(UserClient.class);
+        ClientDto dto = userClient.httpSimple();
+        List<CommentDto> comments = userClient.httpList(1);
     }
 }
 ```

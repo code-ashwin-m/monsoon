@@ -95,8 +95,8 @@ public class Dispatcher {
             if (p.isAnnotationPresent(PathVariable.class)) {
                 String name = p.getAnnotation(PathVariable.class).value();
                 args[i] = convertToType(pathVars.get(name), p.getType());
-            } else if (p.isAnnotationPresent(RequestParam.class)) {
-                String name = p.getAnnotation(RequestParam.class).value();
+            } else if (p.isAnnotationPresent(QueryParam.class)) {
+                String name = p.getAnnotation(QueryParam.class).value();
                 args[i] = convertToType(queryParams.get(name), p.getType());
             } else if (p.isAnnotationPresent(RequestBody.class)) {
                 args[i] = objectMapper.readValue(bodyStream, p.getType());

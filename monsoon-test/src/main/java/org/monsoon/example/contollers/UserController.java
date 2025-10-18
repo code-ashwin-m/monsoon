@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @RequestMapping(path = "/comments", method = "GET")
-    public ApiResponse httpComments(@RequestParam("postId") Integer postId) {
+    public ApiResponse httpComments(@QueryParam("postId") Integer postId) {
         List<CommentDto> result = orchestrator.httpComments(postId);
         return ApiResponse.success(result);
     }

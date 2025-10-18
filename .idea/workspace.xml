@@ -4,20 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="AutoConfiguration added">
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/dto/ClientDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/dto/CommentDto.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/http/UserClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/HttpServiceProxy.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/Header.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/HttpService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/QueryParam.java" afterDir="false" />
+    <list default="true" id="f4998a55-c0ed-4dcd-b2f0-799982b52b9f" name="Changes" comment="HTTP Client Service added">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Orchestrator.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/Orchestrator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/contollers/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/contollers/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/services/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-test/src/main/java/org/monsoon/example/services/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ApplicationContextFromWeb.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ApplicationContextFromWeb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestParam.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -367,7 +359,15 @@
       <option name="project" value="LOCAL" />
       <updated>1760772277318</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="HTTP Client Service added">
+      <option name="closed" value="true" />
+      <created>1760776898323</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1760776898323</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -375,7 +375,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="GitBucket/main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -401,6 +413,7 @@
     <MESSAGE value="Added Jenkinsfile" />
     <MESSAGE value="updated Jenkinsfile" />
     <MESSAGE value="AutoConfiguration added" />
-    <option name="LAST_COMMIT_MESSAGE" value="AutoConfiguration added" />
+    <MESSAGE value="HTTP Client Service added" />
+    <option name="LAST_COMMIT_MESSAGE" value="HTTP Client Service added" />
   </component>
 </project>
