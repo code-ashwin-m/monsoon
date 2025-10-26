@@ -1,6 +1,8 @@
 package org.monsoon.framework.web.context;
 
 import org.monsoon.framework.core.BeanDefinition;
+import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.properties.ApplicationProperties;
@@ -82,7 +84,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
     @Override
     public void refresh() throws Exception {
         for (BeanDefinition def: beanDefinitions.values()){
-            if (def.getBeanClass().isAnnotationPresent(RestController.class)){
+            if (ClassUtils.isAnnotationPresent(def.getBeanClass(), Controller.class)){
                 restControllers.add(createBean(def.getBeanName()));
             }
         }

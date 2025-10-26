@@ -1,6 +1,8 @@
 package org.monsoon.framework.web;
 
 import org.monsoon.framework.core.MonsoonApplication;
+import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.web.annotations.*;
 import org.monsoon.framework.web.autoconfigure.DefaultReqResHelper;
 import org.monsoon.framework.web.interfaces.ReqResHelper;
@@ -44,7 +46,7 @@ public class Dispatcher {
      */
     public void registerController(Object controller) {
         Class<?> clazz = controller.getClass();
-        if (!clazz.isAnnotationPresent(RestController.class)) return;
+        if (!ClassUtils.isAnnotationPresent(clazz, Controller.class)) return;
         logger.debug("Registering controller: {}", clazz.getSimpleName());
         for (Method method : clazz.getDeclaredMethods()){
             if (method.isAnnotationPresent(RequestMapping.class)){
@@ -109,9 +111,13 @@ public class Dispatcher {
 
         try {
             Object object = invokeControllerMethod(matched, pathVars, rawQuery, bodyStream);
-            boolean isResponseBody = matched.method.isAnnotationPresent(ResponseBody.class);
-            String result = serializeResponse(object);
-            return new DispatchResult(200, result, isResponseBody);
+            boolean isResponseBody = ClassUtils.isAnnotationPresent(matched.method.getClass(), ResponseBody.class)
+                    || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
+
+            if (isResponseBody) {
+                object = serializeResponse(object);
+            }
+            return new DispatchResult(200, object.toString(), isResponseBody);
         } catch (Exception ex){
             logger.error("Error while dispatching http request", ex);
             return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
@@ -262,6 +268,7 @@ public class Dispatcher {
         public final int status;
         public final String body;
         public final Boolean isResponseBody;
+        public String contentType = null;
 
         public DispatchResult(int status, String body){
             this.status = status;
@@ -272,6 +279,13 @@ public class Dispatcher {
             this.status = status;
             this.body = body;
             this.isResponseBody = isResponseBody;
+        }
+
+        public DispatchResult(int status, String body, Boolean isResponseBody, String contentType) {
+            this.status = status;
+            this.body = body;
+            this.isResponseBody = isResponseBody;
+            this.contentType = contentType;
         }
     }
 }

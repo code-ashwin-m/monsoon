@@ -2,7 +2,7 @@ package org.monsoon.framework.core.context;
 
 import org.monsoon.framework.core.AutoConfigurationLoader;
 import org.monsoon.framework.core.BeanDefinition;
-import org.monsoon.framework.core.ClassUtils;
+import org.monsoon.framework.core.Utils.ClassUtils;
 import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.slf4j.Logger;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.beans.Introspector;
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -50,20 +49,20 @@ public class ApplicationContextHelper {
 
 
 
-        if (isAnnotationPresent(mainClass, ComponentScan.class)){
+        if (ClassUtils.isAnnotationPresent(mainClass, ComponentScan.class)){
             logger.debug("ComponentScan annotation is present");
             scanComponents(classes);
             scanConfigurations(classes);
         }else{
             logger.debug("ComponentScan annotation is not present, checking for Configuration annotation");
-            if (isAnnotationPresent(mainClass, Configuration.class)){
+            if (ClassUtils.isAnnotationPresent(mainClass, Configuration.class)){
                 Object configuration = createInstance(mainClass);
                 registerConfiguration(configuration, mainClass);
                 logger.debug("Configuration registered from class: {}", mainClass.getSimpleName());
             }
         }
 
-        if (isAnnotationPresent(mainClass, EnableAutoConfiguration.class)){
+        if (ClassUtils.isAnnotationPresent(mainClass, EnableAutoConfiguration.class)){
             logger.debug("EnableAutoConfiguration annotation is present");
             scanAutoConfiguration();
         }
@@ -81,7 +80,7 @@ public class ApplicationContextHelper {
         logger.debug("Component scanning started");
         int counter = 0;
         for (Class<?> clazz : classes){
-            if (isAnnotationPresent(clazz, Component.class)){
+            if (ClassUtils.isAnnotationPresent(clazz, Component.class)){
                 registerComponent(clazz);
                 counter++;
             }
@@ -99,7 +98,7 @@ public class ApplicationContextHelper {
         logger.debug("Configuration scanning started");
         int counter = 0;
         for (Class<?> clazz : classes){
-            if (isAnnotationPresent(clazz, Configuration.class)){
+            if (ClassUtils.isAnnotationPresent(clazz, Configuration.class)){
                 try {
                     Object configuration = createInstance(clazz);
                     registerConfiguration(configuration, clazz);
@@ -162,7 +161,7 @@ public class ApplicationContextHelper {
      * @param clazz The class of the component to register.
      */
     private void registerComponent(Class<?> clazz) {
-        Component component = findAnnotation(clazz, Component.class);
+        Component component = ClassUtils.findAnnotation(clazz, Component.class);
         String beanName = component.name();
         if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
         Boolean singleton = component.singleton();
@@ -285,7 +284,7 @@ public class ApplicationContextHelper {
      * @throws Exception If there is an error while creating the bean instance.
      */
     public Object createBean(Class<?> clazz) throws Exception {
-        Component component = findAnnotation(clazz, Component.class);
+        Component component = ClassUtils.findAnnotation(clazz, Component.class);
         if (component == null) return null;
         String beanName = component.name();
         if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
@@ -414,70 +413,6 @@ public class ApplicationContextHelper {
             instance = processor.postProcess(clazz);
             if ( instance != null ) return instance;
         }
-        return null;
-    }
-
-    /**
-     * This method checks if the given class is annotated with the given annotation.
-     * It iterates over all the annotations of the class and checks if any of them is annotated with the given annotation.
-     * @param source The class to check for annotations.
-     * @param target The annotation to check for.
-     * @return true if the class is annotated with the given annotation, false otherwise.
-     */
-    private boolean isAnnotationPresent(Class<?> source, Class<?> target) {
-        return isAnnotationPresentRecursive(source, (Class<? extends Annotation>) target, new HashSet<>());
-    }
-
-    private boolean isAnnotationPresentRecursive(Class<?> source, Class<? extends Annotation> target, Set<Class<?>> visited) {
-        if (source == null || visited.contains(source)) return false;
-        visited.add(source);
-
-        if (source.isAnnotationPresent(target)) {
-            return true;
-        }
-
-        for (Annotation ann : source.getAnnotations()) {
-            Class<? extends Annotation> annType = ann.annotationType();
-
-            if (annType.getName().startsWith("java.lang.annotation")) continue;
-
-            if (isAnnotationPresentRecursive(annType, target, visited)) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-
-    /**
-     * This method finds the given annotation on the given class.
-     * It iterates over all the annotations of the class and checks if any of them is annotated with the given annotation.
-     * @param source The class to find the annotation on.
-     * @param target The annotation to find.
-     * @return The annotation, or null if the annotation is not found.
-     */
-    private <A extends Annotation> A findAnnotation(Class<?> source, Class<A> target) {
-        return findAnnotationRecursive(source, target, new HashSet<>());
-    }
-
-    private <A extends Annotation> A findAnnotationRecursive(Class<?> source, Class<A> target, Set<Class<?>> visited) {
-        if (source == null || visited.contains(source)) return null;
-        visited.add(source);
-
-        if (source.isAnnotationPresent(target)) {
-            return source.getAnnotation(target);
-        }
-
-        for (Annotation ann : source.getAnnotations()) {
-            Class<? extends Annotation> annType = ann.annotationType();
-
-            if (annType.getName().startsWith("java.lang.annotation")) continue;
-
-            A meta = findAnnotationRecursive(annType, target, visited);
-            if (meta != null) return meta;
-        }
-
         return null;
     }
 }

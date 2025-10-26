@@ -11,6 +11,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.TYPE)
 @Controller
+@ResponseBody
 public @interface RestController {
     String value() default "";
 }
