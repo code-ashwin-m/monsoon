@@ -4,14 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Inti Commit">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Included ClassUtils in Dispatcher">
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/resources/templates/template-1.ftl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultViewRenderer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/FreemarkerAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/ViewRenderer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/MonsoonApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultReqResHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultRHttpMessageConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/ReqResHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/HttpMessageConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +27,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="AnnotationType" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -75,6 +81,9 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="org.monsoon.framework.web.autoconfigure" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/monsoon-web/src/main" />
       <recent name="$PROJECT_DIR$/monsoon-core/src/main/resources" />
@@ -184,7 +193,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761477722984</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Included ClassUtils in Dispatcher">
+      <option name="closed" value="true" />
+      <created>1761479318585</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761479318585</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -200,6 +217,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inti Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Inti Commit" />
+    <MESSAGE value="Included ClassUtils in Dispatcher" />
+    <option name="LAST_COMMIT_MESSAGE" value="Included ClassUtils in Dispatcher" />
   </component>
 </project>

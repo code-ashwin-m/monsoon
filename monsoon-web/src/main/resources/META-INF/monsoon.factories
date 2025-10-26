@@ -1,2 +1,3 @@
 org.monsoon.framework.core.annotations.EnableAutoConfiguration=\
-org.monsoon.framework.web.autoconfigure.JacksonAutoConfiguration
+org.monsoon.framework.web.autoconfigure.JacksonAutoConfiguration,\
+org.monsoon.framework.web.autoconfigure.FreemarkerAutoConfiguration

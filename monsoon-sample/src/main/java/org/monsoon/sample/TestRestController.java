@@ -1,12 +1,13 @@
 package org.monsoon.sample;
 
+import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.web.annotations.*;
 
-@RestController
+@Controller
 public class TestRestController {
     @RequestMapping(path = "/test")
     public String test() {
-        return "hello from test method";
+        return "template-1";
     }
 
     @RequestMapping(path = "/test-path/{path}")

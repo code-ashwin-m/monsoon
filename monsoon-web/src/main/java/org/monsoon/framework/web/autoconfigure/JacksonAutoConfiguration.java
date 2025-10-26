@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.monsoon.framework.core.annotations.Bean;
 import org.monsoon.framework.core.annotations.ConditionalOnClass;
-import org.monsoon.framework.web.interfaces.ReqResHelper;
+import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 
 import java.io.InputStream;
 
@@ -31,7 +31,7 @@ public class JacksonAutoConfiguration {
         return new JacksonHelper();
     }
 
-    public class JacksonHelper implements ReqResHelper {
+    public class JacksonHelper implements HttpMessageConverter {
         @Override
         public Object readValue(InputStream bodyStream, Class<?> type) throws Exception {
             return objectMapper.readValue(bodyStream, type);

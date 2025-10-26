@@ -4,8 +4,10 @@ import org.monsoon.framework.core.MonsoonApplication;
 import org.monsoon.framework.core.Utils.ClassUtils;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.web.annotations.*;
-import org.monsoon.framework.web.autoconfigure.DefaultReqResHelper;
-import org.monsoon.framework.web.interfaces.ReqResHelper;
+import org.monsoon.framework.web.autoconfigure.DefaultRHttpMessageConverter;
+import org.monsoon.framework.web.autoconfigure.DefaultViewRenderer;
+import org.monsoon.framework.web.interfaces.HttpMessageConverter;
+import org.monsoon.framework.web.interfaces.ViewRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,13 +32,20 @@ import java.util.regex.Pattern;
 public class Dispatcher {
     private static final Logger logger = LoggerFactory.getLogger(Dispatcher.class);
     private final List<Route> routes = new ArrayList<>();
-    private static ReqResHelper reqResHelper;
+    private static HttpMessageConverter reqResHelper;
+    private static ViewRenderer viewRenderer;
 
     public Dispatcher(){
-        reqResHelper = MonsoonApplication.getContext().getBeanOrNull("reqResHelper", ReqResHelper.class);
+        reqResHelper = MonsoonApplication.getContext().getBeanOrNull("reqResHelper", HttpMessageConverter.class);
         if (reqResHelper == null){
             logger.error("Missing Jackson dependency, switching to default helper");
-            reqResHelper = new DefaultReqResHelper();
+            reqResHelper = new DefaultRHttpMessageConverter();
+        }
+
+        viewRenderer = MonsoonApplication.getContext().getBeanOrNull("viewRenderer", ViewRenderer.class);
+        if (viewRenderer == null){
+            logger.error("Missing ViewRenderer dependency, switching to default renderer");
+            viewRenderer = new DefaultViewRenderer();
         }
     }
 
@@ -114,15 +123,20 @@ public class Dispatcher {
             boolean isResponseBody = ClassUtils.isAnnotationPresent(matched.method.getClass(), ResponseBody.class)
                     || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
 
+            String result = "";
             if (isResponseBody) {
-                object = serializeResponse(object);
+                result = serializeResponse(object);
+            } else {
+                result = renderView(object);
+                if (result == null) result = object.toString();
             }
-            return new DispatchResult(200, object.toString(), isResponseBody);
+            return new DispatchResult(200, result, isResponseBody);
         } catch (Exception ex){
             logger.error("Error while dispatching http request", ex);
             return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
         }
     }
+
 
     /**
      * Invokes a controller method with the given parameters.
@@ -206,6 +220,9 @@ public class Dispatcher {
         return reqResHelper.writeValueAsString(result);
     }
 
+    private String renderView(Object object) {
+        return viewRenderer.render(object, new HashMap<>());
+    }
     /**
      * Parses the given query string into a map of key-value pairs.
      * The query string is expected to be in the format "key1=value1&key2=value2&...".
