@@ -1,6 +1,6 @@
 package org.monsoon.framework.core;
 
-import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.context.ApplicationContextFromConfigClass;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.slf4j.Logger;

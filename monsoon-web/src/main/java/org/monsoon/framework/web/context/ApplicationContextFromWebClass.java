@@ -1,13 +1,12 @@
 package org.monsoon.framework.web.context;
 
 import org.monsoon.framework.core.BeanDefinition;
-import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.web.EmbeddedWebServer;
-import org.monsoon.framework.web.annotations.RestController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

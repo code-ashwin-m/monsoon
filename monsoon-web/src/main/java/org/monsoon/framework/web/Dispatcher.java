@@ -1,7 +1,7 @@
 package org.monsoon.framework.web;
 
 import org.monsoon.framework.core.MonsoonApplication;
-import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.web.annotations.*;
 import org.monsoon.framework.web.autoconfigure.DefaultRHttpMessageConverter;

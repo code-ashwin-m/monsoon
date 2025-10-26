@@ -1,4 +1,4 @@
-package org.monsoon.framework.core.Utils;
+package org.monsoon.framework.core.utils;
 
 import java.lang.annotation.Annotation;
 import java.util.HashSet;

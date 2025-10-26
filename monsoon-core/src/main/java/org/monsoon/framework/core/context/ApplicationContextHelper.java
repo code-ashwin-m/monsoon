@@ -2,7 +2,7 @@ package org.monsoon.framework.core.context;
 
 import org.monsoon.framework.core.AutoConfigurationLoader;
 import org.monsoon.framework.core.BeanDefinition;
-import org.monsoon.framework.core.Utils.ClassUtils;
+import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.slf4j.Logger;
