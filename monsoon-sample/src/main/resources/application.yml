@@ -1,0 +1,6 @@
+app:
+  name: Monsoon Framework from Web context
+
+server:
+  port: 8080
+  host: localhost

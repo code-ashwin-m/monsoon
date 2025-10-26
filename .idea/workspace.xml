@@ -4,20 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Included ClassUtils in Dispatcher">
-      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/resources/templates/template-1.ftl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultViewRenderer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/FreemarkerAutoConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/ViewRenderer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultReqResHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultRHttpMessageConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/ReqResHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/HttpMessageConverter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="renamed util folder">
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,34 +45,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MonsoonTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebAppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.monsoon.framework.test.MonsoonTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.monsoon.framework.test.WebAppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-web [install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Volumes/MediaDrive/Java/monsoon/monsoon-web/src/main&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.MonsoonTest.executor": "Run",
+    "Application.WebAppTest.executor": "Run",
+    "Application.org.monsoon.framework.test.MonsoonTest.executor": "Run",
+    "Application.org.monsoon.framework.test.WebAppTest.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.monsoon [clean].executor": "Run",
+    "Maven.monsoon [install].executor": "Run",
+    "Maven.monsoon [package].executor": "Run",
+    "Maven.monsoon-core [install].executor": "Run",
+    "Maven.monsoon-sample [clean].executor": "Run",
+    "Maven.monsoon-sample [compile].executor": "Run",
+    "Maven.monsoon-sample [package].executor": "Run",
+    "Maven.monsoon-web [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon/monsoon-sample/src/main/resources"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.monsoon.framework.web.autoconfigure" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-sample/src/main/resources" />
       <recent name="$PROJECT_DIR$/monsoon-web/src/main" />
       <recent name="$PROJECT_DIR$/monsoon-core/src/main/resources" />
       <recent name="$PROJECT_DIR$/monsoon-web/src/main/resources" />
@@ -119,7 +108,7 @@
       <module name="monsoon-core" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="org.monsoon.framework.core.Utils.*" />
+          <option name="PATTERN" value="org.monsoon.framework.core.utils.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -201,7 +190,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761479318585</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added FreemarkerAutoConfiguration">
+      <option name="closed" value="true" />
+      <created>1761481451087</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1761481451087</updated>
+    </task>
+    <task id="LOCAL-00004" summary="renamed util folder">
+      <option name="closed" value="true" />
+      <created>1761481498153</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1761481498153</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -218,6 +223,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Inti Commit" />
     <MESSAGE value="Included ClassUtils in Dispatcher" />
-    <option name="LAST_COMMIT_MESSAGE" value="Included ClassUtils in Dispatcher" />
+    <MESSAGE value="Added FreemarkerAutoConfiguration" />
+    <MESSAGE value="renamed util folder" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed util folder" />
   </component>
 </project>
