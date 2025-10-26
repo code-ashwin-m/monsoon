@@ -1,0 +1,8 @@
+- **@RestController**: annotation is used to mark the controller class as a web request handler. It is a convenience annotation that is itself annotated with the @Controller annotation. It is typically used to mark the controller class that handles RESTful web requests. The @ResponseBody annotation is used to mark the return value of the handler method as the response body of the HTTP response. The @Controller annotation is used to mark the controller class as a web request handler.
+
+- **@PathVariable**: annotation is used to mark the path variables in the handler method parameters. It is used to inject the values of the URI template variables into the handler method parameters. For example, if the URI template is "/users/{username}", the handler method parameter annotated with @PathVariable("username") will be injected with the value of the username variable when the request is made.
+
+- **@QueryParam**: annotation is used to mark the query parameters in the handler method parameters. It is used to inject the values of the query parameters into the handler method parameters. For example, if the URI is "/users?name=John&age=25", the handler method parameter annotated with @QueryParam("name") will be injected with the value "John", and the handler method parameter annotated with @QueryParam("age") will be injected with the value 25 when the request is made.
+
+- **@RequestBody**: annotation is used to mark the request body in the handler method parameters. It is used to inject the values of the request body into the handler method parameters. For example, if the request body is a JSON object, the handler method parameter annotated with @RequestBody will be injected with the value of the JSON object when the request is made.
+

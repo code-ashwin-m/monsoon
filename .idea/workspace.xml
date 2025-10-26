@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/AutoConfigurationLoader.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/BeanDefinition.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/ClassUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/MonsoonApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Autowired.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Bean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Component.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ComponentScan.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ConditionalOnClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Configuration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Controller.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/EnableAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/autoconfigure/YamlAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/ApplicationContext.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/BeanPostProcessor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/properties/ApplicationProperties.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/test/MonsoonTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/test/TestComponent.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/test/TestConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/test/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/App.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/UserDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/test/java/org/monsoon/sample/AppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/EmbeddedWebServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/PathVariable.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/QueryParam.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestBody.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RequestMapping.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/ResponseBody.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/annotations/RestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultReqResHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/ReqResHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/Server.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/test/java/org/monsoon/framework/test/TestRestController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/test/java/org/monsoon/framework/test/WebAppTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/test/resources/application.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="AnnotationType" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="34XznFqFVL5mUlNTqc4c07Phd53" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.MonsoonTest.executor": "Run",
+    "Application.WebAppTest.executor": "Run",
+    "Application.org.monsoon.framework.test.MonsoonTest.executor": "Run",
+    "Application.org.monsoon.framework.test.WebAppTest.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.monsoon [clean].executor": "Run",
+    "Maven.monsoon [install].executor": "Run",
+    "Maven.monsoon [package].executor": "Run",
+    "Maven.monsoon-core [install].executor": "Run",
+    "Maven.monsoon-sample [clean].executor": "Run",
+    "Maven.monsoon-sample [compile].executor": "Run",
+    "Maven.monsoon-sample [package].executor": "Run",
+    "Maven.monsoon-web [install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon/monsoon-web/src/main"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-web/src/main" />
+      <recent name="$PROJECT_DIR$/monsoon-core/src/main/resources" />
+      <recent name="$PROJECT_DIR$/monsoon-web/src/main/resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-core/src/test" />
+      <recent name="$PROJECT_DIR$/monsoon-web/src/test" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.monsoon.sample" />
+      <recent name="org.monsoon.framework.web.annotations" />
+      <recent name="org.monsoon.framework.core.annotations" />
+      <recent name="org.monsoon.framework.core.interfaces" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.sample.App" />
+      <module name="monsoon-sample" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MonsoonTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.core.MonsoonTest" />
+      <module name="monsoon-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.framework.core.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WebAppTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.web.WebAppTest" />
+      <module name="monsoon-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.framework.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.monsoon.framework.test.MonsoonTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.test.MonsoonTest" />
+      <module name="monsoon-core" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.framework.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="org.monsoon.framework.test.WebAppTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="org.monsoon.framework.test.WebAppTest" />
+      <module name="monsoon-web" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="org.monsoon.framework.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.org.monsoon.framework.test.WebAppTest" />
+        <item itemvalue="Application.WebAppTest" />
+        <item itemvalue="Application.org.monsoon.framework.test.MonsoonTest" />
+        <item itemvalue="Application.MonsoonTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="" />
+      <created>1761374869949</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1761374869949</updated>
+    </task>
+    <servers />
+  </component>
+</project>
