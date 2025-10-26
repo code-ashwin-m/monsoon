@@ -4,7 +4,7 @@ import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 
 import java.io.InputStream;
 
-public class DefaultRHttpMessageConverter implements HttpMessageConverter {
+public class DefaultHttpMessageConverter implements HttpMessageConverter {
     @Override
     public Object readValue(InputStream bodyStream, Class<?> type) throws Exception {
         return type.getConstructor().newInstance();

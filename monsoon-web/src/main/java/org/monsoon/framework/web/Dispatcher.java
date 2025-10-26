@@ -4,7 +4,7 @@ import org.monsoon.framework.core.MonsoonApplication;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.web.annotations.*;
-import org.monsoon.framework.web.autoconfigure.DefaultRHttpMessageConverter;
+import org.monsoon.framework.web.autoconfigure.DefaultHttpMessageConverter;
 import org.monsoon.framework.web.autoconfigure.DefaultViewRenderer;
 import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 import org.monsoon.framework.web.interfaces.ViewRenderer;
@@ -32,14 +32,14 @@ import java.util.regex.Pattern;
 public class Dispatcher {
     private static final Logger logger = LoggerFactory.getLogger(Dispatcher.class);
     private final List<Route> routes = new ArrayList<>();
-    private static HttpMessageConverter reqResHelper;
+    private static HttpMessageConverter httpMessageConverter;
     private static ViewRenderer viewRenderer;
 
     public Dispatcher(){
-        reqResHelper = MonsoonApplication.getContext().getBeanOrNull("reqResHelper", HttpMessageConverter.class);
-        if (reqResHelper == null){
+        httpMessageConverter = MonsoonApplication.getContext().getBeanOrNull("reqResHelper", HttpMessageConverter.class);
+        if (httpMessageConverter == null){
             logger.error("Missing Jackson dependency, switching to default helper");
-            reqResHelper = new DefaultRHttpMessageConverter();
+            httpMessageConverter = new DefaultHttpMessageConverter();
         }
 
         viewRenderer = MonsoonApplication.getContext().getBeanOrNull("viewRenderer", ViewRenderer.class);
@@ -162,7 +162,7 @@ public class Dispatcher {
                 String name = p.getAnnotation(QueryParam.class).value();
                 args[i] = convertToType(queryParams.get(name), p.getType());
             } else if (p.isAnnotationPresent(RequestBody.class)) {
-                args[i] = reqResHelper.readValue(bodyStream, p.getType());
+                args[i] = httpMessageConverter.readValue(bodyStream, p.getType());
             } else {
                 args[i] = null;
             }
@@ -217,7 +217,7 @@ public class Dispatcher {
     private String serializeResponse(Object result) throws Exception {
         if (result == null) return "";
         if (result instanceof String) return (String) result;
-        return reqResHelper.writeValueAsString(result);
+        return httpMessageConverter.writeValueAsString(result);
     }
 
     private String renderView(Object object) {
