@@ -1,10 +1,9 @@
 package org.monsoon.framework.core.properties;
 
-import org.monsoon.framework.core.MonsoonApplication;
+import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.autoconfigure.YamlAutoConfiguration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -29,7 +28,7 @@ public class ApplicationProperties {
      * It also supports profile-based configuration.
      */
     static {
-        yamlHelper = MonsoonApplication.getContext().getBeanOrNull("yamlHelper", YamlAutoConfiguration.YamlHelper.class);
+        yamlHelper = Monsoon.getContext().getBeanOrNull("yamlHelper", YamlAutoConfiguration.YamlHelper.class);
         ClassLoader classLoader = ApplicationProperties.class.getClassLoader();
         boolean loaded = false;
 

@@ -1,12 +1,14 @@
 package org.monsoon.framework.web.context;
 
 import org.monsoon.framework.core.BeanDefinition;
-import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.properties.ApplicationProperties;
-import org.monsoon.framework.web.EmbeddedWebServer;
+import org.monsoon.framework.core.utils.ClassUtils;
+import org.monsoon.framework.web.ServletWebAdapter;
+import org.monsoon.framework.web.autoconfigure.DefaultEmbeddedServer;
+import org.monsoon.framework.web.interfaces.EmbeddedServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -81,13 +83,13 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
      * @throws Exception if an error occurs while refreshing the application context
      */
     @Override
-    public void refresh() throws Exception {
+    public Object refresh() throws Exception {
         for (BeanDefinition def: beanDefinitions.values()){
             if (ClassUtils.isAnnotationPresent(def.getBeanClass(), Controller.class)){
                 restControllers.add(createBean(def.getBeanName()));
             }
         }
-        startServer();
+        return startServer();
     }
 
     /**
@@ -95,17 +97,45 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
      *
      * @throws Exception if an error occurs while starting the server
      */
-    private void startServer() throws Exception {
-        logger.debug("Starting local server");
-        String host = ApplicationProperties.get("server.host", "http://localhost");
-        if (!host.startsWith("http://") && !host.startsWith("https://")) host = "http://" + host;
-        Integer port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
-
-        EmbeddedWebServer server = new EmbeddedWebServer();
-        for (Object controller: restControllers){
-            server.registerController(controller);
+    private ServletWebAdapter startServer() throws Exception {
+        if (isRunningInsideServletContainer()) {
+            logger.debug("Servlet container detected");
+            ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
+            restControllers.forEach(servletWebAdapter::registerController);
+            return servletWebAdapter;
         }
-        server.start(port);
-        logger.debug("Server started at {}:{}", host, port);
+
+        EmbeddedServer embeddedServer = getBeanOrNull("embeddedServer", EmbeddedServer.class);
+        if (embeddedServer == null) {
+            logger.error("Missing Tomcat dependency");
+            return null;
+        }
+
+        String host = ApplicationProperties.get("server.host", "http://localhost");
+        if (!host.startsWith("http://") && !host.startsWith("https://")) {
+            host = "http://" + host;
+        }
+
+        ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
+        restControllers.forEach(servletWebAdapter::registerController);
+
+        int port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
+        embeddedServer.start(host, port, servletWebAdapter);
+
+        return servletWebAdapter;
+    }
+
+    /**
+     * Checks if the application is running inside a servlet container.
+     *
+     * @return true if the application is running inside a servlet container, false otherwise
+     */
+    private boolean isRunningInsideServletContainer() {
+        try {
+            Class.forName("javax.servlet.ServletContext");
+            return System.getProperty("catalina.base") != null; // Tomcat-specific hint
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

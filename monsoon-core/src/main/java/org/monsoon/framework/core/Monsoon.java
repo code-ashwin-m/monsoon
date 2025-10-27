@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
  * The main class should be annotated with @Configuration or @ComponentScan, so that the Monsoon framework can scan for the components and create the application context.
  */
 
-public class MonsoonApplication {
-    private static final Logger logger = LoggerFactory.getLogger(MonsoonApplication.class);
-    private static MonsoonApplication instance = null;
+public class Monsoon {
+    private static final Logger logger = LoggerFactory.getLogger(Monsoon.class);
+    private static Monsoon instance = null;
     private static Class<?> mainClass = null;
     private static final String CLASSPATH_WEB_CONTEXT = "org.monsoon.framework.web.context.ApplicationContextFromWebClass";
     private static ApplicationContext context = null;
@@ -22,7 +22,7 @@ public class MonsoonApplication {
      * This constructor is used to create an instance of the MonsoonApplication class.
      * @param clazz The main class of the application, which should be annotated with @Configuration or @ComponentScan.
      */
-    public MonsoonApplication(Class<?> clazz) {
+    public Monsoon(Class<?> clazz) {
         this.mainClass = clazz;
     }
 
@@ -35,7 +35,7 @@ public class MonsoonApplication {
      */
     public static ApplicationContext run(Class<?> clazz, String[] args) throws Exception {
         logger.debug("Monsoon is running, main class is at {}", clazz.getName());
-        instance = new MonsoonApplication(clazz);
+        instance = new Monsoon(clazz);
 
         // Create the application context from the configuration class
         context = createApplicationContext();
@@ -65,7 +65,7 @@ public class MonsoonApplication {
         return context;
     }
 
-    public static MonsoonApplication getInstance() {
+    public static Monsoon getInstance() {
         return instance;
     }
 

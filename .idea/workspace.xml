@@ -4,9 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="add application.yml">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="renamed variable httpMessageConverter">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/MonsoonApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/resources/application-prd.yml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/MonsoonServletInitializer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ServletWebAdapter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultEmbeddedServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/TomcatAutoConfiguration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/EmbeddedServer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/services/javax.servlet.ServletContainerInitializer" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/MonsoonApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/Monsoon.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextFromConfigClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/ApplicationContext.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/ApplicationContext.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/properties/ApplicationProperties.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/properties/ApplicationProperties.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/test/MonsoonTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/test/java/org/monsoon/framework/test/MonsoonTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultRHttpMessageConverter.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultHttpMessageConverter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/EmbeddedWebServer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/test/java/org/monsoon/framework/test/WebAppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/test/java/org/monsoon/framework/test/WebAppTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +38,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="AnnotationType" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -75,18 +96,20 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/monsoon-sample/src/main/resources" />
+      <recent name="$PROJECT_DIR$/monsoon-web/src/main/resources" />
       <recent name="$PROJECT_DIR$/monsoon-web/src/main" />
       <recent name="$PROJECT_DIR$/monsoon-core/src/main/resources" />
-      <recent name="$PROJECT_DIR$/monsoon-web/src/main/resources" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF" />
       <recent name="$PROJECT_DIR$/monsoon-core/src/test" />
       <recent name="$PROJECT_DIR$/monsoon-web/src/test" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.monsoon.framework.core.annotations" />
+      <recent name="org.monsoon.framework.web.autoconfigure" />
       <recent name="org.monsoon.sample" />
       <recent name="org.monsoon.framework.web.annotations" />
-      <recent name="org.monsoon.framework.core.annotations" />
       <recent name="org.monsoon.framework.core.interfaces" />
     </key>
   </component>
@@ -215,7 +238,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761481571946</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="renamed variable httpMessageConverter">
+      <option name="closed" value="true" />
+      <created>1761481697921</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761481697921</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -235,6 +266,7 @@
     <MESSAGE value="Added FreemarkerAutoConfiguration" />
     <MESSAGE value="renamed util folder" />
     <MESSAGE value="add application.yml" />
-    <option name="LAST_COMMIT_MESSAGE" value="add application.yml" />
+    <MESSAGE value="renamed variable httpMessageConverter" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed variable httpMessageConverter" />
   </component>
 </project>

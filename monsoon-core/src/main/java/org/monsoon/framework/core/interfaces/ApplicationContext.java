@@ -9,5 +9,5 @@ public interface ApplicationContext {
 
     <T> T getBeanOrNull(String beanName, Class<T> clazz);
 
-    void refresh() throws Exception;
+    Object refresh() throws Exception;
 }

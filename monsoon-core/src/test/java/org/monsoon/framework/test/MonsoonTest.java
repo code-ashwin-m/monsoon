@@ -1,7 +1,7 @@
 package org.monsoon.framework.test;
 
 
-import org.monsoon.framework.core.MonsoonApplication;
+import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.ComponentScan;
 import org.monsoon.framework.core.annotations.Configuration;
 import org.monsoon.framework.core.annotations.EnableAutoConfiguration;
@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
 public class MonsoonTest {
     private static final Logger logger = LoggerFactory.getLogger(MonsoonTest.class);
     public static void main(String[] args) throws Exception {
-        ApplicationContext context = MonsoonApplication.run(MonsoonTest.class, args);
+        ApplicationContext context = Monsoon.run(MonsoonTest.class, args);
 
         TestComponent object = context.getBean("testComp", TestComponent.class);
         logger.debug("response from bean object: -> " + object.process());

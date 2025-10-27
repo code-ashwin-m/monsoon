@@ -59,7 +59,7 @@ public class ApplicationContextFromConfigClass extends ApplicationContextHelper 
     }
 
     @Override
-    public void refresh() throws Exception {
-
+    public Object refresh() throws Exception {
+        return null;
     }
 }

@@ -8,7 +8,7 @@
     </parent>
 
     <artifactId>monsoon-sample</artifactId>
-    <packaging>jar</packaging>
+    <packaging>war</packaging>
 
     <name>monsoon-sample</name>
     <url>http://maven.apache.org</url>
@@ -66,10 +66,35 @@
             <version>2.3.32</version>
             <scope>compile</scope>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>org.apache.tomcat.embed</groupId>-->
+<!--            <artifactId>tomcat-embed-core</artifactId>-->
+<!--            <version>9.0.87</version>-->
+<!--            <scope>compile</scope>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
+        <finalName>sample-app</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
             <!--     Maven Shade Plugin to create fat JAR-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
