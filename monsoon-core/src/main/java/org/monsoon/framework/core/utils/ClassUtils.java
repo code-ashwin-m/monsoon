@@ -1,15 +1,19 @@
 package org.monsoon.framework.core.utils;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
 import java.util.Set;
 
 public class ClassUtils {
+    private static final Logger logger = LoggerFactory.getLogger(ClassUtils.class);
     public static boolean isPresent(String className) {
         try{
             Class.forName(className, false, Thread.currentThread().getContextClassLoader());
             return true;
-        } catch (Throwable ex){
+        } catch (Throwable ex) {
             return false;
         }
     }

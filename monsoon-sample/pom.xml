@@ -72,6 +72,12 @@
             <version>9.0.87</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>9.4.54.v20240208</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -84,14 +90,6 @@
                 <configuration>
                     <source>8</source>
                     <target>8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>3.4.0</version>
-                <configuration>
-                    <failOnMissingWebXml>false</failOnMissingWebXml>
                 </configuration>
             </plugin>
 
@@ -121,6 +119,21 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.4.0</version>
+                <configuration>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.outputDirectory}</directory>
+                            <targetPath>/</targetPath>
+                        </resource>
+                    </webResources>
+                </configuration>
             </plugin>
         </plugins>
     </build>

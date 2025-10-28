@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Added EmbeddedServer">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Arranged dependencies">
+      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/ConditionalOnMissingBean.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JettyAutoConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-web/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultEmbeddedServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultServerAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/TomcatAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/TomcatAutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,6 +65,7 @@
     "Application.org.monsoon.framework.test.WebAppTest.executor": "Run",
     "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
     "Maven.monsoon [clean].executor": "Run",
+    "Maven.monsoon [compile].executor": "Run",
     "Maven.monsoon [install].executor": "Run",
     "Maven.monsoon [package].executor": "Run",
     "Maven.monsoon-core [install].executor": "Run",
@@ -236,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761574193321</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Arranged dependencies">
+      <option name="closed" value="true" />
+      <created>1761574377449</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1761574377449</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -258,6 +274,7 @@
     <MESSAGE value="add application.yml" />
     <MESSAGE value="renamed variable httpMessageConverter" />
     <MESSAGE value="Added EmbeddedServer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added EmbeddedServer" />
+    <MESSAGE value="Arranged dependencies" />
+    <option name="LAST_COMMIT_MESSAGE" value="Arranged dependencies" />
   </component>
 </project>

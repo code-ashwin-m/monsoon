@@ -2,15 +2,16 @@ package org.monsoon.framework.core.context;
 
 import org.monsoon.framework.core.AutoConfigurationLoader;
 import org.monsoon.framework.core.BeanDefinition;
-import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
+import org.monsoon.framework.core.utils.ClassUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.beans.Introspector;
 import java.io.File;
 import java.io.IOException;
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -121,8 +122,8 @@ public class ApplicationContextHelper {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
         List<String> autoConfigurations = AutoConfigurationLoader.load();
         int counter = 0;
+
         for (String className: autoConfigurations){
-            System.out.println(className);
             try {
                 if (!ClassUtils.isPresent(className)){
                     logger.debug("Skipping auto-configuration: {} (class not found)", className);
@@ -132,7 +133,7 @@ public class ApplicationContextHelper {
                 Class<?> clazz = Class.forName(className, false, classLoader);
 
                 ConditionalOnClass conditional = clazz.getAnnotation(ConditionalOnClass.class);
-                if (conditional != null && conditional.value().length > 0){
+                if (conditional != null && conditional.value().length > 0) {
                     boolean allPresent = true;
                     for (Class<?> required : conditional.value()) {
                         if (!ClassUtils.isPresent(required.getName())) {
@@ -145,8 +146,26 @@ public class ApplicationContextHelper {
                         continue;
                     }
                 }
+
+                ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
+                if (missingBean != null && missingBean.value().length > 0) {
+                    boolean anyBeanPresent = false;
+                    for (Class<?> required : missingBean.value()) {
+                        if (containsBeanOfType(required)) {
+                            logger.debug("Skipping {} (another bean of same type is already registered)",
+                                    className, required.getName());
+                            anyBeanPresent = true;
+                            break;
+                        }
+                    }
+                    if (anyBeanPresent) {
+                        continue;
+                    }
+                }
+
                 Object configuration = createInstance(clazz);
                 registerConfiguration(configuration, clazz);
+                logger.debug("Auto configuration registered from class: {}", className);
                 counter++;
             } catch (Exception e) {
                 logger.error("Failed to load class {}", className);
@@ -155,6 +174,33 @@ public class ApplicationContextHelper {
         logger.debug("Auto configuration scanning completed. Total configurations {}", counter);
     }
 
+    private boolean containsBeanOfType(Class<?> type) {
+        for (BeanDefinition def : beanDefinitions.values()) {
+            if (type.isAssignableFrom(def.getBeanClass())) {
+                return true; // Found a bean of the requested type (or subtype)
+            }
+        }
+        return false;
+    }
+
+    private static List<String> getAnnotationClassNamesSafe(Annotation annotation, String attributeName) {
+        List<String> names = new ArrayList<>();
+        try {
+            Method m = annotation.annotationType().getDeclaredMethod(attributeName);
+            Object value = m.invoke(annotation);
+
+            if (value instanceof Class<?>[]) {
+                for (Class<?> c : (Class<?>[]) value) {
+                    if (c != null) names.add(c.getName());
+                }
+            } else if (value instanceof String[]) {
+                names.addAll(Arrays.asList((String[]) value));
+            }
+        } catch (Throwable ex) {
+            // Ignore missing or unloadable types (TypeNotPresentExceptionProxy etc.)
+        }
+        return names;
+    }
     /**
      * This method is used to register a component in the application context.
      * It creates a bean definition for the component and adds it to the application context.

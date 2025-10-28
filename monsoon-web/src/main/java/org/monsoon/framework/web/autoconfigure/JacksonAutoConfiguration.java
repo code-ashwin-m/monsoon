@@ -10,7 +10,7 @@ import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 
 import java.io.InputStream;
 
-@ConditionalOnClass({com.fasterxml.jackson.databind.ObjectMapper.class})
+@ConditionalOnClass(com.fasterxml.jackson.databind.ObjectMapper.class)
 public class JacksonAutoConfiguration {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

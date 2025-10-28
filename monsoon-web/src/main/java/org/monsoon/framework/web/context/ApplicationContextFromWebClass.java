@@ -7,7 +7,7 @@ import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.web.ServletWebAdapter;
-import org.monsoon.framework.web.autoconfigure.DefaultEmbeddedServer;
+import org.monsoon.framework.web.autoconfigure.DefaultServerAutoConfiguration;
 import org.monsoon.framework.web.interfaces.EmbeddedServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,8 +106,9 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
         }
 
         EmbeddedServer embeddedServer = getBeanOrNull("embeddedServer", EmbeddedServer.class);
-        if (embeddedServer == null) {
-            logger.error("Missing Tomcat dependency");
+        if (embeddedServer instanceof DefaultServerAutoConfiguration.DefaultEmbeddedServer) {
+            logger.error("Missing server dependency");
+            embeddedServer.start(null, 0, null);
             return null;
         }
 
