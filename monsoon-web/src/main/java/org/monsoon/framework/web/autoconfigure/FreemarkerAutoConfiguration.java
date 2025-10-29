@@ -3,6 +3,7 @@ package org.monsoon.framework.web.autoconfigure;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
+import org.monsoon.framework.core.annotations.AutoConfigureBefore;
 import org.monsoon.framework.core.annotations.Bean;
 import org.monsoon.framework.core.annotations.ConditionalOnClass;
 import org.monsoon.framework.web.interfaces.ViewRenderer;
@@ -16,7 +17,8 @@ import java.io.Writer;
 import java.nio.charset.StandardCharsets;
 import java.util.Map;
 
-@ConditionalOnClass(freemarker.template.Configuration.class)
+@ConditionalOnClass(name = "freemarker.template.Configuration")
+@AutoConfigureBefore(DefaultViewRendererAutoConfiguration.class)
 public class FreemarkerAutoConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(FreemarkerAutoConfiguration.class);
     @Bean

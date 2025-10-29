@@ -7,7 +7,7 @@ import org.yaml.snakeyaml.Yaml;
 import java.io.InputStream;
 import java.util.Map;
 
-@ConditionalOnClass(org.yaml.snakeyaml.Yaml.class)
+@ConditionalOnClass(name = "org.yaml.snakeyaml.Yaml")
 public class YamlAutoConfiguration {
 
     @Bean

@@ -4,8 +4,8 @@ import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.web.annotations.*;
-import org.monsoon.framework.web.autoconfigure.DefaultHttpMessageConverter;
-import org.monsoon.framework.web.autoconfigure.DefaultViewRenderer;
+import org.monsoon.framework.web.autoconfigure.DefaultHttpConverterAutoConfiguration;
+import org.monsoon.framework.web.autoconfigure.DefaultViewRendererAutoConfiguration;
 import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 import org.monsoon.framework.web.interfaces.ViewRenderer;
 import org.slf4j.Logger;
@@ -41,16 +41,14 @@ public class Dispatcher {
      * It sets up the HTTP message converter and view renderer.
      */
     public Dispatcher() {
-        httpMessageConverter = Monsoon.getContext().getBeanOrNull("reqResHelper", HttpMessageConverter.class);
-        if (httpMessageConverter == null) {
-            logger.error("Missing Jackson dependency, switching to default helper");
-            httpMessageConverter = new DefaultHttpMessageConverter();
+        httpMessageConverter = Monsoon.getContext().getBeanOrNull("httpMessageConverter", HttpMessageConverter.class);
+        if (httpMessageConverter == null || httpMessageConverter instanceof DefaultHttpConverterAutoConfiguration.DefaultHttpMessageConverter) {
+            logger.error("Missing Jackson dependency, switching to default converter");
         }
 
         viewRenderer = Monsoon.getContext().getBeanOrNull("viewRenderer", ViewRenderer.class);
-        if (viewRenderer == null) {
+        if (viewRenderer == null || viewRenderer instanceof DefaultViewRendererAutoConfiguration.DefaultViewRenderer) {
             logger.error("Missing ViewRenderer dependency, switching to default renderer");
-            viewRenderer = new DefaultViewRenderer();
         }
     }
 

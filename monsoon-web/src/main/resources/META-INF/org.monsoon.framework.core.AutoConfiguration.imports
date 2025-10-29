@@ -1,0 +1,7 @@
+org.monsoon.framework.web.autoconfigure.DefaultServerAutoConfiguration
+org.monsoon.framework.web.autoconfigure.DefaultHttpConverterAutoConfiguration
+org.monsoon.framework.web.autoconfigure.DefaultViewRendererAutoConfiguration
+org.monsoon.framework.web.autoconfigure.JacksonAutoConfiguration
+org.monsoon.framework.web.autoconfigure.FreemarkerAutoConfiguration
+org.monsoon.framework.web.autoconfigure.TomcatAutoConfiguration
+org.monsoon.framework.web.autoconfigure.JettyAutoConfiguration

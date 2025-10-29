@@ -3,8 +3,10 @@ package org.monsoon.framework.core.utils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.lang.model.type.MirroredTypeException;
 import java.lang.annotation.Annotation;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 public class ClassUtils {
@@ -80,5 +82,45 @@ public class ClassUtils {
         }
 
         return null;
+    }
+
+    public static <A extends Annotation> Optional<A> getAnnotationSafe(Class<?> clazz, Class<A> annotationType) {
+        try {
+            for (Annotation ann : clazz.getDeclaredAnnotations()) {
+                if (annotationType.isInstance(ann)) {
+                    return Optional.of((A) ann);
+                }
+            }
+        } catch (TypeNotPresentException | ArrayStoreException | MirroredTypeException ignored) {
+            // Skip problematic annotations
+        } catch (Throwable t) {
+            // Defensive fallback
+            System.err.println("Skipping broken annotation on " + clazz.getName() + ": " + t);
+        }
+        return Optional.empty();
+    }
+
+    public static <T extends Annotation> T getAnnotationSafe2(Class<?> clazz, Class<T> annotationType) {
+        try {
+            for (Annotation ann : clazz.getDeclaredAnnotations()) {
+                if (annotationType.isInstance(ann)) {
+                    return (T) ann;
+                }
+            }
+        } catch (TypeNotPresentException | ArrayStoreException | MirroredTypeException ignored) {
+            System.err.println("Skipping broken annotation on " + clazz.getName() + ": " + ignored);
+        } catch (Throwable t) {
+            // Defensive fallback
+            System.err.println("Skipping broken annotation on " + clazz.getName() + ": " + t);
+        }
+        return null;
+    }
+
+    public static Class<?> forName(String className) {
+        try{
+            return Class.forName(className, false, Thread.currentThread().getContextClassLoader());
+        } catch (Throwable ex) {
+            return null;
+        }
     }
 }

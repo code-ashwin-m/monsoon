@@ -4,13 +4,15 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.monsoon.framework.core.annotations.AutoConfigureBefore;
 import org.monsoon.framework.core.annotations.Bean;
 import org.monsoon.framework.core.annotations.ConditionalOnClass;
 import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 
 import java.io.InputStream;
 
-@ConditionalOnClass(com.fasterxml.jackson.databind.ObjectMapper.class)
+@ConditionalOnClass(name = "com.fasterxml.jackson.databind.ObjectMapper")
+@AutoConfigureBefore(DefaultHttpConverterAutoConfiguration.class)
 public class JacksonAutoConfiguration {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 

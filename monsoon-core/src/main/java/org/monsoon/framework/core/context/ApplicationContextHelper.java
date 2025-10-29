@@ -1,6 +1,6 @@
 package org.monsoon.framework.core.context;
 
-import org.monsoon.framework.core.AutoConfigurationLoader;
+import org.monsoon.framework.core.AutoConfiguration;
 import org.monsoon.framework.core.BeanDefinition;
 import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import java.beans.Introspector;
 import java.io.File;
 import java.io.IOException;
-import java.lang.annotation.Annotation;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -120,9 +119,10 @@ public class ApplicationContextHelper {
     private void scanAutoConfiguration() {
         logger.debug("Auto configuration scanning started");
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-        List<String> autoConfigurations = AutoConfigurationLoader.load();
+        List<String> autoConfigurations = AutoConfiguration.loadClassNamesFromImports();
         int counter = 0;
 
+        List<Class<?>> classList = new ArrayList<>();
         for (String className: autoConfigurations){
             try {
                 if (!ClassUtils.isPresent(className)){
@@ -131,46 +131,74 @@ public class ApplicationContextHelper {
                 }
 
                 Class<?> clazz = Class.forName(className, false, classLoader);
-
-                ConditionalOnClass conditional = clazz.getAnnotation(ConditionalOnClass.class);
-                if (conditional != null && conditional.value().length > 0) {
-                    boolean allPresent = true;
-                    for (Class<?> required : conditional.value()) {
-                        if (!ClassUtils.isPresent(required.getName())) {
-                            logger.debug("Skipping {} (missing dependency: {})", className, required.getName());
-                            allPresent = false;
-                            break;
-                        }
-                    }
-                    if (!allPresent) {
-                        continue;
-                    }
-                }
-
-                ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
-                if (missingBean != null && missingBean.value().length > 0) {
-                    boolean anyBeanPresent = false;
-                    for (Class<?> required : missingBean.value()) {
-                        if (containsBeanOfType(required)) {
-                            logger.debug("Skipping {} (another bean of same type is already registered)",
-                                    className, required.getName());
-                            anyBeanPresent = true;
-                            break;
-                        }
-                    }
-                    if (anyBeanPresent) {
-                        continue;
-                    }
-                }
-
-                Object configuration = createInstance(clazz);
-                registerConfiguration(configuration, clazz);
-                logger.debug("Auto configuration registered from class: {}", className);
-                counter++;
+                classList.add(clazz);
             } catch (Exception e) {
                 logger.error("Failed to load class {}", className);
             }
         }
+
+        List<Class<?>> classListSorted = AutoConfiguration.sort(classList);
+
+        for(Class<?> clazz : classListSorted){
+            if (clazz.isInterface()) continue;
+
+            ConditionalOnClass conditional = clazz.getAnnotation(ConditionalOnClass.class);
+            if (conditional != null){
+                List<String> classNames = new ArrayList<>();
+                classNames.addAll(Arrays.asList(conditional.name()));
+
+                for (Class<?> clz: conditional.value()){
+                    classNames.add(clz.getName());
+                }
+
+                boolean allPresent = true;
+                for (String required : classNames) {
+                    if (!ClassUtils.isPresent(required)) {
+                        logger.debug("Skipping {} (missing dependency: {})", clazz.getName(), required);
+                        allPresent = false;
+                        break;
+                    }
+                }
+                if (!allPresent) {
+                    continue;
+                }
+            }
+
+            ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
+            if (missingBean != null){
+                List<String> classNames = new ArrayList<>();
+                classNames.addAll(Arrays.asList(missingBean.name()));
+
+                for (Class<?> clz: missingBean.value()){
+                    classNames.add(clz.getName());
+                }
+
+                boolean anyBeanPresent = false;
+                for (String required : classNames) {
+                    Class<?> clz = ClassUtils.forName(required);
+                    if (clz != null && containsBeanOfType(clz)) {
+                        logger.debug("Skipping {} (another bean of same type is already registered)",
+                                clazz.getName(), required);
+                        anyBeanPresent = true;
+                        break;
+                    }
+                }
+                if (anyBeanPresent) {
+                    continue;
+                }
+            }
+
+            try {
+                Object configuration  = createInstance(clazz);
+                registerConfiguration(configuration, clazz);
+                logger.debug("Auto configuration registered from class: {}", clazz.getName());
+                counter++;
+            } catch (Exception e) {
+                logger.error("Failed to create bean for {}", clazz.getName());
+            }
+
+        }
+
         logger.debug("Auto configuration scanning completed. Total configurations {}", counter);
     }
 
@@ -183,24 +211,6 @@ public class ApplicationContextHelper {
         return false;
     }
 
-    private static List<String> getAnnotationClassNamesSafe(Annotation annotation, String attributeName) {
-        List<String> names = new ArrayList<>();
-        try {
-            Method m = annotation.annotationType().getDeclaredMethod(attributeName);
-            Object value = m.invoke(annotation);
-
-            if (value instanceof Class<?>[]) {
-                for (Class<?> c : (Class<?>[]) value) {
-                    if (c != null) names.add(c.getName());
-                }
-            } else if (value instanceof String[]) {
-                names.addAll(Arrays.asList((String[]) value));
-            }
-        } catch (Throwable ex) {
-            // Ignore missing or unloadable types (TypeNotPresentExceptionProxy etc.)
-        }
-        return names;
-    }
     /**
      * This method is used to register a component in the application context.
      * It creates a bean definition for the component and adds it to the application context.

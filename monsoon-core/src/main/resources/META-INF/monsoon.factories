@@ -1,2 +1,0 @@
-org.monsoon.framework.core.annotations.EnableAutoConfiguration=\
-org.monsoon.framework.core.autoconfigure.YamlAutoConfiguration
