@@ -47,8 +47,6 @@ public class ApplicationContextHelper {
         List<Class<?>> classes = new ArrayList<>();
         classes.addAll(scanForClassesInAllPackages(basePackageName));
 
-
-
         if (ClassUtils.isAnnotationPresent(mainClass, ComponentScan.class)){
             logger.debug("ComponentScan annotation is present");
             scanComponents(classes);

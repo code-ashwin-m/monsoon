@@ -113,7 +113,7 @@
                                 </transformer>
                                 <!-- This merges files instead of replacing -->
                                 <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">
-                                    <resource>META-INF/monsoon.factories</resource>
+                                    <resource>META-INF/org.monsoon.framework.core.AutoConfiguration.imports</resource>
                                 </transformer>
                             </transformers>
                         </configuration>

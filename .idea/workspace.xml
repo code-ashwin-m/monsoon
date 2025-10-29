@@ -4,26 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Added JettyAutoConfiguration">
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/AutoConfigureAfter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/annotations/AutoConfigureBefore.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-core/src/main/resources/META-INF/org.monsoon.framework.core.AutoConfiguration.imports" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultHttpConverterAutoConfiguration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/org.monsoon.framework.core.AutoConfiguration.imports" afterDir="false" />
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Added AutoConfigureAfter and AutoConfigureBefore">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/AutoConfigurationLoader.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/AutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/autoconfigure/YamlAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/autoconfigure/YamlAutoConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/resources/META-INF/monsoon.factories" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultHttpMessageConverter.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultViewRenderer.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/DefaultViewRendererAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/FreemarkerAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/FreemarkerAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JacksonAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JettyAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/JettyAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/TomcatAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/autoconfigure/TomcatAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/resources/META-INF/monsoon.factories" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -269,7 +253,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761663666055</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Added AutoConfigureAfter and AutoConfigureBefore">
+      <option name="closed" value="true" />
+      <created>1761747014209</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1761747014209</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -293,6 +285,7 @@
     <MESSAGE value="Added EmbeddedServer" />
     <MESSAGE value="Arranged dependencies" />
     <MESSAGE value="Added JettyAutoConfiguration" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added JettyAutoConfiguration" />
+    <MESSAGE value="Added AutoConfigureAfter and AutoConfigureBefore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added AutoConfigureAfter and AutoConfigureBefore" />
   </component>
 </project>
