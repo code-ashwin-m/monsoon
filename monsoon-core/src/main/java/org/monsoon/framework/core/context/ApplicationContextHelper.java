@@ -45,7 +45,7 @@ public class ApplicationContextHelper {
 
         logger.debug("Base package name is {}", basePackageName);
         List<Class<?>> classes = new ArrayList<>();
-        classes.addAll(scanForClassesInAllPackages(basePackageName));
+        classes.addAll(ClassUtils.scanForClasses(basePackageName));
 
         if (ClassUtils.isAnnotationPresent(mainClass, ComponentScan.class)){
             logger.debug("ComponentScan annotation is present");
@@ -247,86 +247,6 @@ public class ApplicationContextHelper {
                 }
             }
         }
-    }
-
-
-    /**
-     * This method scans for classes in all packages.
-     * It returns a list of classes found in the given package.
-     * @param basePackageName The base package name to scan for classes.
-     * @return A list of classes found in the given package.
-     * @throws Exception If there is an error while scanning for classes.
-     */
-    private List<Class<?>> scanForClassesInAllPackages(String basePackageName) throws Exception {
-        List<Class<?>> classes = new ArrayList<>();
-        String path = basePackageName.replace(".", "/");
-
-        Enumeration<URL> resources = Thread.currentThread().getContextClassLoader().getResources(path);
-        while (resources.hasMoreElements()){
-            URL resource = resources.nextElement();
-            String protocol = resource.getProtocol();
-            logger.debug("Protocol is {}", protocol);
-            if (protocol.equals("file")){
-                logger.debug("Scan for classes in all package is started in local directory");
-                classes.addAll(findClassesInDirectory(basePackageName, new File(resource.getFile())));
-            } else if (protocol.equals("jar")) {
-                logger.debug("Scan for classes in all package is started in jar");
-                classes.addAll(findClassesInJar(resource, path));
-            }
-        }
-        logger.debug("Scan for classes in all package is completed. Total classes {}", classes.size());
-        return classes;
-    }
-
-
-    /**
-     * This method finds all classes in the given directory and its subdirectories.
-     * It iterates over all the files in the directory and checks if the file is a directory or a class file.
-     * If the file is a directory, it recursively calls itself to find all classes in the subdirectory.
-     * If the file is a class file, it tries to load the class and adds it to the list of classes.
-     * @param basePackageName The base package name of the classes to find.
-     * @param directory The directory to search for classes.
-     * @return A list of classes found in the given directory and its subdirectories.
-     */
-    private List<Class<?>> findClassesInDirectory(String basePackageName, File directory) {
-        List<Class<?>> classes = new ArrayList<>();
-
-        if (!directory.exists()) return classes;
-
-        File[] files = directory.listFiles();
-        if (files == null) return classes;
-
-        for (File file : files){
-            if (file.isDirectory()){
-                classes.addAll(findClassesInDirectory(basePackageName + "." + file.getName(), file));
-            }else {
-
-                String className = basePackageName + "." + file.getName().substring(0, file.getName().length() - 6);
-                try {
-                    Class<?> clazz = Class.forName(className, false, Thread.currentThread().getContextClassLoader());
-                    classes.add(clazz);
-                } catch (Throwable ignored) {}
-            }
-        }
-        return classes;
-    }
-
-    private static List<Class<?>> findClassesInJar(URL resource, String path) throws IOException {
-        List<Class<?>> classes = new ArrayList<>();
-        JarURLConnection connection = (JarURLConnection) resource.openConnection();
-        JarFile jarFile = connection.getJarFile();
-        Enumeration<JarEntry> entries = jarFile.entries();
-        while (entries.hasMoreElements()) {
-            JarEntry entry = entries.nextElement();
-            String entryName = entry.getName();
-            if (entryName.startsWith(path) && entryName.endsWith(".class") && !entry.isDirectory()) {
-                String className = entryName.replace("/", ".").substring(0, entryName.length() - 6);
-                try {
-                    classes.add(Class.forName(className));
-                } catch (Throwable ignored){}
-            }
-        }
-        return classes;
     }
 
     /**

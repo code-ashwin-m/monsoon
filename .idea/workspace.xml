@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Added AutoConfigureAfter and AutoConfigureBefore">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Updated builder to merge auto config imports files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/utils/ClassUtils.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +261,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761747014209</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Updated builder to merge auto config imports files">
+      <option name="closed" value="true" />
+      <created>1761747939376</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1761747939377</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -286,6 +294,7 @@
     <MESSAGE value="Arranged dependencies" />
     <MESSAGE value="Added JettyAutoConfiguration" />
     <MESSAGE value="Added AutoConfigureAfter and AutoConfigureBefore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added AutoConfigureAfter and AutoConfigureBefore" />
+    <MESSAGE value="Updated builder to merge auto config imports files" />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated builder to merge auto config imports files" />
   </component>
 </project>
