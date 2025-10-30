@@ -2,7 +2,7 @@ package org.monsoon.framework.core;
 
 import org.monsoon.framework.core.annotations.AutoConfigureAfter;
 import org.monsoon.framework.core.annotations.AutoConfigureBefore;
-import org.monsoon.framework.core.annotations.ConditionalOnMissingBean;
+import org.monsoon.framework.core.annotations.ConditionalOnMissingClass;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -88,7 +88,7 @@ public class AutoConfiguration {
                 }
             }
 
-            ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
+            ConditionalOnMissingClass missingBean = clazz.getAnnotation(ConditionalOnMissingClass.class);
             if (missingBean != null) {
                 for (Class<?> target : missingBean.value()) {
                     dependOn.putIfAbsent(target, new HashSet<>());
@@ -106,8 +106,8 @@ public class AutoConfiguration {
 
         List<Class<?>> sortedList = topologicalSort(dependOn);
         sortedList.sort((a, b) -> {
-            ConditionalOnMissingBean aAnno = a.getAnnotation(ConditionalOnMissingBean.class);
-            ConditionalOnMissingBean bAnno = b.getAnnotation(ConditionalOnMissingBean.class);
+            ConditionalOnMissingClass aAnno = a.getAnnotation(ConditionalOnMissingClass.class);
+            ConditionalOnMissingClass bAnno = b.getAnnotation(ConditionalOnMissingClass.class);
 
                 if (aAnno != null && bAnno != null){
                     if (Arrays.asList(aAnno.value()).contains(b)) return 1;

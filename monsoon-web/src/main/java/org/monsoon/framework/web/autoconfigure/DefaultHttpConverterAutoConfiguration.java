@@ -1,14 +1,14 @@
 package org.monsoon.framework.web.autoconfigure;
 
 import org.monsoon.framework.core.annotations.Bean;
-import org.monsoon.framework.core.annotations.ConditionalOnMissingBean;
+import org.monsoon.framework.core.annotations.ConditionalOnMissingClass;
 import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.InputStream;
 
-@ConditionalOnMissingBean(HttpMessageConverter.class)
+@ConditionalOnMissingClass(HttpMessageConverter.class)
 public class DefaultHttpConverterAutoConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(DefaultHttpConverterAutoConfiguration.class);
     @Bean

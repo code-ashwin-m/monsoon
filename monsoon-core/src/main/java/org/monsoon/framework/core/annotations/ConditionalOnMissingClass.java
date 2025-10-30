@@ -7,6 +7,7 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ConditionalOnMissingBean {
+public @interface ConditionalOnMissingClass {
+    Class<?>[] value() default {};
     String[] name() default {};
 }

@@ -17,7 +17,7 @@ import org.slf4j.LoggerFactory;
         "javax.servlet.http.HttpServlet",
         "org.apache.catalina.startup.Tomcat"
 })
-@ConditionalOnMissingBean(EmbeddedServer.class)
+@ConditionalOnMissingClass(EmbeddedServer.class)
 @AutoConfigureBefore({DefaultServerAutoConfiguration.class})
 public class TomcatAutoConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(TomcatAutoConfiguration.class.getName());

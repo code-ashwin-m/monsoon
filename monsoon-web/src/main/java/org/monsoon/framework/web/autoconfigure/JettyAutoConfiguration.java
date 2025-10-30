@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
  * It is annotated with @ConditionalOnClass to ensure that the required classes are present.
  */
 @ConditionalOnClass(name = "org.eclipse.jetty.server.Server")
-@ConditionalOnMissingBean(EmbeddedServer.class)
+@ConditionalOnMissingClass(EmbeddedServer.class)
 @AutoConfigureBefore({DefaultServerAutoConfiguration.class})
 @AutoConfigureAfter({TomcatAutoConfiguration.class})
 public class JettyAutoConfiguration {

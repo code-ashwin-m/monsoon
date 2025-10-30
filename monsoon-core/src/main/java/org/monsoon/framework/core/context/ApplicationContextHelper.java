@@ -9,16 +9,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.beans.Introspector;
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.net.JarURLConnection;
-import java.net.URL;
 import java.util.*;
-import java.util.jar.JarEntry;
-import java.util.jar.JarFile;
 
 /**
  * This class is used to create an application context from the given configuration class.
@@ -162,12 +156,12 @@ public class ApplicationContextHelper {
                 }
             }
 
-            ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
-            if (missingBean != null){
+            ConditionalOnMissingClass missingClass = clazz.getAnnotation(ConditionalOnMissingClass.class);
+            if (missingClass != null){
                 List<String> classNames = new ArrayList<>();
-                classNames.addAll(Arrays.asList(missingBean.name()));
+                classNames.addAll(Arrays.asList(missingClass.name()));
 
-                for (Class<?> clz: missingBean.value()){
+                for (Class<?> clz: missingClass.value()){
                     classNames.add(clz.getName());
                 }
 
@@ -175,8 +169,24 @@ public class ApplicationContextHelper {
                 for (String required : classNames) {
                     Class<?> clz = ClassUtils.forName(required);
                     if (clz != null && containsBeanOfType(clz)) {
-                        logger.debug("Skipping {} (another bean of same type is already registered)",
+                        logger.debug("Skipping {} (another bean of same class type is already registered)",
                                 clazz.getName(), required);
+                        anyBeanPresent = true;
+                        break;
+                    }
+                }
+                if (anyBeanPresent) {
+                    continue;
+                }
+            }
+
+            ConditionalOnMissingBean missingBean = clazz.getAnnotation(ConditionalOnMissingBean.class);
+            if (missingBean != null){
+                boolean anyBeanPresent = false;
+                for (String beanName : Arrays.asList(missingClass.name())) {
+                    if (containsBean(beanName)){
+                        logger.debug("Skipping {} (another bean \"{}\" is already registered)",
+                                clazz.getName(), beanName);
                         anyBeanPresent = true;
                         break;
                     }
@@ -198,6 +208,10 @@ public class ApplicationContextHelper {
         }
 
         logger.debug("Auto configuration scanning completed. Total configurations {}", counter);
+    }
+
+    private boolean containsBean(String beanName) {
+        return beanDefinitions.containsKey(beanName);
     }
 
     private boolean containsBeanOfType(Class<?> type) {
