@@ -135,22 +135,26 @@ public class ClassUtils {
      * @return A list of classes found in the given package.
      * @throws Exception If there is an error while scanning for classes.
      */
-    public static List<Class<?>> scanForClasses(String basePackageName) throws Exception {
+    public static List<Class<?>> scanForClasses(String basePackageName) {
         List<Class<?>> classes = new ArrayList<>();
         String path = basePackageName.replace(".", "/");
 
-        Enumeration<URL> resources = Thread.currentThread().getContextClassLoader().getResources(path);
-        while (resources.hasMoreElements()){
-            URL resource = resources.nextElement();
-            String protocol = resource.getProtocol();
-            logger.debug("Protocol is {}", protocol);
-            if (protocol.equals("file")){
-                logger.debug("Scan for classes in all package is started in local directory");
-                classes.addAll(findClassesInDirectory(basePackageName, new File(resource.getFile())));
-            } else if (protocol.equals("jar")) {
-                logger.debug("Scan for classes in all package is started in jar");
-                classes.addAll(findClassesInJar(resource, path));
+        try {
+            Enumeration<URL> resources = Thread.currentThread().getContextClassLoader().getResources(path);
+            while (resources.hasMoreElements()) {
+                URL resource = resources.nextElement();
+                String protocol = resource.getProtocol();
+                logger.debug("Protocol is {}", protocol);
+                if (protocol.equals("file")) {
+                    logger.debug("Scan for classes in all package is started in local directory");
+                    classes.addAll(findClassesInDirectory(basePackageName, new File(resource.getFile())));
+                } else if (protocol.equals("jar")) {
+                    logger.debug("Scan for classes in all package is started in jar");
+                    classes.addAll(findClassesInJar(resource, path));
+                }
             }
+        } catch (IOException ex) {
+            logger.error("Failed to scan for classes from package {}", path, ex);
         }
         logger.debug("Scan for classes in all package is completed. Total classes {}", classes.size());
         return classes;
@@ -189,20 +193,24 @@ public class ClassUtils {
         return classes;
     }
 
-    private static List<Class<?>> findClassesInJar(URL resource, String path) throws IOException {
+    private static List<Class<?>> findClassesInJar(URL resource, String path) {
         List<Class<?>> classes = new ArrayList<>();
-        JarURLConnection connection = (JarURLConnection) resource.openConnection();
-        JarFile jarFile = connection.getJarFile();
-        Enumeration<JarEntry> entries = jarFile.entries();
-        while (entries.hasMoreElements()) {
-            JarEntry entry = entries.nextElement();
-            String entryName = entry.getName();
-            if (entryName.startsWith(path) && entryName.endsWith(".class") && !entry.isDirectory()) {
-                String className = entryName.replace("/", ".").substring(0, entryName.length() - 6);
-                try {
-                    classes.add(Class.forName(className));
-                } catch (Throwable ignored){}
+        try {
+            JarURLConnection connection = (JarURLConnection) resource.openConnection();
+            JarFile jarFile = connection.getJarFile();
+            Enumeration<JarEntry> entries = jarFile.entries();
+            while (entries.hasMoreElements()) {
+                JarEntry entry = entries.nextElement();
+                String entryName = entry.getName();
+                if (entryName.startsWith(path) && entryName.endsWith(".class") && !entry.isDirectory()) {
+                    String className = entryName.replace("/", ".").substring(0, entryName.length() - 6);
+                    try {
+                        classes.add(Class.forName(className));
+                    } catch (Throwable ignored){}
+                }
             }
+        } catch (Exception ex ){
+            logger.error("Failed to load classes from jar", ex);
         }
         return classes;
     }

@@ -4,6 +4,7 @@ import org.monsoon.framework.core.AutoConfiguration;
 import org.monsoon.framework.core.BeanDefinition;
 import org.monsoon.framework.core.annotations.*;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
+import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,28 +32,35 @@ public class ApplicationContextHelper {
      * It registers the bean definitions and the singletons in the application context.
      * It also registers the bean post processors, which are used to process the beans before they are added to the application context.
      */
-    public ApplicationContextHelper(Class<?> mainClass) throws Exception {
+    public ApplicationContextHelper(Class<?> mainClass) {
         this.mainClass = mainClass;
+    }
 
+    protected void refreshContext(){
         Package basePackage = mainClass.getPackage();
         String basePackageName = basePackage.getName();
-
         logger.debug("Base package name is {}", basePackageName);
         List<Class<?>> classes = new ArrayList<>();
+
         classes.addAll(ClassUtils.scanForClasses(basePackageName));
 
-        if (ClassUtils.isAnnotationPresent(mainClass, ComponentScan.class)){
+        if (ClassUtils.isAnnotationPresent(mainClass, ComponentScan.class)) {
             logger.debug("ComponentScan annotation is present");
             scanComponents(classes);
             scanConfigurations(classes);
-        }else{
+        } else {
             logger.debug("ComponentScan annotation is not present, checking for Configuration annotation");
-            if (ClassUtils.isAnnotationPresent(mainClass, Configuration.class)){
-                Object configuration = createInstance(mainClass);
-                registerConfiguration(configuration, mainClass);
-                logger.debug("Configuration registered from class: {}", mainClass.getSimpleName());
+            if (ClassUtils.isAnnotationPresent(mainClass, Configuration.class)) {
+                try {
+                    Object configuration = createInstance(mainClass);
+                    registerConfiguration(configuration, mainClass);
+                    logger.debug("Configuration registered from class: {}", mainClass.getSimpleName());
+                }catch (Exception ex){
+                    logger.error("Failed to load Configuration {}", mainClass.getName(), ex);
+                }
             }
         }
+
 
         if (ClassUtils.isAnnotationPresent(mainClass, EnableAutoConfiguration.class)){
             logger.debug("EnableAutoConfiguration annotation is present");
@@ -152,6 +160,22 @@ public class ApplicationContextHelper {
                     }
                 }
                 if (!allPresent) {
+                    continue;
+                }
+            }
+
+            ConditionalOnProperty property = clazz.getAnnotation(ConditionalOnProperty.class);
+            if (property != null){
+                boolean allPropertyFound = true;
+                for (String prop : Arrays.asList(property.value())){
+                    String value = ApplicationProperties.get(prop, null);
+                    if (value == null || value.equals("")){
+                        logger.debug("Skipping {} (missing property: {})", clazz.getName(), prop);
+                        allPropertyFound = false;
+                        break;
+                    }
+                }
+                if (!allPropertyFound) {
                     continue;
                 }
             }
@@ -378,12 +402,16 @@ public class ApplicationContextHelper {
      * @param classes The list of classes to register as bean post processors.
      * @throws Exception If there is an error while registering the bean post processors.
      */
-    private void registerBeanPostProcessor(List<Class<?>> classes) throws Exception {
+    private void registerBeanPostProcessor(List<Class<?>> classes) {
         for (Class<?> clazz: classes){
-            for (Class<?> inter : clazz.getInterfaces()){
-                if (inter.equals(BeanPostProcessor.class)){
-                    beanPostProcessors.add((BeanPostProcessor) createInstance(clazz));
+            try {
+                for (Class<?> inter : clazz.getInterfaces()) {
+                    if (inter.equals(BeanPostProcessor.class)) {
+                        beanPostProcessors.add((BeanPostProcessor) createInstance(clazz));
+                    }
                 }
+            } catch (Exception e) {
+                logger.error("Failed to register bean post processor", e);
             }
         }
     }

@@ -2,6 +2,7 @@ package org.monsoon.framework.core.properties;
 
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.autoconfigure.YamlAutoConfiguration;
+import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

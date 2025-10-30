@@ -39,6 +39,7 @@ public class Monsoon {
 
         // Create the application context from the configuration class
         context = createApplicationContext();
+        context.loadContext();
         return context;
     }
 
@@ -60,7 +61,6 @@ public class Monsoon {
             logger.debug("Creating application context with cli configuration");
             context = new ApplicationContextFromConfigClass(mainClass);
         }
-
         logger.debug("Context created with class {}", mainClass.getSimpleName());
         return context;
     }

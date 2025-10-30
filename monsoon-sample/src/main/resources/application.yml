@@ -6,3 +6,7 @@ app:
 server:
   port: 8080
   host: localhost
+
+monsoon:
+  datasource:
+    enabled1: true

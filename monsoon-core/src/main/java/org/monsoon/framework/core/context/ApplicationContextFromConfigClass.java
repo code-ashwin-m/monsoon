@@ -62,4 +62,9 @@ public class ApplicationContextFromConfigClass extends ApplicationContextHelper 
     public Object refresh() throws Exception {
         return null;
     }
+
+    @Override
+    public void loadContext() {
+        refreshContext();
+    }
 }

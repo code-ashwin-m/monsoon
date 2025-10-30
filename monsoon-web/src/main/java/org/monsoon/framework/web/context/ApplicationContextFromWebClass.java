@@ -92,6 +92,11 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
         return startServer();
     }
 
+    @Override
+    public void loadContext() {
+        refreshContext();
+    }
+
     /**
      * Starts the server.
      *

@@ -37,6 +37,11 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
+            <groupId>org.monsoon.framework.db</groupId>
+            <artifactId>monsoon-db</artifactId>
+            <version>1.0</version>
+        </dependency>
+        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.11</version>
@@ -66,6 +71,7 @@
             <version>2.3.32</version>
             <scope>compile</scope>
         </dependency>
+
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>

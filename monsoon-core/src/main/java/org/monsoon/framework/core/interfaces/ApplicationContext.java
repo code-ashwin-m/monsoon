@@ -10,4 +10,6 @@ public interface ApplicationContext {
     <T> T getBeanOrNull(String beanName, Class<T> clazz);
 
     Object refresh() throws Exception;
+
+    void loadContext();
 }

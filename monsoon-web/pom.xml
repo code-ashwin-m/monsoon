@@ -29,7 +29,7 @@
             <groupId>org.monsoon.framework.core</groupId>
             <artifactId>monsoon-core</artifactId>
             <version>1.0</version>
-            <scope>compile</scope>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
