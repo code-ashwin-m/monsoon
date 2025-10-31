@@ -9,4 +9,8 @@ server:
 
 monsoon:
   datasource:
-    enabled1: true
+    enabled: true
+    url: test
+    username: test-username
+    password: test-password
+    driver: test-driver

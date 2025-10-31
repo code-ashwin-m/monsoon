@@ -125,7 +125,7 @@ public class ApplicationProperties {
                 for (int i = 0; i < ((List<?>) val).size(); i++) {
                     flatten(key + "[" + i + "]", (Map<String, Object>) ((List<?>) val).get(i));
                 }
-            } else {
+            } else if (val != null) {
                 properties.put(key, val.toString());
             }
         }

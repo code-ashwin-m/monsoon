@@ -4,6 +4,7 @@ import org.monsoon.framework.core.BeanDefinition;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
+import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.web.ServletWebAdapter;
@@ -95,6 +96,11 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
     @Override
     public void loadContext() {
         refreshContext();
+    }
+
+    @Override
+    public void registerBeanPostProcessor(BeanPostProcessor processor) {
+        super.registerBeanPostProcessor(processor);
     }
 
     /**

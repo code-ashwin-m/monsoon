@@ -12,4 +12,6 @@ public interface ApplicationContext {
     Object refresh() throws Exception;
 
     void loadContext();
+
+    void registerBeanPostProcessor(BeanPostProcessor processor);
 }

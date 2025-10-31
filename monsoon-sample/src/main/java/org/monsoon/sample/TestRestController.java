@@ -1,10 +1,23 @@
 package org.monsoon.sample;
 
+import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.Controller;
+import org.monsoon.framework.db.DataSource;
 import org.monsoon.framework.web.annotations.*;
 
 @Controller
 public class TestRestController {
+    public TestRestController(){
+        try {
+            DataSource dataSource = Monsoon.getContext().getBean("dataSource", DataSource.class);
+            System.out.println("=======================");
+            System.out.println(dataSource);
+            System.out.println("=======================");
+        } catch (Exception e) {
+
+        }
+    }
+
     @RequestMapping(path = "/test")
     public String test() {
         return "template-1";

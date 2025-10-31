@@ -403,17 +403,27 @@ public class ApplicationContextHelper {
      * @throws Exception If there is an error while registering the bean post processors.
      */
     private void registerBeanPostProcessor(List<Class<?>> classes) {
+        logger.debug("Bean post processor auto registration started");
         for (Class<?> clazz: classes){
+            System.out.println(clazz.getName());
             try {
                 for (Class<?> inter : clazz.getInterfaces()) {
                     if (inter.equals(BeanPostProcessor.class)) {
                         beanPostProcessors.add((BeanPostProcessor) createInstance(clazz));
+                        logger.debug("Auto registered bean post processor {}", clazz.getSimpleName());
                     }
                 }
+
             } catch (Exception e) {
                 logger.error("Failed to register bean post processor", e);
             }
         }
+        logger.debug("Bean post processor auto registration completed");
+    }
+
+    public void registerBeanPostProcessor(BeanPostProcessor processor) {
+        beanPostProcessors.add(processor);
+        logger.debug("Manually registered bean post processor {}", processor.getClass().getSimpleName());
     }
 
     /**

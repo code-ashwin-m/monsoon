@@ -1,6 +1,7 @@
 package org.monsoon.framework.core.context;
 
 import org.monsoon.framework.core.interfaces.ApplicationContext;
+import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 
 /**
  * This class is a factory for creating an application context from a configuration class.
@@ -66,5 +67,10 @@ public class ApplicationContextFromConfigClass extends ApplicationContextHelper 
     @Override
     public void loadContext() {
         refreshContext();
+    }
+
+    @Override
+    public void registerBeanPostProcessor(BeanPostProcessor processor) {
+        super.registerBeanPostProcessor(processor);
     }
 }

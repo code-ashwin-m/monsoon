@@ -29,7 +29,7 @@ public class JacksonAutoConfiguration {
      */
 
     @Bean
-    public JacksonHelper reqResHelper() {
+    public HttpMessageConverter httpMessageConverter() {
         return new JacksonHelper();
     }
 
