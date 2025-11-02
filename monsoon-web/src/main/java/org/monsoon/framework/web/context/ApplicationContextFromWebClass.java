@@ -1,6 +1,7 @@
 package org.monsoon.framework.web.context;
 
 import org.monsoon.framework.core.BeanDefinition;
+import org.monsoon.framework.core.annotations.Configuration;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.core.context.ApplicationContextHelper;
 import org.monsoon.framework.core.interfaces.ApplicationContext;
@@ -10,6 +11,8 @@ import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.web.ServletWebAdapter;
 import org.monsoon.framework.web.autoconfigure.DefaultServerAutoConfiguration;
 import org.monsoon.framework.web.interfaces.EmbeddedServer;
+import org.monsoon.framework.web.interfaces.HandlerInterceptor;
+import org.monsoon.framework.web.interfaces.WebConfigurer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -24,7 +27,7 @@ import java.util.List;
 public class ApplicationContextFromWebClass extends ApplicationContextHelper implements ApplicationContext {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationContextFromWebClass.class);
     private final List<Object> restControllers = new ArrayList<>();
-
+    private final List<HandlerInterceptor> handlerInterceptorRegistry = new ArrayList<>();
     /**
      * Creates an instance of the ApplicationContextFromWebClass class.
      *
@@ -96,6 +99,21 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
     @Override
     public void loadContext() {
         refreshContext();
+        registerWebConfig();
+    }
+
+    private void registerWebConfig() {
+        for (BeanDefinition def: beanDefinitions.values()){
+
+            if (WebConfigurer.class.isAssignableFrom(def.getBeanClass()) && ClassUtils.isAnnotationPresent(def.getBeanClass(), Configuration.class)){
+                try {
+                    WebConfigurer webConfigurer = (WebConfigurer) createBean(def.getBeanName());
+                    webConfigurer.addInterceptors(handlerInterceptorRegistry);
+                } catch (Exception e) {
+                    logger.error("Failed to register web config class {}", def.getBeanClass().getName(), e);
+                }
+            }
+        }
     }
 
     @Override
@@ -113,6 +131,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
             logger.debug("Servlet container detected");
             ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
             restControllers.forEach(servletWebAdapter::registerController);
+            handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
             return servletWebAdapter;
         }
 
@@ -130,7 +149,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
 
         ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
         restControllers.forEach(servletWebAdapter::registerController);
-
+        handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
         int port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
         embeddedServer.start(host, port, servletWebAdapter);
 

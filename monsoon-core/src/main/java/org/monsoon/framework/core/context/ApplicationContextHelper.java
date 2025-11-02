@@ -26,7 +26,7 @@ public class ApplicationContextHelper {
     protected Map<String, BeanDefinition> beanDefinitions = new HashMap<>();
     private Map<String, Object> singletonBeans = new HashMap<>();
     private List<BeanPostProcessor> beanPostProcessors = new ArrayList<>();
-
+    protected List<Class<?>> classes = new ArrayList<>();
     /**
      * This constructor is used to create an application context from the given configuration class.
      * It registers the bean definitions and the singletons in the application context.
@@ -40,7 +40,6 @@ public class ApplicationContextHelper {
         Package basePackage = mainClass.getPackage();
         String basePackageName = basePackage.getName();
         logger.debug("Base package name is {}", basePackageName);
-        List<Class<?>> classes = new ArrayList<>();
 
         classes.addAll(ClassUtils.scanForClasses(basePackageName));
 
@@ -270,6 +269,14 @@ public class ApplicationContextHelper {
      * @param clazz The class of the configuration class.
      */
     private void registerConfiguration(Object configuration, Class<?> clazz) {
+        if (configuration == null){
+            return;
+        }
+        String configBeanName = Introspector.decapitalize(clazz.getSimpleName());
+        BeanDefinition configDef = new BeanDefinition(clazz, configBeanName, true);
+        beanDefinitions.put(configBeanName, configDef);
+        singletonBeans.put(configBeanName, configuration);
+
         for (Method method : clazz.getDeclaredMethods()){
             if (method.isAnnotationPresent(Bean.class)){
                 try {

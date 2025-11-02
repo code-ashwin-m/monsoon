@@ -1,5 +1,6 @@
 package org.monsoon.framework.web;
 
+import org.monsoon.framework.web.interfaces.HandlerInterceptor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -9,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This class extends HttpServlet and is used to handle HTTP requests.
@@ -17,7 +20,7 @@ import java.io.IOException;
 public class ServletWebAdapter extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(ServletWebAdapter.class);
     private final Dispatcher dispatcher = new Dispatcher();
-
+    private final List<HandlerInterceptor> interceptors = new ArrayList<>();
     /**
      * Initializes the ServletWebAdapter.
      * This method is called when the ServletWebAdapter is initialized in the servlet container.
@@ -44,28 +47,58 @@ public class ServletWebAdapter extends HttpServlet {
      */
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Object handler = findHandler(req);
         try{
-            String contextPath = req.getContextPath();
-            String requestURI = req.getRequestURI();
-            String pathAfterContext = requestURI.substring(contextPath.length());
-            Dispatcher.DispatchResult result = dispatcher.dispatch(
-                    req.getMethod(),
-                    pathAfterContext,
-                    req.getQueryString(),
-                    req.getInputStream()
-            );
-            String contentType = result.isResponseBody ? "application/json; charset=UTF-8" : "text/plain; charset=UTF-8";
-            resp.setStatus(result.status);
-            resp.setContentType(contentType);
-            resp.getWriter().write(result.body);
+            for (HandlerInterceptor interceptor : interceptors) {
+                if (!interceptor.preHandle(req, resp, handler)) {
+                    return;
+                }
+            }
+
+            handleController(req, resp);
+
+            for (HandlerInterceptor interceptor : interceptors) {
+                interceptor.postHandle(req, resp, handler);
+            }
         } catch (Exception ex){
             ex.printStackTrace();
             resp.setStatus(500);
             resp.getWriter().write("{\"error\":\"Internal Server Error\"}");
+        } finally {
+            for (HandlerInterceptor interceptor : interceptors) {
+                try {
+                    interceptor.afterCompletion(req, resp, handler);
+                } catch (Exception ignored) {
+                }
+            }
         }
+    }
+
+    private void handleController(HttpServletRequest req, HttpServletResponse resp) throws Exception {
+        String contextPath = req.getContextPath();
+        String requestURI = req.getRequestURI();
+        String pathAfterContext = requestURI.substring(contextPath.length());
+        Dispatcher.DispatchResult result = dispatcher.dispatch(
+                req.getMethod(),
+                pathAfterContext,
+                req.getQueryString(),
+                req.getInputStream()
+        );
+        String contentType = result.isResponseBody ? "application/json; charset=UTF-8" : "text/plain; charset=UTF-8";
+        resp.setStatus(result.status);
+        resp.setContentType(contentType);
+        resp.getWriter().write(result.body);
+    }
+
+    private Object findHandler(HttpServletRequest req) {
+        return req.getRequestURI();
     }
 
     public void registerController(Object controller) {
         dispatcher.registerController(controller);
+    }
+
+    public void registerInterceptor(HandlerInterceptor interceptor) {
+        interceptors.add(interceptor);
     }
 }

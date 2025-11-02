@@ -22,4 +22,13 @@ public class BeanDefinition {
     public String getBeanName() {
         return beanName;
     }
+
+    @Override
+    public String toString() {
+        return "BeanDefinition{" +
+                "singleton=" + singleton +
+                ", beanClass=" + beanClass +
+                ", beanName='" + beanName + '\'' +
+                '}';
+    }
 }
