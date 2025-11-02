@@ -8,6 +8,7 @@ import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.core.utils.ClassUtils;
+import org.monsoon.framework.web.FilterRegistration;
 import org.monsoon.framework.web.ServletWebAdapter;
 import org.monsoon.framework.web.autoconfigure.DefaultServerAutoConfiguration;
 import org.monsoon.framework.web.interfaces.EmbeddedServer;
@@ -28,6 +29,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
     private static final Logger logger = LoggerFactory.getLogger(ApplicationContextFromWebClass.class);
     private final List<Object> restControllers = new ArrayList<>();
     private final List<HandlerInterceptor> handlerInterceptorRegistry = new ArrayList<>();
+    private final List<FilterRegistration> filterRegistry = new ArrayList<>();
     /**
      * Creates an instance of the ApplicationContextFromWebClass class.
      *
@@ -109,6 +111,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
                 try {
                     WebConfigurer webConfigurer = (WebConfigurer) createBean(def.getBeanName());
                     webConfigurer.addInterceptors(handlerInterceptorRegistry);
+                    webConfigurer.addFilters(filterRegistry);
                 } catch (Exception e) {
                     logger.error("Failed to register web config class {}", def.getBeanClass().getName(), e);
                 }
@@ -132,6 +135,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
             ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
             restControllers.forEach(servletWebAdapter::registerController);
             handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
+            filterRegistry.forEach(servletWebAdapter::registerFilter);
             return servletWebAdapter;
         }
 
@@ -150,6 +154,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
         ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
         restControllers.forEach(servletWebAdapter::registerController);
         handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
+        filterRegistry.forEach(servletWebAdapter::registerFilter);
         int port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
         embeddedServer.start(host, port, servletWebAdapter);
 

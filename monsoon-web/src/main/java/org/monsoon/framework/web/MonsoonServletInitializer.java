@@ -1,5 +1,7 @@
 package org.monsoon.framework.web;
 
+import org.apache.tomcat.util.descriptor.web.FilterDef;
+import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.ComponentScan;
 import org.monsoon.framework.core.annotations.Configuration;
@@ -9,11 +11,9 @@ import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.servlet.ServletContainerInitializer;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
+import javax.servlet.*;
 import javax.servlet.annotation.HandlesTypes;
+import java.util.EnumSet;
 import java.util.Set;
 
 /**
@@ -42,10 +42,34 @@ public class MonsoonServletInitializer implements ServletContainerInitializer {
             return;
         }
 
+        Class<?> mainClass = null;
+
+        while (set.iterator().hasNext()){
+            Class<?> clazz = set.iterator().next();
+            if (clazz.isAnnotationPresent(MonsoonApplication.class)) {
+                mainClass = clazz;
+                break;
+            }
+            mainClass = clazz;
+        }
+
+
         try {
-            Class<?> mainClass = set.iterator().next();
             ApplicationContext context = Monsoon.run(mainClass, null);
             ServletWebAdapter server = (ServletWebAdapter) context.refresh();
+
+            for (FilterRegistration filterRegistration : server.getFilterRegistry()) {
+                Filter filter = filterRegistration.getFilter();
+                String filterName = filterRegistration.getFilterClass().getSimpleName();
+
+                javax.servlet.FilterRegistration.Dynamic filterReg =
+                        servletContext.addFilter(filterName, filter);
+
+                for (String pattern : filterRegistration.getPattern()) {
+                    filterReg.addMappingForUrlPatterns(EnumSet.of(DispatcherType.REQUEST), true, pattern);
+                }
+            }
+
             ServletRegistration.Dynamic servlet =
                     servletContext.addServlet("dispatcher", server);
             servlet.addMapping("/");

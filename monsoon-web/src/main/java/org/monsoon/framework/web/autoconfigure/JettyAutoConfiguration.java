@@ -1,11 +1,17 @@
 package org.monsoon.framework.web.autoconfigure;
 
+import org.eclipse.jetty.servlet.FilterHolder;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.monsoon.framework.core.annotations.*;
+import org.monsoon.framework.web.FilterRegistration;
 import org.monsoon.framework.web.ServletWebAdapter;
 import org.monsoon.framework.web.interfaces.EmbeddedServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import javax.servlet.DispatcherType;
+import javax.servlet.Filter;
+import java.util.EnumSet;
 
 /**
  * This class is used to configure the embedded Tomcat server.
@@ -43,6 +49,18 @@ public class JettyAutoConfiguration {
             org.eclipse.jetty.servlet.ServletContextHandler context = new org.eclipse.jetty.servlet.ServletContextHandler(org.eclipse.jetty.servlet.ServletContextHandler.SESSIONS);
             context.setContextPath("/");
             server.setHandler(context);
+
+            for (FilterRegistration filterRegistration : servlet.getFilterRegistry()) {
+                Filter filter = filterRegistration.getFilter();
+                String filterName = filterRegistration.getFilterClass().getSimpleName();
+
+                FilterHolder filterHolder = new FilterHolder(filter);
+                filterHolder.setName(filterName);
+
+                for (String pattern : filterRegistration.getPattern()) {
+                    context.addFilter(filterHolder, pattern, EnumSet.of(DispatcherType.REQUEST));
+                }
+            }
 
             ServletHolder holder = new ServletHolder("dispatcher", servlet);
             context.addServlet(holder, "/*");

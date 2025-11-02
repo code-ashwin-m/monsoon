@@ -21,6 +21,8 @@ public class ServletWebAdapter extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(ServletWebAdapter.class);
     private final Dispatcher dispatcher = new Dispatcher();
     private final List<HandlerInterceptor> interceptors = new ArrayList<>();
+    private final List<FilterRegistration> filterRegistry = new ArrayList<>();
+
     /**
      * Initializes the ServletWebAdapter.
      * This method is called when the ServletWebAdapter is initialized in the servlet container.
@@ -100,5 +102,13 @@ public class ServletWebAdapter extends HttpServlet {
 
     public void registerInterceptor(HandlerInterceptor interceptor) {
         interceptors.add(interceptor);
+    }
+
+    public void registerFilter(FilterRegistration filterRegistration) {
+        filterRegistry.add(filterRegistration);
+    }
+
+    public List<FilterRegistration> getFilterRegistry() {
+        return filterRegistry;
     }
 }

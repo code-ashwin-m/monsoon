@@ -2,7 +2,10 @@ package org.monsoon.framework.web.autoconfigure;
 
 import org.apache.catalina.Context;
 import org.apache.catalina.startup.Tomcat;
+import org.apache.tomcat.util.descriptor.web.FilterDef;
+import org.apache.tomcat.util.descriptor.web.FilterMap;
 import org.monsoon.framework.core.annotations.*;
+import org.monsoon.framework.web.FilterRegistration;
 import org.monsoon.framework.web.ServletWebAdapter;
 import org.monsoon.framework.web.interfaces.EmbeddedServer;
 import org.slf4j.Logger;
@@ -50,6 +53,23 @@ public class TomcatAutoConfiguration {
             tomcat.getConnector();
 
             Context context = tomcat.addContext("", null);
+
+            for (FilterRegistration filterRegistration: servlet.getFilterRegistry()){
+                FilterDef def = new FilterDef();
+                def.setFilterName(filterRegistration.getFilterClass().getSimpleName());
+                def.setFilter(filterRegistration.getFilter());
+                def.setFilterClass(filterRegistration.getFilterClass().getName());
+
+                context.addFilterDef(def);
+
+                FilterMap map = new FilterMap();
+                map.setFilterName(filterRegistration.getFilterClass().getSimpleName());
+                for (String pattern: filterRegistration.getPattern()){
+                    map.addURLPatternDecoded(pattern);
+                }
+                context.addFilterMap(map);
+            }
+
             tomcat.addServlet(context, "dispatcher", servlet);
             context.addServletMappingDecoded("/*", "dispatcher");
 

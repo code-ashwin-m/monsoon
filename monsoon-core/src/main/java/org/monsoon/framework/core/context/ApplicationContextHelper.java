@@ -66,6 +66,9 @@ public class ApplicationContextHelper {
             scanAutoConfiguration();
         }
 
+        for (Map.Entry<String, BeanDefinition> def: beanDefinitions.entrySet()){
+            System.out.println(def.getKey());
+        }
         registerBeanPostProcessor(classes);
     }
 
