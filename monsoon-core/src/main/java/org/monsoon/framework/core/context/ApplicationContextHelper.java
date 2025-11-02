@@ -412,7 +412,6 @@ public class ApplicationContextHelper {
     private void registerBeanPostProcessor(List<Class<?>> classes) {
         logger.debug("Bean post processor auto registration started");
         for (Class<?> clazz: classes){
-            System.out.println(clazz.getName());
             try {
                 for (Class<?> inter : clazz.getInterfaces()) {
                     if (inter.equals(BeanPostProcessor.class)) {

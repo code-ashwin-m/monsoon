@@ -38,7 +38,6 @@ public class AutoConfiguration {
 
             while (resources.hasMoreElements()) {
                 URL resource = resources.nextElement();
-                System.out.println(resource);
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(resource.openStream()))) {
                     String line;
                     while ((line = reader.readLine()) != null) {

@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="added PropertyBinder">
-      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestWebConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/HandlerInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/interfaces/WebConfigurer.java" afterDir="false" />
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="added HandlerInterceptor">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/BeanDefinition.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/BeanDefinition.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/AutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/AutoConfiguration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ServletWebAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ServletWebAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/context/ApplicationContextFromWebClass.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,7 +304,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761920990206</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="added HandlerInterceptor">
+      <option name="closed" value="true" />
+      <created>1762073954533</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1762073954533</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -340,6 +342,7 @@
     <MESSAGE value="renamed ConditionalOnMissingClass to ConditionalOnMissingBean&#10;add new ConditionalOnMissingClass" />
     <MESSAGE value="added DataSourceAutoConfiguration" />
     <MESSAGE value="added PropertyBinder" />
-    <option name="LAST_COMMIT_MESSAGE" value="added PropertyBinder" />
+    <MESSAGE value="added HandlerInterceptor" />
+    <option name="LAST_COMMIT_MESSAGE" value="added HandlerInterceptor" />
   </component>
 </project>
