@@ -27,7 +27,7 @@ import java.util.List;
  */
 public class ApplicationContextFromWebClass extends ApplicationContextHelper implements ApplicationContext {
     private static final Logger logger = LoggerFactory.getLogger(ApplicationContextFromWebClass.class);
-    private final List<Object> restControllers = new ArrayList<>();
+    private final List<Object> controllers = new ArrayList<>();
     private final List<HandlerInterceptor> handlerInterceptorRegistry = new ArrayList<>();
     private final List<FilterRegistration> filterRegistry = new ArrayList<>();
     /**
@@ -92,7 +92,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
     public Object refresh() throws Exception {
         for (BeanDefinition def: beanDefinitions.values()){
             if (ClassUtils.isAnnotationPresent(def.getBeanClass(), Controller.class)){
-                restControllers.add(createBean(def.getBeanName()));
+                controllers.add(createBean(def.getBeanName()));
             }
         }
         return startServer();
@@ -133,7 +133,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
         if (isRunningInsideServletContainer()) {
             logger.debug("Servlet container detected");
             ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
-            restControllers.forEach(servletWebAdapter::registerController);
+            controllers.forEach(servletWebAdapter::registerController);
             handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
             filterRegistry.forEach(servletWebAdapter::registerFilter);
             return servletWebAdapter;
@@ -152,7 +152,7 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
         }
 
         ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
-        restControllers.forEach(servletWebAdapter::registerController);
+        controllers.forEach(servletWebAdapter::registerController);
         handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
         filterRegistry.forEach(servletWebAdapter::registerFilter);
         int port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));

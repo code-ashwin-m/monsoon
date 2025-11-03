@@ -6,11 +6,14 @@ import org.monsoon.framework.core.utils.ClassUtils;
 import org.monsoon.framework.web.annotations.*;
 import org.monsoon.framework.web.autoconfigure.DefaultHttpConverterAutoConfiguration;
 import org.monsoon.framework.web.autoconfigure.DefaultViewRendererAutoConfiguration;
+import org.monsoon.framework.web.interfaces.HandlerInterceptor;
 import org.monsoon.framework.web.interfaces.HttpMessageConverter;
 import org.monsoon.framework.web.interfaces.ViewRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
@@ -34,7 +37,8 @@ public class Dispatcher {
     private final List<Route> routes = new ArrayList<>();
     private static HttpMessageConverter httpMessageConverter;
     private static ViewRenderer viewRenderer;
-
+    private final List<HandlerInterceptor> interceptors = new ArrayList<>();
+    private final List<FilterRegistration> filterRegistry = new ArrayList<>();
 
     /**
      * Initializes the dispatcher.
@@ -93,20 +97,19 @@ public class Dispatcher {
      * Dispatches an HTTP request to a controller.
      * It iterates over all the registered controllers and their methods and checks if the HTTP request matches the method and path of the controller.
      * If it does, it invokes the method and returns the result.
-     * @param httpMethod The HTTP method of the request.
-     * @param path The path of the request.
-     * @param rawQuery The raw query string of the request.
-     * @param bodyStream The input stream of the request body.
-     * @return The result of the controller method.
-     * @throws Exception If there is an error while dispatching the request.
      */
-    public DispatchResult dispatch(String httpMethod, String path, String rawQuery, InputStream bodyStream) throws Exception{
+
+    public DispatchResult dispatch(HttpServletRequest req, HttpServletResponse resp) {
+        String contextPath = req.getContextPath();
+        String requestURI = req.getRequestURI();
+        String pathAfterContext = requestURI.substring(contextPath.length());
+
         Map<String, String> pathVars = new HashMap<>();
         Route matched = null;
 
         for (Route route : routes){
-            if (!route.httpMethod.equals(httpMethod)) continue;
-            Matcher matcher = route.pattern.matcher(path);
+            if (!route.httpMethod.equals(req.getMethod())) continue;
+            Matcher matcher = route.pattern.matcher(pathAfterContext);
             if (matcher.matches()) {
                 matched = route;
                 String[] paramNames = extractPathVariableNames(route.originalPath);
@@ -121,11 +124,39 @@ public class Dispatcher {
             return new DispatchResult(404, "Not Found");
         }
 
+        RequestHandler handler = createHandler(matched);
+        boolean isResponseBody;
+        Object object;
         try {
-            Object object = invokeControllerMethod(matched, pathVars, rawQuery, bodyStream);
-            boolean isResponseBody = ClassUtils.isAnnotationPresent(matched.method.getClass(), ResponseBody.class)
+
+            for (HandlerInterceptor interceptor : interceptors) {
+                if (!interceptor.preHandle(req, resp, handler)) {
+                    return new DispatchResult(403, "Forbidden");
+                }
+            }
+
+            object = invokeControllerMethod(matched, pathVars, req.getQueryString(), req.getInputStream());
+
+            for (HandlerInterceptor interceptor : interceptors) {
+                interceptor.postHandle(req, resp, handler);
+            }
+
+            isResponseBody = ClassUtils.isAnnotationPresent(matched.method.getClass(), ResponseBody.class)
                     || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
 
+        } catch (Exception ex){
+            logger.error("Error while dispatching http request", ex);
+            return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
+        } finally {
+            for (HandlerInterceptor interceptor : interceptors) {
+                try {
+                    interceptor.afterCompletion(req, resp, handler);
+                } catch (Exception ignored) {
+                }
+            }
+        }
+
+        try{
             String result = "";
             if (isResponseBody) {
                 result = serializeResponse(object);
@@ -134,12 +165,15 @@ public class Dispatcher {
                 if (result == null) result = object.toString();
             }
             return new DispatchResult(200, result, isResponseBody);
-        } catch (Exception ex){
-            logger.error("Error while dispatching http request", ex);
-            return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
+        } catch (Exception e) {
+            logger.error("Error while serializing response", e);
+            return new DispatchResult(500, "Internal Server Error" + e.getMessage());
         }
     }
 
+    private RequestHandler createHandler(Route route) {
+        return new RequestHandler(route.controller, route.method);
+    }
 
     /**
      * Invokes a controller method with the given parameters.
@@ -259,6 +293,18 @@ public class Dispatcher {
             logger.error("Error while parsing: {}", s, e);
             return s;
         }
+    }
+
+    public void registerInterceptor(HandlerInterceptor interceptor) {
+        interceptors.add(interceptor);
+    }
+
+    public void registerFilter(FilterRegistration filterRegistration) {
+        filterRegistry.add(filterRegistration);
+    }
+
+    public List<FilterRegistration> getFilterRegistry() {
+        return filterRegistry;
     }
 
     /**
