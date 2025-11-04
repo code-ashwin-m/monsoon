@@ -3,9 +3,9 @@ package org.monsoon.framework.web;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Model {
+public class ModelMap {
     private Map<String, Object> attributes;
-    public Model() {
+    public ModelMap() {
         this.attributes = new HashMap<>();
     }
     public void addAttribute(String name, Object value) {

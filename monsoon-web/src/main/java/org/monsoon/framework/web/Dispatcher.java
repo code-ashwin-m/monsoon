@@ -198,10 +198,10 @@ public class Dispatcher {
         Parameter[] parameters = method.getParameters();
         Object[] args = new Object[parameters.length];
         Map<String, String> queryParams = parseQuery(rawQuery);
-        Model model = new Model();
+        ModelMap model = new ModelMap();
         for (int i = 0; i < parameters.length; i++) {
             Parameter p = parameters[i];
-            if (p.getType().isAssignableFrom(Model.class)){
+            if (p.getType().isAssignableFrom(ModelMap.class)){
                 args[i] = model;
             } else if (p.isAnnotationPresent(PathVariable.class)) {
                 String name = p.getAnnotation(PathVariable.class).value();
@@ -361,9 +361,9 @@ public class Dispatcher {
 
     class MethodResponse{
         private Object data;
-        private Model model;
+        private ModelMap model;
 
-        public MethodResponse(Object data, Model model) {
+        public MethodResponse(Object data, ModelMap model) {
             this.data = data;
             this.model = model;
         }
@@ -372,7 +372,7 @@ public class Dispatcher {
             return data;
         }
 
-        public Model getModel() {
+        public ModelMap getModel() {
             return model;
         }
     }

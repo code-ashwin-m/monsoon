@@ -3,7 +3,7 @@ package org.monsoon.sample;
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.db.DataSource;
-import org.monsoon.framework.web.Model;
+import org.monsoon.framework.web.ModelMap;
 import org.monsoon.framework.web.annotations.*;
 
 @Controller
@@ -25,7 +25,7 @@ public class TestRestController {
     }
 
     @RequestMapping(path = "/test-path/{path}")
-    public String testPath(@PathVariable("path") String path, Model model) {
+    public String testPath(@PathVariable("path") String path, ModelMap model) {
         model.addAttribute("name", "ashwin nambiar");
         model.addAttribute("path", path);
         return "template-2";
