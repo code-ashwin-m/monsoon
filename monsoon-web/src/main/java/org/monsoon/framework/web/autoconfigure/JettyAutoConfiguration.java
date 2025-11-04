@@ -50,7 +50,7 @@ public class JettyAutoConfiguration {
             context.setContextPath("/");
             server.setHandler(context);
 
-            for (FilterRegistration filterRegistration : servlet.getFilterRegistry()) {
+            for (FilterRegistration filterRegistration : servlet.getDispatcher().getFilterRegistry()) {
                 Filter filter = filterRegistration.getFilter();
                 String filterName = filterRegistration.getFilterClass().getSimpleName();
 

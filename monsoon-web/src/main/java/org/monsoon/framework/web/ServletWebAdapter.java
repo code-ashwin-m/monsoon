@@ -18,7 +18,11 @@ import java.util.List;
  */
 public class ServletWebAdapter extends HttpServlet {
     private static final Logger logger = LoggerFactory.getLogger(ServletWebAdapter.class);
-    private final Dispatcher dispatcher = new Dispatcher();
+    private Dispatcher dispatcher;
+
+    public ServletWebAdapter(Dispatcher dispatcher) {
+        this.dispatcher = dispatcher;
+    }
 
     /**
      * Initializes the ServletWebAdapter.
@@ -58,26 +62,13 @@ public class ServletWebAdapter extends HttpServlet {
     private void handleController(HttpServletRequest req, HttpServletResponse resp) throws Exception {
         Dispatcher.DispatchResult result = dispatcher.dispatch(req,resp);
 
-        String contentType = result.isResponseBody ? "application/json; charset=UTF-8" : "text/plain; charset=UTF-8";
-        resp.setStatus(result.status);
-        resp.setContentType(contentType);
-        resp.getWriter().write(result.body);
+//        String contentType = result.isResponseBody ? "application/json; charset=UTF-8" : "text/plain; charset=UTF-8";
+//        resp.setStatus(result.status);
+//        resp.setContentType(contentType);
+//        resp.getWriter().write(result.body);
     }
 
-
-    public void registerController(Object controller) {
-        dispatcher.registerController(controller);
-    }
-
-    public void registerInterceptor(HandlerInterceptor interceptor) {
-        dispatcher.registerInterceptor(interceptor);
-    }
-
-    public void registerFilter(FilterRegistration filterRegistration) {
-        dispatcher.registerFilter(filterRegistration);
-    }
-
-    public List<FilterRegistration> getFilterRegistry() {
-        return dispatcher.getFilterRegistry();
+    public Dispatcher getDispatcher() {
+        return dispatcher;
     }
 }

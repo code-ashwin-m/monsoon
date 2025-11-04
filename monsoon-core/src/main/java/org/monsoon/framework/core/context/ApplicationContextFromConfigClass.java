@@ -7,7 +7,7 @@ import org.monsoon.framework.core.interfaces.BeanPostProcessor;
  * This class is a factory for creating an application context from a configuration class.
  * It extends the ApplicationContextHelper class and implements the ApplicationContext interface.
  */
-public class ApplicationContextFromConfigClass extends ApplicationContextHelper implements ApplicationContext {
+    public class ApplicationContextFromConfigClass extends ApplicationContextHelper implements ApplicationContext {
     public ApplicationContextFromConfigClass(Class<?> mainClass) throws Exception {
         super(mainClass);
     }

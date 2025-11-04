@@ -54,7 +54,7 @@ public class TomcatAutoConfiguration {
 
             Context context = tomcat.addContext("", null);
 
-            for (FilterRegistration filterRegistration: servlet.getFilterRegistry()){
+            for (FilterRegistration filterRegistration: servlet.getDispatcher().getFilterRegistry()){
                 FilterDef def = new FilterDef();
                 def.setFilterName(filterRegistration.getFilterClass().getSimpleName());
                 def.setFilter(filterRegistration.getFilter());

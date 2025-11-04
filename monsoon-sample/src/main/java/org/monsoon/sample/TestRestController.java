@@ -3,6 +3,7 @@ package org.monsoon.sample;
 import org.monsoon.framework.core.Monsoon;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.db.DataSource;
+import org.monsoon.framework.web.Model;
 import org.monsoon.framework.web.annotations.*;
 
 @Controller
@@ -24,17 +25,21 @@ public class TestRestController {
     }
 
     @RequestMapping(path = "/test-path/{path}")
-    public String testPath(@PathVariable("path") String path) {
-        return "hello from test-path method -> " + path;
+    public String testPath(@PathVariable("path") String path, Model model) {
+        model.addAttribute("name", "ashwin nambiar");
+        model.addAttribute("path", path);
+        return "template-2";
     }
 
     @RequestMapping(path = "/test-query")
     public String testQuery(@QueryParam("query") String query) {
-        return "hello from test-query method -> " + query;
+        return "template-3";
     }
 
-    @RequestMapping(path = "/user")
+    @RequestMapping(path = "/user", method = "POST")
+    @ResponseBody
     public UserDto createUser(@RequestBody UserDto userDto){
+        System.out.println(userDto);
         return userDto;
     }
 }

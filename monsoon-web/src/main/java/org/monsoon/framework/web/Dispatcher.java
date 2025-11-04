@@ -108,7 +108,7 @@ public class Dispatcher {
         Route matched = null;
 
         for (Route route : routes){
-            if (!route.httpMethod.equals(req.getMethod())) continue;
+            if (!route.httpMethod.equals(req.getMethod().toUpperCase())) continue;
             Matcher matcher = route.pattern.matcher(pathAfterContext);
             if (matcher.matches()) {
                 matched = route;
@@ -121,12 +121,18 @@ public class Dispatcher {
         }
 
         if (matched == null){
+            try {
+                logger.error("No matching route found for {} {}", req.getMethod(), pathAfterContext);
+                resp.setStatus(404);
+                resp.getWriter().write("Not Found");
+            } catch (Exception e) {
+            }
             return new DispatchResult(404, "Not Found");
         }
 
         RequestHandler handler = createHandler(matched);
         boolean isResponseBody;
-        Object object;
+        MethodResponse methodResponse;
         try {
 
             for (HandlerInterceptor interceptor : interceptors) {
@@ -135,15 +141,11 @@ public class Dispatcher {
                 }
             }
 
-            object = invokeControllerMethod(matched, pathVars, req.getQueryString(), req.getInputStream());
+            methodResponse = invokeControllerMethod(matched, pathVars, req.getQueryString(), req.getInputStream());
 
             for (HandlerInterceptor interceptor : interceptors) {
                 interceptor.postHandle(req, resp, handler);
             }
-
-            isResponseBody = ClassUtils.isAnnotationPresent(matched.method.getClass(), ResponseBody.class)
-                    || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
-
         } catch (Exception ex){
             logger.error("Error while dispatching http request", ex);
             return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
@@ -156,14 +158,21 @@ public class Dispatcher {
             }
         }
 
+        isResponseBody = matched.method.getAnnotation(ResponseBody.class) != null
+                || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
+
         try{
             String result = "";
             if (isResponseBody) {
-                result = serializeResponse(object);
+                result = serializeResponse(methodResponse.getData());
+                resp.setContentType("application/json; charset=UTF-8");
             } else {
-                result = renderView(object);
-                if (result == null) result = object.toString();
+                result = renderView(methodResponse);
+                if (result == null) result = methodResponse.getData().toString();
+                resp.setContentType("text/html; charset=UTF-8");
             }
+            resp.setStatus(200);
+            resp.getWriter().write(result);
             return new DispatchResult(200, result, isResponseBody);
         } catch (Exception e) {
             logger.error("Error while serializing response", e);
@@ -184,15 +193,17 @@ public class Dispatcher {
      * @return The result of the controller method.
      * @throws Exception If there is an error while invoking the controller method.
      */
-    private Object invokeControllerMethod(Route route, Map<String, String> pathVars, String rawQuery, InputStream bodyStream) throws Exception {
+    private MethodResponse invokeControllerMethod(Route route, Map<String, String> pathVars, String rawQuery, InputStream bodyStream) throws Exception {
         Method method = route.method;
         Parameter[] parameters = method.getParameters();
         Object[] args = new Object[parameters.length];
         Map<String, String> queryParams = parseQuery(rawQuery);
-
+        Model model = new Model();
         for (int i = 0; i < parameters.length; i++) {
             Parameter p = parameters[i];
-            if (p.isAnnotationPresent(PathVariable.class)) {
+            if (p.getType().isAssignableFrom(Model.class)){
+                args[i] = model;
+            } else if (p.isAnnotationPresent(PathVariable.class)) {
                 String name = p.getAnnotation(PathVariable.class).value();
                 args[i] = convertToType(pathVars.get(name), p.getType());
             } else if (p.isAnnotationPresent(QueryParam.class)) {
@@ -204,7 +215,7 @@ public class Dispatcher {
                 args[i] = null;
             }
         }
-        return method.invoke(route.controller, args);
+        return new MethodResponse(method.invoke(route.controller, args), model);
     }
 
     /**
@@ -257,8 +268,8 @@ public class Dispatcher {
         return httpMessageConverter.writeValueAsString(result);
     }
 
-    private String renderView(Object object) {
-        return viewRenderer.render(object, new HashMap<>());
+    private String renderView(MethodResponse methodResponse) {
+        return viewRenderer.render(methodResponse.getData(), methodResponse.getModel().getAttributes());
     }
     /**
      * Parses the given query string into a map of key-value pairs.
@@ -346,12 +357,23 @@ public class Dispatcher {
             this.body = body;
             this.isResponseBody = isResponseBody;
         }
+    }
 
-        public DispatchResult(int status, String body, Boolean isResponseBody, String contentType) {
-            this.status = status;
-            this.body = body;
-            this.isResponseBody = isResponseBody;
-            this.contentType = contentType;
+    class MethodResponse{
+        private Object data;
+        private Model model;
+
+        public MethodResponse(Object data, Model model) {
+            this.data = data;
+            this.model = model;
+        }
+
+        public Object getData() {
+            return data;
+        }
+
+        public Model getModel() {
+            return model;
         }
     }
 }

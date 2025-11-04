@@ -58,7 +58,7 @@ public class MonsoonServletInitializer implements ServletContainerInitializer {
             ApplicationContext context = Monsoon.run(mainClass, null);
             ServletWebAdapter server = (ServletWebAdapter) context.refresh();
 
-            for (FilterRegistration filterRegistration : server.getFilterRegistry()) {
+            for (FilterRegistration filterRegistration : server.getDispatcher().getFilterRegistry()) {
                 Filter filter = filterRegistration.getFilter();
                 String filterName = filterRegistration.getFilterClass().getSimpleName();
 

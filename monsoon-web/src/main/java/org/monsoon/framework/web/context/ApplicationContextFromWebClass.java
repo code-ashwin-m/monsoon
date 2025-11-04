@@ -8,6 +8,7 @@ import org.monsoon.framework.core.interfaces.ApplicationContext;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.monsoon.framework.core.properties.ApplicationProperties;
 import org.monsoon.framework.core.utils.ClassUtils;
+import org.monsoon.framework.web.Dispatcher;
 import org.monsoon.framework.web.FilterRegistration;
 import org.monsoon.framework.web.ServletWebAdapter;
 import org.monsoon.framework.web.autoconfigure.DefaultServerAutoConfiguration;
@@ -130,12 +131,15 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
      * @throws Exception if an error occurs while starting the server
      */
     private ServletWebAdapter startServer() throws Exception {
+        Dispatcher dispatcher = new Dispatcher();
+        controllers.forEach(dispatcher::registerController);
+        handlerInterceptorRegistry.forEach(dispatcher::registerInterceptor);
+        filterRegistry.forEach(dispatcher::registerFilter);
+
+        ServletWebAdapter servletWebAdapter = new ServletWebAdapter(dispatcher);
+
         if (isRunningInsideServletContainer()) {
             logger.debug("Servlet container detected");
-            ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
-            controllers.forEach(servletWebAdapter::registerController);
-            handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
-            filterRegistry.forEach(servletWebAdapter::registerFilter);
             return servletWebAdapter;
         }
 
@@ -146,16 +150,10 @@ public class ApplicationContextFromWebClass extends ApplicationContextHelper imp
             return null;
         }
 
+        Integer port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
         String host = ApplicationProperties.get("server.host", "http://localhost");
-        if (!host.startsWith("http://") && !host.startsWith("https://")) {
-            host = "http://" + host;
-        }
+        if (!host.startsWith("http://") && !host.startsWith("https://")) host = "http://" + host;
 
-        ServletWebAdapter servletWebAdapter = new ServletWebAdapter();
-        controllers.forEach(servletWebAdapter::registerController);
-        handlerInterceptorRegistry.forEach(servletWebAdapter::registerInterceptor);
-        filterRegistry.forEach(servletWebAdapter::registerFilter);
-        int port = Integer.parseInt(ApplicationProperties.get("server.port", "8080"));
         embeddedServer.start(host, port, servletWebAdapter);
 
         return servletWebAdapter;
