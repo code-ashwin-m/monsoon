@@ -1,6 +1,7 @@
 package org.monsoon.sample;
 
 import org.monsoon.framework.core.Monsoon;
+import org.monsoon.framework.core.annotations.Autowired;
 import org.monsoon.framework.core.annotations.Controller;
 import org.monsoon.framework.db.DataSource;
 import org.monsoon.framework.web.ModelMap;
@@ -8,6 +9,9 @@ import org.monsoon.framework.web.annotations.*;
 
 @Controller
 public class TestRestController {
+    @Autowired
+    private UserService userService;
+
     public TestRestController(){
         try {
             DataSource dataSource = Monsoon.getContext().getBean("dataSource", DataSource.class);
@@ -40,6 +44,7 @@ public class TestRestController {
     @ResponseBody
     public UserDto createUser(@RequestBody UserDto userDto){
         System.out.println(userDto);
+        userService.create(userDto);
         return userDto;
     }
 }

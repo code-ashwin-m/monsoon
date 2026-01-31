@@ -10,7 +10,7 @@ server:
 monsoon:
   datasource:
     enabled: true
-    url: test
-    username: test-username
-    password: test-password
-    driver: test-driver
+    driver: org.sqlite.JDBC
+    url: jdbc:sqlite:test.db
+    username: root
+    password: root

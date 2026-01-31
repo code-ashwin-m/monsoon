@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Add Model for freemarker template">
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Dispatcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/Model.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-web/src/main/java/org/monsoon/framework/web/ModelMap.java" afterDir="false" />
-    </list>
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="renamed Model to ModelMap" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -345,7 +341,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762269045286</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="renamed Model to ModelMap">
+      <option name="closed" value="true" />
+      <created>1762269181703</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1762269181703</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -380,6 +384,7 @@
     <MESSAGE value="Add FilterRegistration" />
     <MESSAGE value="Add RequestHandler" />
     <MESSAGE value="Add Model for freemarker template" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Model for freemarker template" />
+    <MESSAGE value="renamed Model to ModelMap" />
+    <option name="LAST_COMMIT_MESSAGE" value="renamed Model to ModelMap" />
   </component>
 </project>
