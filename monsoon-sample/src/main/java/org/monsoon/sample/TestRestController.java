@@ -7,6 +7,8 @@ import org.monsoon.framework.db.DataSource;
 import org.monsoon.framework.web.ModelMap;
 import org.monsoon.framework.web.annotations.*;
 
+import java.util.List;
+
 @Controller
 public class TestRestController {
     @Autowired
@@ -46,5 +48,11 @@ public class TestRestController {
         System.out.println(userDto);
         userService.create(userDto);
         return userDto;
+    }
+
+    @RequestMapping(path = "/user", method = "GET")
+    @ResponseBody
+    public List<UserDto> getUsers(){
+        return userService.getUsers();
     }
 }

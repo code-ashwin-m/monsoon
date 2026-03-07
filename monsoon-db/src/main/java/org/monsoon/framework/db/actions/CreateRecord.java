@@ -21,6 +21,7 @@ public class CreateRecord {
     private static final Logger logger = LoggerFactory.getLogger(CreateRecord.class);
 
     public static Boolean createOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
+        System.out.println("====== AutoCommit " + conn.getAutoCommit());
         if (entity == null) return false;
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
         GeneratedId gid = isGenerated ? meta.getIdField().getAnnotation(GeneratedId.class) : null;

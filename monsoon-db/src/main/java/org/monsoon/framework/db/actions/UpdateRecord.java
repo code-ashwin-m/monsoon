@@ -4,6 +4,7 @@ import org.monsoon.framework.db.EntityMeta;
 import org.monsoon.framework.db.annotations.Column;
 import org.monsoon.framework.db.annotations.GeneratedId;
 import org.monsoon.framework.db.enums.GenerationType;
+import org.monsoon.framework.db.interfaces.DataPersister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -108,8 +109,11 @@ public class UpdateRecord {
             if (field.equals(idField)) continue; // skip ID in update
 
             Column column = field.getAnnotation(Column.class);
-            sql.append(column.name()).append("=?");
-            values.add(field.get(entity));
+            DataPersister<?> convertor = Utils.resolveConvertor(field);
+            Object javaValue = convertor.javaToSql(field.get(entity));
+
+            sql.append(!column.name().isEmpty() ? column.name() : field.getName()).append("=?");
+            values.add(javaValue);
 
             if (i < columns.size() - 1) {
                 sql.append(", ");

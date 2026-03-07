@@ -17,7 +17,7 @@ public class User {
     @Column
     private String name;
 
-    @Column
+    @Column(defaultValue = "10")
     private int age;
 
     public User() {

@@ -11,5 +11,6 @@ public @interface Column {
     String name() default "";
     boolean unique() default false;
     boolean uniqueCombo() default false;
+    String defaultValue() default "";
     Class<? extends DataPersister<?>> convertor() default DefaultDataPersister.class;
 }

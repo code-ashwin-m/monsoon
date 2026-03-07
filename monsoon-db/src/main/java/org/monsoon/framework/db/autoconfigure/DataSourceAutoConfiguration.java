@@ -6,7 +6,8 @@ import org.monsoon.framework.core.annotations.ConditionalOnProperty;
 import org.monsoon.framework.core.properties.PropertyBinder;
 import org.monsoon.framework.db.DataSource;
 import org.monsoon.framework.db.DataSourceProperty;
-import org.monsoon.framework.db.RepositoryPostProcessor;
+import org.monsoon.framework.db.RepositoryBeanPostProcessor;
+import org.monsoon.framework.db.TransactionBeanPostProcessor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,10 +19,10 @@ public class DataSourceAutoConfiguration {
     @Bean
     public DataSource dataSource(){
         DataSourceProperty dataSourceProperty = PropertyBinder.bind(DataSourceProperty.class);
-
         if (dataSourceProperty.isEnabled()) {
             if (dataSourceProperty.getUrl() !=null && !dataSourceProperty.getUrl().isEmpty()){
-                Monsoon.getContext().registerBeanPostProcessor(new RepositoryPostProcessor(dataSourceProperty));
+                Monsoon.getContext().registerBeanPostProcessor(new TransactionBeanPostProcessor(dataSourceProperty));
+                Monsoon.getContext().registerBeanPostProcessor(new RepositoryBeanPostProcessor(dataSourceProperty));
                 return new DataSource(dataSourceProperty);
             }
         }else {

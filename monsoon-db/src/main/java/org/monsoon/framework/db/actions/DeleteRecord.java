@@ -15,6 +15,7 @@ import java.util.List;
 public class DeleteRecord {
     private static final Logger logger = LoggerFactory.getLogger(DeleteRecord.class);
     public static Boolean execute(Connection conn, String sql, Object[] args) throws Exception {
+        logger.debug(sql);
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             if (args != null) {
                 for (int i = 0; i < args.length; i++) {

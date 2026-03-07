@@ -1,6 +1,5 @@
 package org.monsoon.framework.db;
 
-import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,9 +12,9 @@ import org.monsoon.framework.db.annotations.Repository;
 
 import java.lang.reflect.Field;
 
-public class RepositoryPostProcessor implements BeanPostProcessor {
+public class RepositoryBeanPostProcessor implements BeanPostProcessor {
     private DataSourceProperty dataSource;
-    public RepositoryPostProcessor(DataSourceProperty dataSource){
+    public RepositoryBeanPostProcessor(DataSourceProperty dataSource){
         this.dataSource = dataSource;
 
     }

@@ -16,6 +16,7 @@ import java.util.List;
 public class ReadRecord {
     private static final Logger logger = LoggerFactory.getLogger(ReadRecord.class);
     public static Object execute(Connection conn, EntityMeta meta, String sql, Object[] args, Class<?> returnType) throws Exception {
+        logger.debug(sql);
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             if (args != null) {
                 for (int i = 0; i < args.length; i++) {
@@ -111,6 +112,11 @@ public class ReadRecord {
             DataPersister<?> convertor = Utils.resolveConvertor(field);
             Object dbValue = convertor.sqlToJava(rs.getObject(columnName));
 
+            if (field.getType() == Boolean.class || field.getType() == boolean.class) {
+                if (dbValue instanceof Number) {
+                    dbValue = ((Number) dbValue).intValue() != 0;
+                }
+            }
             field.set(obj, dbValue);
         }
         return obj;

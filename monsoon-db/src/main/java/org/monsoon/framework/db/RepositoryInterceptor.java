@@ -1,5 +1,7 @@
 package org.monsoon.framework.db;
 
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
 import org.monsoon.framework.db.actions.CreateRecord;
 import org.monsoon.framework.db.actions.CreateTable;
 import org.monsoon.framework.db.actions.DeleteRecord;
@@ -7,7 +9,6 @@ import org.monsoon.framework.db.actions.ReadRecord;
 import org.monsoon.framework.db.actions.UpdateRecord;
 import org.monsoon.framework.db.annotations.Delete;
 import org.monsoon.framework.db.annotations.Query;
-import org.monsoon.framework.db.annotations.Transactional;
 import org.monsoon.framework.db.annotations.Update;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,7 +20,7 @@ import java.sql.Connection;
 import java.util.List;
 
 
-public class RepositoryInterceptor implements InvocationHandler {
+public class RepositoryInterceptor implements InvocationHandler, MethodInterceptor {
     private static final Logger logger = LoggerFactory.getLogger(RepositoryInterceptor.class);
     private final Class<?> clazz;
     private final EntityMeta meta;
@@ -31,13 +32,10 @@ public class RepositoryInterceptor implements InvocationHandler {
         this.dataSource = dataSource;
     }
 
-    public static Object create(Class<?> clazz, EntityMeta meta, DataSourceProperty dataSource) {
-        Object object = Proxy.newProxyInstance(
-                clazz.getClassLoader(),
-                new Class<?>[] { clazz },
-                new RepositoryProxy(clazz, meta, dataSource)
-        );
-        return object;
+    @Override
+    public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
+        Connection conn = ConnectionFactory.getConnection(dataSource);
+        return executeRepositoryMethod(conn, method, args);
     }
 
     @Override

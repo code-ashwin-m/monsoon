@@ -380,6 +380,17 @@ public class ApplicationContextHelper {
             }
         }
         injectDependencies(instance);
+
+        // before initialization
+        for (BeanPostProcessor p : beanPostProcessors) {
+            instance = p.postProcessBeforeInitialization(instance, beanClass);
+        }
+
+        // after initialization
+        for (BeanPostProcessor p : beanPostProcessors) {
+            instance = p.postProcessAfterInitialization(instance, beanClass);
+        }
+
         return instance;
     }
 
@@ -445,7 +456,7 @@ public class ApplicationContextHelper {
     private Object applyProcessor(Class<?> clazz) {
         Object instance;
         for (BeanPostProcessor processor: beanPostProcessors){
-            instance = processor.postProcess(clazz);
+            instance = processor.createInstance(clazz);
             if ( instance != null ) return instance;
         }
         return null;

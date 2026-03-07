@@ -18,8 +18,7 @@ import java.util.List;
 public class CreateTable {
     private static final Logger logger = LoggerFactory.getLogger(CreateTable.class);
     public static Boolean createTableIfNotExists(Connection conn, EntityMeta meta) throws SQLException {
-        String url = conn.getMetaData().getURL().toLowerCase();
-        String dbType = detectDbType(url);
+        String dbType = Utils.detectDbType(conn);
 
         SQLData sqlData = generateSQL(meta, dbType);
         String sql = sqlData.getSql();
@@ -36,6 +35,7 @@ public class CreateTable {
     private static SQLData generateSQL(EntityMeta meta, String dbType) {
         List<String> uniqueDefs = new ArrayList<>();
         List<String> uniqueComboDefs = new ArrayList<>();
+        List<String> primaryKey = new ArrayList<>();
 
         StringBuffer sql = new StringBuffer("CREATE TABLE IF NOT EXISTS " + meta.getTableName() + " (");
 
@@ -45,20 +45,24 @@ public class CreateTable {
             Field field = columns.get(i);
             Column column = field.getAnnotation(Column.class);
             String columnName = !column.name().isEmpty() ? column.name() : field.getName();
-            sql.append(columnName).append(" ").append(toSqlType(columns.get(i).getType(), dbType));
+            sql.append(columnName)
+                .append(" ")
+                .append(toSqlType(columns.get(i).getType(), dbType))
+                .append(setDefaultValue(field, column));
+
 
             if (columns.get(i).isAnnotationPresent(Id.class)){
-                sql.append(" PRIMARY KEY");
                 if (field.isAnnotationPresent(GeneratedId.class)) {
+                    primaryKey.add(columnName);
                     GeneratedId gid = field.getAnnotation(GeneratedId.class);
                     if ( gid.strategy() == GenerationType.AUTO ) {
-                        if (dbType.equals("sqlite")) sql.append(" AUTOINCREMENT");
+                        if (dbType.equals("sqlite")) primaryKey.add("AUTOINCREMENT");
                     }
                 }
             }
 
             if (column.unique()){
-                uniqueDefs.add("UNIQUE(" + column.name() + ")");
+                uniqueDefs.add(", UNIQUE(" + column.name() + ")");
             }
 
             if (column.uniqueCombo()){
@@ -69,13 +73,20 @@ public class CreateTable {
             }
         }
 
+        if (!primaryKey.isEmpty()){
+            String key = String.join(" ", primaryKey);
+            sql.append(", PRIMARY KEY (")
+                .append(key)
+                .append(")");
+        }
+        
         if (!uniqueComboDefs.isEmpty()){
             String cols = String.join(", ", uniqueComboDefs);
-            uniqueDefs.add("UNIQUE(" + cols + ")");
+            uniqueDefs.add(", UNIQUE(" + cols + ")");
         }
 
         if (!uniqueDefs.isEmpty()){
-            sql.append(", ").append(String.join(", ", uniqueDefs));
+            sql.append(String.join(", ", uniqueDefs));
         }
 
         sql.append(")");
@@ -83,27 +94,39 @@ public class CreateTable {
         return new SQLData(sql.toString(), null);
     }
 
-    private static String detectDbType(String url) {
-        if (url.startsWith("jdbc:sqlite")) return "sqlite";
-        if (url.startsWith("jdbc:mysql")) return "mysql";
-        if (url.startsWith("jdbc:postgresql")) return "postgres";
-        if (url.startsWith("jdbc:h2")) return "h2";
-        return "generic";
+    private static String setDefaultValue(Field field, Column column) {
+        if (!column.defaultValue().isEmpty()){
+            if (field.getType() == String.class) {
+                return " DEFAULT \"" + column.defaultValue() + "\"";
+            }
+            return " DEFAULT " + column.defaultValue();
+        }
+        return "";
     }
 
     private static String toSqlType(Class<?> type, String dbType) {
         if (type == int.class || type == Integer.class) {
             if (dbType == "sqlite") return "INTEGER";
-
             return "INT";
         }
-        if (type == long.class || type == Long.class) return "BIGINT";
-        if (type == String.class) return "VARCHAR(255)";
+
+        if (type == long.class || type == Long.class) {
+            if (dbType == "sqlite") return "REAL";
+            return "BIGINT";
+        }
+
+        if (type == String.class) {
+            if (dbType == "sqlite") return "TEXT";
+            return "VARCHAR(255)";
+        }
         if (type == boolean.class || type == Boolean.class) {
-            if (dbType.equals("sqlite")) return "BOOLEAN"; // SQLite treats as INTEGER 0/1
+            if (dbType.equals("sqlite")) return "INTEGER";
             return "BOOLEAN";
         }
-        if (type == double.class || type == Double.class) return "DOUBLE";
+        if (type == double.class || type == Double.class) {
+            if (dbType == "sqlite") return "REAL";
+            return "DOUBLE";
+        }
         return "TEXT";
     }
 }
