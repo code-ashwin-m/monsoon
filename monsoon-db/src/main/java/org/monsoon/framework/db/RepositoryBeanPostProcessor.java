@@ -1,8 +1,10 @@
 package org.monsoon.framework.db;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.cglib.proxy.Enhancer;
 import org.monsoon.framework.core.interfaces.BeanPostProcessor;
 import org.monsoon.framework.db.annotations.Column;
 import org.monsoon.framework.db.annotations.Entity;
@@ -18,14 +20,32 @@ public class RepositoryPostProcessor implements BeanPostProcessor {
 
     }
     @Override
-    public Object postProcess(Class<?> clazz) {
-        if (!clazz.isAnnotationPresent(Repository.class)) return null;
+    public Object createInstance(Class<?> beanClass) {
+        if (!beanClass.isAnnotationPresent(Repository.class)) return null;
+        return createProxy(beanClass);
+    }
 
-        Repository repo = clazz.getAnnotation(Repository.class);
+    @Override
+    public Object postProcessBeforeInitialization(Object bean, Class<?> beanClass) {
+        return bean;
+    }
+
+    @Override
+    public Object postProcessAfterInitialization(Object bean, Class<?> beanClass) {
+        return bean;
+    }
+
+    private Object createProxy(Class<?>  beanClass) {
+        Repository repo = beanClass.getAnnotation(Repository.class);
         Class<?> entityClass = repo.entity();
         EntityMeta meta = createMeta(entityClass);
-        Object object =  RepositoryProxy.create(clazz, meta, dataSource);
-        return object;
+
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(beanClass);
+        enhancer.setCallback(new RepositoryInterceptor(beanClass, meta, dataSource));
+
+        Object proxy = enhancer.create();
+        return proxy;
     }
 
     private EntityMeta createMeta(Class<?> entityClass) {
