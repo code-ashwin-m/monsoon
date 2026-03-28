@@ -10,9 +10,9 @@
   <name>monsoon</name>
   <url>http://maven.apache.org</url>
   <modules>
-    <module>monsoon-core</module>
+      <module>monsoon-core</module>
       <module>monsoon-web</module>
-    <module>monsoon-sample</module>
+      <module>monsoon-sample</module>
       <module>monsoon-db</module>
   </modules>
 

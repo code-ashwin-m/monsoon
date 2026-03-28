@@ -20,7 +20,7 @@ import java.util.List;
 public class CreateRecord {
     private static final Logger logger = LoggerFactory.getLogger(CreateRecord.class);
 
-    public static Boolean createOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
+    public static Object createOne(Connection conn, EntityMeta meta, Object entity) throws Exception {
         System.out.println("====== AutoCommit " + conn.getAutoCommit());
         if (entity == null) return false;
         boolean isGenerated = meta.getIdField().isAnnotationPresent(GeneratedId.class);
@@ -43,7 +43,7 @@ public class CreateRecord {
                 }
             }
         }
-        return true;
+        return meta.getIdField().get(entity);
     }
 
     public static Boolean createMany(Connection conn, EntityMeta meta, List entities) throws Exception {

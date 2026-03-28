@@ -15,7 +15,6 @@ import org.slf4j.LoggerFactory;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
-import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.util.List;
 
@@ -60,7 +59,6 @@ public class RepositoryInterceptor implements InvocationHandler, MethodIntercept
             sql = sql.replaceAll("\\{table}", meta.getTableName());
             return DeleteRecord.execute(conn, sql, args);
         }
-
 
         if (methodName.equals("createTableIfNotExists")){
             return CreateTable.createTableIfNotExists(conn, meta);

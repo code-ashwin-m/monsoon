@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface BaseRepository<T> {
     boolean createTableIfNotExists();
-    boolean create(T entity);
+    Object create(T entity);
     boolean createMany(List<T> entities);
     boolean update(T entity);
     boolean updateMany(List<T> entities);

@@ -5,31 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="renamed Model to ModelMap">
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/TransactionBeanPostProcessor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/TransactionInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/TransactionManager.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Transactional.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/IUserService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/context/ApplicationContextHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/BeanPostProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-core/src/main/java/org/monsoon/framework/core/interfaces/BeanPostProcessor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-db/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/ConnectionFactory.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/ConnectionFactory.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryPostProcessor.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryBeanPostProcessor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/RepositoryInterceptor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/CreateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/CreateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/CreateTable.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/CreateTable.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/DeleteRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/DeleteRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/ReadRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/ReadRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/UpdateRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/UpdateRecord.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/Utils.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/Utils.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/annotations/Column.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/autoconfigure/DataSourceAutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/autoconfigure/DataSourceAutoConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/TestRestController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.db" beforeDir="false" afterPath="$PROJECT_DIR$/test.db" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/interfaces/BaseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/interfaces/BaseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-sample/src/main/java/org/monsoon/sample/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,12 +36,12 @@
     &quot;assignee&quot;: &quot;code-ashwin-m&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/code-ashwin-m/monsson.git",
-    "accountId": "68f6d06f-9277-49a0-bc35-5f060a9afd58"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/code-ashwin-m/monsson.git&quot;,
+    &quot;accountId&quot;: &quot;68f6d06f-9277-49a0-bc35-5f060a9afd58&quot;
   }
-}]]></component>
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
 }</component>
