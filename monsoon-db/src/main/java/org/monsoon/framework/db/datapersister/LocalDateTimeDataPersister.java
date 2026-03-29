@@ -15,6 +15,6 @@ public class LocalDateTimeDataPersister implements DataPersister<LocalDateTime> 
 
     @Override
     public LocalDateTime sqlToJava(Object value) {
-        return value == null ? null : LocalDateTime.parse(value.toString(), FORMATTER);
+        return value == null ? null : LocalDateTime.parse(String.valueOf(value), FORMATTER);
     }
 }

@@ -3,8 +3,9 @@ package org.monsoon.framework.db.datapersister;
 import org.monsoon.framework.db.interfaces.DataPersister;
 
 public class DefaultDataPersister implements DataPersister<Object> {
+
     @Override
-    public String javaToSql(Object value) {
+    public Object javaToSql(Object value) {
         return value == null ? null : value.toString();
     }
 
