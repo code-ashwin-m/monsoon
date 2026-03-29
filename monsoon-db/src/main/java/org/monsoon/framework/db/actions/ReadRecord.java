@@ -104,6 +104,10 @@ public class ReadRecord {
 
     private static Object mapRow(EntityMeta meta, ResultSet rs) throws Exception {
         Object obj = meta.getEntityClass().getDeclaredConstructor().newInstance();
+        if (obj == null) {
+           logger.debug("Mapping row to object of type {}, {}", meta.getEntityClass().getName(), obj);
+        }
+        
         for (Field field : meta.getColumns()) {
             field.setAccessible(true);
             Column column = field.getAnnotation(Column.class);
@@ -116,8 +120,31 @@ public class ReadRecord {
                 if (dbValue instanceof Number) {
                     dbValue = ((Number) dbValue).intValue() != 0;
                 }
+            } else if (field.getType() == Integer.class || field.getType() == int.class) {
+                if (dbValue instanceof Number) {
+                    dbValue = ((Number) dbValue).intValue();
+                }
+            } else if (field.getType() == Long.class || field.getType() == long.class) {
+                if (dbValue instanceof Number) {
+                    dbValue = ((Number) dbValue).longValue();
+                }
+            } else if (field.getType() == Double.class || field.getType() == double.class) {
+                if (dbValue instanceof Number) {
+                    dbValue = ((Number) dbValue).doubleValue();
+                }
+            } else if (field.getType() == Float.class || field.getType() == float.class) {
+                if (dbValue instanceof Number) {
+                    dbValue = ((Number) dbValue).floatValue();
+                }
+
             }
-            field.set(obj, dbValue);
+  
+            try{
+                field.set(obj, dbValue);
+            }catch(Exception e){
+                logger.error("Error setting field {} of type {} with value {} from column {}: {}", field.getName(), field.getType().getName(), dbValue, columnName, e.getMessage());
+                logger.error("Object is {}", obj);
+            }
         }
         return obj;
     }

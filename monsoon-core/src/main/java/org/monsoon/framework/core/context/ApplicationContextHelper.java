@@ -67,7 +67,7 @@ public class ApplicationContextHelper {
         }
 
         for (Map.Entry<String, BeanDefinition> def: beanDefinitions.entrySet()){
-            System.out.println(def.getKey());
+            logger.debug("Registered bean definition: name={}, class={}, singleton={}", def.getKey(), def.getValue().getBeanClass().getName(), def.getValue().isSingleton());
         }
         registerBeanPostProcessor(classes);
     }
