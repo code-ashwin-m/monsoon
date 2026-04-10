@@ -3,6 +3,8 @@ package org.monsoon.framework.db.datapersister;
 import org.monsoon.framework.db.interfaces.DataPersister;
 
 import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +21,8 @@ public class DataPersisterRegistry {
         register(Double.class, defaultDataPersister);
         register(double.class, defaultDataPersister);
         register(LocalDateTime.class, new LocalDateTimeDataPersister());
+        register(LocalDate.class, new LocalDateDataPersister());
+        register(LocalTime.class, new LocalTimeDataPersister());
     }
 
     public static <T> void register(Class<?> clazz, DataPersister<T> convertor) {
