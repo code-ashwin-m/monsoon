@@ -23,9 +23,9 @@ public class RepositoryInterceptor implements InvocationHandler, MethodIntercept
     private static final Logger logger = LoggerFactory.getLogger(RepositoryInterceptor.class);
     private final Class<?> clazz;
     private final EntityMeta meta;
-    private final DataSourceProperty dataSource;
+    private final DataSource dataSource;
 
-    public RepositoryInterceptor(Class<?> clazz, EntityMeta meta, DataSourceProperty dataSource) {
+    public RepositoryInterceptor(Class<?> clazz, EntityMeta meta, DataSource dataSource) {
         this.clazz = clazz;
         this.meta = meta;
         this.dataSource = dataSource;
@@ -33,13 +33,13 @@ public class RepositoryInterceptor implements InvocationHandler, MethodIntercept
 
     @Override
     public Object intercept(Object o, Method method, Object[] args, MethodProxy methodProxy) throws Throwable {
-        Connection conn = ConnectionFactory.getConnection(dataSource);
+        Connection conn = dataSource.getConnection();
         return executeRepositoryMethod(conn, method, args);
     }
 
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Connection conn = ConnectionFactory.getConnection(dataSource);
+        Connection conn = dataSource.getConnection();
         return executeRepositoryMethod(conn, method, args);
     }
 

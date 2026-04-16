@@ -2,6 +2,7 @@ package org.monsoon.framework.db.actions;
 
 import org.monsoon.framework.db.EntityMeta;
 import org.monsoon.framework.db.annotations.Column;
+import org.monsoon.framework.db.annotations.Entity;
 import org.monsoon.framework.db.annotations.GeneratedId;
 import org.monsoon.framework.db.annotations.Id;
 import org.monsoon.framework.db.enums.GenerationType;
@@ -13,7 +14,9 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CreateTable {
     private static final Logger logger = LoggerFactory.getLogger(CreateTable.class);
@@ -36,10 +39,29 @@ public class CreateTable {
         List<String> uniqueDefs = new ArrayList<>();
         List<String> uniqueComboDefs = new ArrayList<>();
         List<String> primaryKey = new ArrayList<>();
+        List<String> foreignDefs = new ArrayList<>();
 
         StringBuffer sql = new StringBuffer("CREATE TABLE IF NOT EXISTS " + meta.getTableName() + " (");
 
         List<Field> columns = meta.getColumns();
+
+//        CREATE TABLE "flight_period_leg" (
+//                "id"	INTEGER,
+//                "flight_period_id"	INTEGER,
+//                "leg"	TEXT,
+//                "departure_time"	TEXT,
+//                "arrival_time"	TEXT,
+//                "num_of_days"	TEXT,
+//                "acv_code"	TEXT,
+//                "configuration"	TEXT,
+//                "meal_codes"	TEXT,
+//                "codeshare"	TEXT,
+//                "departure_terminal"	TEXT,
+//                "arrival_terminal"	TEXT,
+//                "e_ticket"	INTEGER,
+//                PRIMARY KEY("id" AUTOINCREMENT),
+//                FOREIGN KEY("flight_period_id") REFERENCES "flight_period"("id")
+//        );
 
         for (int i = 0; i < columns.size(); i++) {
             Field field = columns.get(i);
@@ -62,12 +84,20 @@ public class CreateTable {
             }
 
             if (column.unique()){
-                uniqueDefs.add(", UNIQUE(" + column.name() + ")");
+                uniqueDefs.add(", UNIQUE(" + columnName + ")");
             }
 
             if (column.uniqueCombo()){
-                uniqueComboDefs.add(column.name());
+                uniqueComboDefs.add(columnName);
             }
+
+            if (column.foreign() != Void.class) {
+                if (column.foreign().isAnnotationPresent(Entity.class)) {
+                    Entity entity = column.foreign().getAnnotation(Entity.class);
+                    foreignDefs.add(", FOREIGN KEY(" + columnName + ") REFERENCES " + entity.tableName() + "(id) ON DELETE CASCADE");
+                }
+            }
+
             if (i < columns.size() - 1){
                 sql.append(", ");
             }
@@ -87,6 +117,10 @@ public class CreateTable {
 
         if (!uniqueDefs.isEmpty()){
             sql.append(String.join(", ", uniqueDefs));
+        }
+
+        if (!foreignDefs.isEmpty()) {
+            sql.append(String.join(", ", foreignDefs));
         }
 
         sql.append(")");

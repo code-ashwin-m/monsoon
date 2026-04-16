@@ -13,8 +13,8 @@ import org.monsoon.framework.db.annotations.Repository;
 import java.lang.reflect.Field;
 
 public class RepositoryBeanPostProcessor implements BeanPostProcessor {
-    private DataSourceProperty dataSource;
-    public RepositoryBeanPostProcessor(DataSourceProperty dataSource){
+    private final DataSource dataSource;
+    public RepositoryBeanPostProcessor(DataSource dataSource){
         this.dataSource = dataSource;
 
     }

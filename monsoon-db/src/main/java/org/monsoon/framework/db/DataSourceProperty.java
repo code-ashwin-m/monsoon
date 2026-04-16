@@ -9,6 +9,7 @@ public class DataSourceProperty {
     private String url;
     private String username;
     private String password;
+    private Boolean enforceForeignKeys;
 
     public Boolean isEnabled() {
         return enabled;
@@ -30,6 +31,10 @@ public class DataSourceProperty {
         return password;
     }
 
+    public Boolean getEnforceForeignKeys() {
+        return enforceForeignKeys;
+    }
+
     @Override
     public String toString() {
         return "DataSource{" +
@@ -38,6 +43,7 @@ public class DataSourceProperty {
                 ", url='" + url + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
+                ", enforceForeignKeys='" + enforceForeignKeys + '\'' +
                 '}';
     }
 }

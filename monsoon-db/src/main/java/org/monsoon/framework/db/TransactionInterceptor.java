@@ -8,10 +8,10 @@ import java.lang.reflect.Method;
 import java.sql.Connection;
 
 public class TransactionInterceptor implements MethodInterceptor {
-    private Object bean;
-    private DataSourceProperty dataSource;
+    private final Object bean;
+    private final DataSource dataSource;
 
-    public TransactionInterceptor(DataSourceProperty dataSource, Object bean) {
+    public TransactionInterceptor(DataSource dataSource, Object bean) {
         this.bean = bean;
         this.dataSource = dataSource;
     }
@@ -26,7 +26,7 @@ public class TransactionInterceptor implements MethodInterceptor {
         }
 
         try {
-            Connection conn = ConnectionFactory.getConnection(dataSource);
+            Connection conn = dataSource.getConnection();
             TransactionManager.begin(conn);
             Object result = method.invoke(bean, args);
             TransactionManager.commit();

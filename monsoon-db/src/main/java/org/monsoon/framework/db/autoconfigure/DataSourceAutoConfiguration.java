@@ -21,9 +21,10 @@ public class DataSourceAutoConfiguration {
         DataSourceProperty dataSourceProperty = PropertyBinder.bind(DataSourceProperty.class);
         if (dataSourceProperty.isEnabled()) {
             if (dataSourceProperty.getUrl() !=null && !dataSourceProperty.getUrl().isEmpty()){
-                Monsoon.getContext().registerBeanPostProcessor(new TransactionBeanPostProcessor(dataSourceProperty));
-                Monsoon.getContext().registerBeanPostProcessor(new RepositoryBeanPostProcessor(dataSourceProperty));
-                return new DataSource(dataSourceProperty);
+                DataSource dataSource = new DataSource(dataSourceProperty);
+                Monsoon.getContext().registerBeanPostProcessor(new TransactionBeanPostProcessor(dataSource));
+                Monsoon.getContext().registerBeanPostProcessor(new RepositoryBeanPostProcessor(dataSource));
+                return dataSource;
             }
         }else {
             logger.debug("Datasource is disabled, please check property: monsoon.datasource.enabled");

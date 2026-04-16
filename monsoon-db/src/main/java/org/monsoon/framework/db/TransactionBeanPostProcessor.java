@@ -7,9 +7,9 @@ import org.monsoon.framework.db.annotations.Transactional;
 import java.lang.reflect.Method;
 
 public class TransactionBeanPostProcessor implements BeanPostProcessor {
-    private DataSourceProperty dataSource;
+    private final DataSource dataSource;
 
-    public TransactionBeanPostProcessor(DataSourceProperty dataSource){
+    public TransactionBeanPostProcessor(DataSource dataSource){
         this.dataSource = dataSource;
     }
 
