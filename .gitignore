@@ -36,5 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+test.db
+*.drawio
 /.idea/
-/.idea/workspace.xml
