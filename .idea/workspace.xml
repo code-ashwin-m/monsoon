@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="renamed Model to ModelMap">
+    <list default="true" id="5e086dc0-c02a-4396-9d30-a8a7812faa5b" name="Changes" comment="Add List arg option in ReadRecord">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/ReadRecord.java" beforeDir="false" afterPath="$PROJECT_DIR$/monsoon-db/src/main/java/org/monsoon/framework/db/actions/ReadRecord.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,40 +47,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.App.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MonsoonTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.WebAppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.monsoon.framework.test.MonsoonTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.org.monsoon.framework.test.WebAppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-core [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-db [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-db [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [clean].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [compile].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-sample [package].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-web [install].executor&quot;: &quot;Run&quot;,
-    &quot;Maven.monsoon-web [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Volumes/MediaDrive/Java/monsoon&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.App.executor": "Run",
+    "Application.MonsoonTest.executor": "Run",
+    "Application.WebAppTest.executor": "Run",
+    "Application.org.monsoon.framework.test.MonsoonTest.executor": "Run",
+    "Application.org.monsoon.framework.test.WebAppTest.executor": "Run",
+    "Maven. [org.apache.maven.plugins:maven-archetype-plugin:RELEASE:generate].executor": "Run",
+    "Maven.monsoon [clean].executor": "Run",
+    "Maven.monsoon [compile].executor": "Run",
+    "Maven.monsoon [install].executor": "Run",
+    "Maven.monsoon [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.monsoon [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
+    "Maven.monsoon [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
+    "Maven.monsoon [package].executor": "Run",
+    "Maven.monsoon-core [install].executor": "Run",
+    "Maven.monsoon-core [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.monsoon-core [org.apache.maven.plugins:maven-compiler-plugin:3.11.0:compile].executor": "Run",
+    "Maven.monsoon-core [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
+    "Maven.monsoon-db [org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean].executor": "Run",
+    "Maven.monsoon-db [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
+    "Maven.monsoon-sample [clean].executor": "Run",
+    "Maven.monsoon-sample [compile].executor": "Run",
+    "Maven.monsoon-sample [package].executor": "Run",
+    "Maven.monsoon-web [install].executor": "Run",
+    "Maven.monsoon-web [org.apache.maven.plugins:maven-install-plugin:3.1.2:install].executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Volumes/MediaDrive/Java/monsoon",
+    "settings.editor.selected.configurable": "vcs.Git"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="org.monsoon.framework.web.utils" />
@@ -361,7 +362,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762269181703</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add List arg option in ReadRecord">
+      <option name="closed" value="true" />
+      <created>1777207265689</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1777207265689</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -397,6 +406,7 @@
     <MESSAGE value="Add RequestHandler" />
     <MESSAGE value="Add Model for freemarker template" />
     <MESSAGE value="renamed Model to ModelMap" />
-    <option name="LAST_COMMIT_MESSAGE" value="renamed Model to ModelMap" />
+    <MESSAGE value="Add List arg option in ReadRecord" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add List arg option in ReadRecord" />
   </component>
 </project>
