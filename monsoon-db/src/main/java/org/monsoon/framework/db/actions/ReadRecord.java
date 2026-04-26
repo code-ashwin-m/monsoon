@@ -11,18 +11,24 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class ReadRecord {
     private static final Logger logger = LoggerFactory.getLogger(ReadRecord.class);
     public static Object execute(Connection conn, EntityMeta meta, String sql, Object[] args, Class<?> returnType) throws Exception {
-        logger.debug(sql);
-        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-            if (args != null) {
-                for (int i = 0; i < args.length; i++) {
-                    stmt.setObject(i + 1, args[i]);
-                }
+        List<Object> flatArgs = new ArrayList<>();
+        String parsedSql = parseSqlAndFlattenArgs(sql, args, flatArgs);
+
+        logger.debug(parsedSql);
+
+        try (PreparedStatement stmt = conn.prepareStatement(parsedSql)) {
+
+            // 2. Bind flattened args
+            for (int i = 0; i < flatArgs.size(); i++) {
+                stmt.setObject(i + 1, flatArgs.get(i));
             }
+
             ResultSet rs = stmt.executeQuery();
 
             if (returnType.equals(List.class)) {
@@ -38,6 +44,46 @@ public class ReadRecord {
                 return null;
             }
         }
+    }
+
+    private static String parseSqlAndFlattenArgs(String sql, Object[] args, List<Object> flatArgs) {
+
+        StringBuilder parsedSql = new StringBuilder();
+        int argIndex = 0;
+
+        for (int i = 0; i < sql.length(); i++) {
+
+            if (sql.charAt(i) == '?' && args != null && argIndex < args.length) {
+
+                Object arg = args[argIndex++];
+
+                if (arg instanceof Collection<?>) {
+                    Collection<?> list = (Collection<?>) arg;
+
+                    if (list.isEmpty()) {
+                        // Avoid invalid SQL like IN ()
+                        parsedSql.append("(NULL)");
+                    } else {
+//                        parsedSql.append("(");
+                        int j = 0;
+                        for (Object item : list) {
+                            if (j++ > 0) parsedSql.append(",");
+                            parsedSql.append("?");
+                            flatArgs.add(item);
+                        }
+//                        parsedSql.append(")");
+                    }
+                } else {
+                    parsedSql.append("?");
+                    flatArgs.add(arg);
+                }
+
+            } else {
+                parsedSql.append(sql.charAt(i));
+            }
+        }
+
+        return parsedSql.toString();
     }
 
     public static Object findAll(Connection conn, EntityMeta meta) throws Exception {
