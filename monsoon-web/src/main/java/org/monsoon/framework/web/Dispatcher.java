@@ -14,7 +14,9 @@ import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
@@ -46,7 +48,8 @@ public class Dispatcher {
      */
     public Dispatcher() {
         httpMessageConverter = Monsoon.getContext().getBeanOrNull("httpMessageConverter", HttpMessageConverter.class);
-        if (httpMessageConverter == null || httpMessageConverter instanceof DefaultHttpConverterAutoConfiguration.DefaultHttpMessageConverter) {
+        if (httpMessageConverter == null
+                || httpMessageConverter instanceof DefaultHttpConverterAutoConfiguration.DefaultHttpMessageConverter) {
             logger.error("Missing Jackson dependency, switching to default converter");
         }
 
@@ -58,14 +61,16 @@ public class Dispatcher {
 
     /**
      * Registers a controller with the dispatcher.
+     * 
      * @param controller The controller to register.
      */
     public void registerController(Object controller) {
         Class<?> clazz = controller.getClass();
-        if (!ClassUtils.isAnnotationPresent(clazz, Controller.class)) return;
+        if (!ClassUtils.isAnnotationPresent(clazz, Controller.class))
+            return;
         logger.debug("Registering controller: {}", clazz.getSimpleName());
-        for (Method method : clazz.getDeclaredMethods()){
-            if (method.isAnnotationPresent(RequestMapping.class)){
+        for (Method method : clazz.getDeclaredMethods()) {
+            if (method.isAnnotationPresent(RequestMapping.class)) {
                 RequestMapping requestMapping = method.getAnnotation(RequestMapping.class);
                 String regex = pathToRegex(requestMapping.path());
                 Pattern pattern = Pattern.compile(regex);
@@ -74,18 +79,18 @@ public class Dispatcher {
                         requestMapping.path(),
                         pattern,
                         controller,
-                        method)
-                );
+                        method));
                 logger.debug("Mapped {} {} -> {}", requestMapping.method(), requestMapping.path(), method.getName());
             }
         }
         logger.debug("Registered controller: {}", clazz.getSimpleName());
     }
 
-
     /**
      * Converts a path to a regular expression.
-     * It replaces all occurrences of '{variable_name}' with '([^/]+)' to create a regex pattern.
+     * It replaces all occurrences of '{variable_name}' with '([^/]+)' to create a
+     * regex pattern.
+     * 
      * @param path The path to convert to a regex.
      * @return The regex pattern.
      */
@@ -95,7 +100,8 @@ public class Dispatcher {
 
     /**
      * Dispatches an HTTP request to a controller.
-     * It iterates over all the registered controllers and their methods and checks if the HTTP request matches the method and path of the controller.
+     * It iterates over all the registered controllers and their methods and checks
+     * if the HTTP request matches the method and path of the controller.
      * If it does, it invokes the method and returns the result.
      */
 
@@ -104,11 +110,19 @@ public class Dispatcher {
         String requestURI = req.getRequestURI();
         String pathAfterContext = requestURI.substring(contextPath.length());
 
+        logger.debug("Server address: {}:{}, path: {}", req.getServerName(), req.getServerPort(), pathAfterContext);
         Map<String, String> pathVars = new HashMap<>();
         Route matched = null;
 
-        for (Route route : routes){
-            if (!route.httpMethod.equals(req.getMethod().toUpperCase())) continue;
+        if (pathAfterContext.equals("/")) {
+            if (serveStaticResource("/index.html", resp, req)) {
+                return new DispatchResult(200, "Static Resource Served");
+            }
+        }
+
+        for (Route route : routes) {
+            if (!route.httpMethod.equals(req.getMethod().toUpperCase()))
+                continue;
             Matcher matcher = route.pattern.matcher(pathAfterContext);
             if (matcher.matches()) {
                 matched = route;
@@ -120,7 +134,12 @@ public class Dispatcher {
             }
         }
 
-        if (matched == null){
+        // Check for static resources
+        if (matched == null) {
+            if (serveStaticResource(pathAfterContext, resp, req)) {
+                return new DispatchResult(200, "Static Resource Served");
+            }
+
             try {
                 logger.error("No matching route found for {} {}", req.getMethod(), pathAfterContext);
                 resp.setStatus(404);
@@ -146,7 +165,7 @@ public class Dispatcher {
             for (HandlerInterceptor interceptor : interceptors) {
                 interceptor.postHandle(req, resp, handler);
             }
-        } catch (Exception ex){
+        } catch (Exception ex) {
             logger.error("Error while dispatching http request", ex);
             return new DispatchResult(500, "Internal Server Error" + ex.getMessage());
         } finally {
@@ -161,14 +180,15 @@ public class Dispatcher {
         isResponseBody = matched.method.getAnnotation(ResponseBody.class) != null
                 || ClassUtils.isAnnotationPresent(matched.controller.getClass(), ResponseBody.class);
 
-        try{
+        try {
             String result = "";
             if (isResponseBody) {
                 result = serializeResponse(methodResponse.getData());
                 resp.setContentType("application/json; charset=UTF-8");
             } else {
                 result = renderView(methodResponse);
-                if (result == null) result = methodResponse.getData().toString();
+                if (result == null)
+                    result = methodResponse.getData().toString();
                 resp.setContentType("text/html; charset=UTF-8");
             }
             resp.setStatus(200);
@@ -186,14 +206,16 @@ public class Dispatcher {
 
     /**
      * Invokes a controller method with the given parameters.
-     * @param route The route that matched the HTTP request.
-     * @param pathVars The path variables of the HTTP request.
-     * @param rawQuery The raw query string of the HTTP request.
+     * 
+     * @param route      The route that matched the HTTP request.
+     * @param pathVars   The path variables of the HTTP request.
+     * @param rawQuery   The raw query string of the HTTP request.
      * @param bodyStream The input stream of the HTTP request body.
      * @return The result of the controller method.
      * @throws Exception If there is an error while invoking the controller method.
      */
-    private MethodResponse invokeControllerMethod(Route route, Map<String, String> pathVars, String rawQuery, InputStream bodyStream) throws Exception {
+    private MethodResponse invokeControllerMethod(Route route, Map<String, String> pathVars, String rawQuery,
+            InputStream bodyStream) throws Exception {
         Method method = route.method;
         Parameter[] parameters = method.getParameters();
         Object[] args = new Object[parameters.length];
@@ -201,7 +223,7 @@ public class Dispatcher {
         ModelMap model = new ModelMap();
         for (int i = 0; i < parameters.length; i++) {
             Parameter p = parameters[i];
-            if (p.getType().isAssignableFrom(ModelMap.class)){
+            if (p.getType().isAssignableFrom(ModelMap.class)) {
                 args[i] = model;
             } else if (p.isAnnotationPresent(PathVariable.class)) {
                 String name = p.getAnnotation(PathVariable.class).value();
@@ -220,13 +242,14 @@ public class Dispatcher {
 
     /**
      * Converts a string to an object of the given type.
-     * @param s the string to convert
+     * 
+     * @param s    the string to convert
      * @param type the type to convert to
      * @return the converted object
      */
 
     private Object convertToType(String s, Class<?> type) {
-        if (type == Integer.class || type == int.class ){
+        if (type == Integer.class || type == int.class) {
             return Integer.parseInt(s);
         } else if (type == Long.class || type == long.class) {
             return Long.parseLong(s);
@@ -239,18 +262,21 @@ public class Dispatcher {
         }
     }
 
-
     /**
      * Extracts the names of the path variables from the given path.
-     * The names are extracted by matching the given path against the regular expression
-     * "\\{([^/]+)}". The matched groups are added to a list and then converted to an array.
+     * The names are extracted by matching the given path against the regular
+     * expression
+     * "\\{([^/]+)}". The matched groups are added to a list and then converted to
+     * an array.
+     * 
      * @param path the path from which to extract the variable names
      * @return an array of variable names
      */
     private String[] extractPathVariableNames(String path) {
         List<String> names = new ArrayList<>();
         Matcher matcher = Pattern.compile("\\{([^/]+)}").matcher(path);
-        while (matcher.find()) names.add(matcher.group(1));
+        while (matcher.find())
+            names.add(matcher.group(1));
         return names.toArray(new String[0]);
     }
 
@@ -259,28 +285,35 @@ public class Dispatcher {
      * If the object is null, an empty string is returned.
      * If the object is already a string, it is returned as is.
      * Otherwise, the object is converted to a JSON string using the ObjectMapper.
+     * 
      * @param result the object to serialize
      * @return the JSON string representation of the object
      */
     private String serializeResponse(Object result) throws Exception {
-        if (result == null) return "";
-        if (result instanceof String) return (String) result;
+        if (result == null)
+            return "";
+        if (result instanceof String)
+            return (String) result;
         return httpMessageConverter.writeValueAsString(result);
     }
 
     private String renderView(MethodResponse methodResponse) {
         return viewRenderer.render(methodResponse.getData(), methodResponse.getModel().getAttributes());
     }
+
     /**
      * Parses the given query string into a map of key-value pairs.
-     * The query string is expected to be in the format "key1=value1&key2=value2&...".
+     * The query string is expected to be in the format
+     * "key1=value1&key2=value2&...".
      * If the query string is null or empty, an empty map is returned.
+     * 
      * @param rawQuery the query string to parse
      * @return a map of key-value pairs
      */
     private Map<String, String> parseQuery(String rawQuery) {
         Map<String, String> map = new HashMap<>();
-        if (rawQuery == null || rawQuery.isEmpty()) return map;
+        if (rawQuery == null || rawQuery.isEmpty())
+            return map;
         for (String pair : rawQuery.split("&")) {
             String[] parts = pair.split("=");
             if (parts.length > 0) {
@@ -293,7 +326,131 @@ public class Dispatcher {
     }
 
     /**
+     * Serves a static resource from the classpath.
+     * The resource is expected to be located in the "/static" directory in the
+     * classpath.
+     * 
+     * @param path The path of the resource to serve.
+     * @param resp The HttpServletResponse object.
+     * @param req  The HttpServletRequest object.
+     * @return True if the resource was found and served, false otherwise.
+     */
+    private boolean serveStaticResource(String path, HttpServletResponse resp, HttpServletRequest req) {
+        String[] locations = { "/static", "/public", "/META-INF/static", "/META-INF/public" };
+        InputStream is = null;
+        for (String location : locations) {
+            String resourcePath = location + path;
+            is = getClass().getResourceAsStream(resourcePath);
+            if (is != null) {
+                break;
+            }
+        }
+
+        if (is == null) {
+            return false;
+        }
+
+        logger.debug("Serving static resource: {}", path);
+
+        try {
+            String mimeType = req.getServletContext().getMimeType(path);
+            if (mimeType == null) {
+                mimeType = getMimeType(path);
+            }
+            resp.setContentType(mimeType);
+
+            OutputStream os = resp.getOutputStream();
+            byte[] buffer = new byte[8192];
+            int bytesRead;
+            while ((bytesRead = is.read(buffer)) != -1) {
+                os.write(buffer, 0, bytesRead);
+            }
+            os.flush();
+            is.close();
+            return true;
+        } catch (IOException e) {
+            logger.error("Error serving static resource: {}", path, e);
+            return false;
+        }
+    }
+
+    /**
+     * Gets the mime type of the given path.
+     * 
+     * @param path the path
+     * @return the mime type
+     */
+    private String getMimeType(String path) {
+        if (path == null)
+            return "application/octet-stream";
+        String lowercasePath = path.toLowerCase();
+        if (lowercasePath.endsWith(".html") || lowercasePath.endsWith(".htm"))
+            return "text/html; charset=UTF-8";
+        if (lowercasePath.endsWith(".css"))
+            return "text/css";
+        if (lowercasePath.endsWith(".js"))
+            return "application/javascript";
+        if (lowercasePath.endsWith(".json"))
+            return "application/json";
+        if (lowercasePath.endsWith(".png"))
+            return "image/png";
+        if (lowercasePath.endsWith(".jpg") || lowercasePath.endsWith(".jpeg"))
+            return "image/jpeg";
+        if (lowercasePath.endsWith(".gif"))
+            return "image/gif";
+        if (lowercasePath.endsWith(".svg"))
+            return "image/svg+xml";
+        if (lowercasePath.endsWith(".ico"))
+            return "image/x-icon";
+        if (lowercasePath.endsWith(".woff"))
+            return "application/font-woff";
+        if (lowercasePath.endsWith(".woff2"))
+            return "application/font-woff2";
+        if (lowercasePath.endsWith(".ttf"))
+            return "application/font-ttf";
+        if (lowercasePath.endsWith(".eot"))
+            return "application/vnd.ms-fontobject";
+        if (lowercasePath.endsWith(".otf"))
+            return "application/font-otf";
+        if (lowercasePath.endsWith(".sfnt"))
+            return "application/font-sfnt";
+        if (lowercasePath.endsWith(".wasm"))
+            return "application/wasm";
+        if (lowercasePath.endsWith(".xml"))
+            return "application/xml";
+        if (lowercasePath.endsWith(".pdf"))
+            return "application/pdf";
+        if (lowercasePath.endsWith(".zip"))
+            return "application/zip";
+        if (lowercasePath.endsWith(".tar"))
+            return "application/x-tar";
+        if (lowercasePath.endsWith(".gz"))
+            return "application/gzip";
+        if (lowercasePath.endsWith(".rar"))
+            return "application/x-rar-compressed";
+        if (lowercasePath.endsWith(".7z"))
+            return "application/x-7z-compressed";
+        if (lowercasePath.endsWith(".bz2"))
+            return "application/x-bzip2";
+        if (lowercasePath.endsWith(".mp4"))
+            return "video/mp4";
+        if (lowercasePath.endsWith(".mp3"))
+            return "audio/mpeg";
+        if (lowercasePath.endsWith(".wav"))
+            return "audio/wav";
+        if (lowercasePath.endsWith(".ogg"))
+            return "audio/ogg";
+        if (lowercasePath.endsWith(".m4a"))
+            return "audio/mp4";
+        if (lowercasePath.endsWith(".webm"))
+            return "video/webm";
+
+        return "application/octet-stream";
+    }
+
+    /**
      * Decodes the given string using UTF-8 encoding.
+     * 
      * @param s the string to decode
      * @return the decoded string
      */
@@ -320,7 +477,8 @@ public class Dispatcher {
 
     /**
      * Represents a route in the dispatcher.
-     * A route is defined by its HTTP method, original path, pattern, controller, and method.
+     * A route is defined by its HTTP method, original path, pattern, controller,
+     * and method.
      */
     private static class Route {
         final String httpMethod;
@@ -328,6 +486,7 @@ public class Dispatcher {
         final Pattern pattern;
         final Object controller;
         final Method method;
+
         Route(String httpMethod, String originalPath, Pattern pattern, Object controller, Method method) {
             this.httpMethod = httpMethod;
             this.originalPath = originalPath;
@@ -347,11 +506,12 @@ public class Dispatcher {
         public final Boolean isResponseBody;
         public String contentType = null;
 
-        public DispatchResult(int status, String body){
+        public DispatchResult(int status, String body) {
             this.status = status;
             this.body = body;
             this.isResponseBody = false;
         }
+
         public DispatchResult(int status, String body, Boolean isResponseBody) {
             this.status = status;
             this.body = body;
@@ -359,7 +519,7 @@ public class Dispatcher {
         }
     }
 
-    class MethodResponse{
+    class MethodResponse {
         private Object data;
         private ModelMap model;
 

@@ -188,7 +188,7 @@ public class ReadRecord {
             try{
                 field.set(obj, dbValue);
             }catch(Exception e){
-                logger.error("Error setting field {} of type {} with value {} from column {}: {}", field.getName(), field.getType().getName(), dbValue, columnName, e.getMessage());
+                logger.error("Error setting field: {} of type: {} with value: {} from column {}: {}", field.getName(), field.getType().getName(), dbValue, columnName, e.getMessage());
                 logger.error("Object is {}", obj);
             }
         }
