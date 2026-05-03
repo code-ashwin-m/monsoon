@@ -307,8 +307,10 @@ public class ApplicationContextHelper {
      */
     public Object createBean(Class<?> clazz) throws Exception {
         Component component = ClassUtils.findAnnotation(clazz, Component.class);
-        if (component == null) return null;
-        String beanName = component.name();
+        String beanName = "";
+        if (component != null){
+            beanName = component.name();
+        }
         if (beanName.equals("")) beanName = Introspector.decapitalize(clazz.getSimpleName());
         return createBean(beanName);
     }
