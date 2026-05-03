@@ -3,6 +3,7 @@ package org.monsoon.framework.db;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -16,15 +17,30 @@ public class DataSource {
         this.dataSourceProperty = dataSourceProperty;
     }
 
-    public Connection getConnection() throws Exception{
+    public Connection getConnection() throws Exception {
         if (connection == null || connection.isClosed()) {
             Class.forName(dataSourceProperty.getDriver());
-            connection = DriverManager.getConnection(dataSourceProperty.getUrl(), dataSourceProperty.getUsername(), dataSourceProperty.getPassword());
 
-            if (dataSourceProperty.getEnforceForeignKeys()){
+            String url = dataSourceProperty.getUrl() + ":";
+
+            if (dataSourceProperty.getPath() != null && !dataSourceProperty.getPath().isEmpty()) {
+                if (!dataSourceProperty.getPath().endsWith(File.separator)){
+                    dataSourceProperty.setPath(dataSourceProperty.getPath() + File.separator);
+                }
+                url += dataSourceProperty.getPath();
+            }
+
+            url += dataSourceProperty.getDatabase();
+
+            logger.debug("Creating new connection to: {}", url);
+
+            connection = DriverManager.getConnection(url, dataSourceProperty.getUsername(),
+                    dataSourceProperty.getPassword());
+
+            if (dataSourceProperty.getEnforceForeignKeys()) {
                 try (Statement stmt = connection.createStatement()) {
                     stmt.execute("PRAGMA foreign_keys = ON;");
-                    logger.debug("PRAGMA is enabled");
+                    logger.debug("PRAGMA foreign_keys is enabled");
                 }
             }
         }

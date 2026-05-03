@@ -19,7 +19,7 @@ This highly detailed guide covers everything you need to know to configure and u
 
 ## 1. Configuration
 
-The database module relies on properties defined in your application's configuration file (e.g., `application.properties`). These properties configure the underlying `DataSource`.
+The database module relies on properties defined in your application's configuration file (e.g., `application.properties` or `application.yml`). These properties configure the underlying `DataSource`.
 
 ### Properties Structure
 Define the following properties under the `monsoon.datasource` prefix:
@@ -27,10 +27,27 @@ Define the following properties under the `monsoon.datasource` prefix:
 ```properties
 monsoon.datasource.enabled=true
 monsoon.datasource.driver=org.postgresql.Driver
-monsoon.datasource.url=jdbc:postgresql://localhost:5432/mydb
+monsoon.datasource.path=/path/to/database/ 
+monsoon.datasource.database=mydb
+monsoon.datasource.url=jdbc:postgresql://localhost:5432
 monsoon.datasource.username=dbuser
 monsoon.datasource.password=dbpass
 monsoon.datasource.enforceForeignKeys=true
+```
+
+### YAML Structure
+
+```yaml
+monsoon:
+  datasource:
+    enabled: true
+    driver: org.postgresql.Driver
+    path: /path/to/database/ 
+    database: mydb
+    url: jdbc:postgresql://localhost:5432
+    username: dbuser
+    password: dbpass
+    enforceForeignKeys: true
 ```
 
 When `enabled=true`, the framework will automatically instantiate a `DataSource` and wire it into the IoC container.
@@ -44,8 +61,16 @@ To map a Java class to a database table, you use a set of specialized annotation
 ### Annotations Overview
 - `@Entity(tableName = "users")`: Marks the class as a database entity and specifies the table name.
 - `@Id`: Marks a field as the Primary Key.
-- `@GeneratedId`: Used in conjunction with `@Id` to indicate that the database auto-generates this value (e.g., AUTO_INCREMENT or SERIAL).
-- `@Column(name = "db_column_name")`: Explicitly maps a class field to a specific database column. If omitted, the framework typically falls back to the field name.
+- `@GeneratedId`: Used in conjunction with `@Id` to indicate that the database auto-generates this value (e.g., AUTO_INCREMENT or SERIAL). 
+    - `generator`: Can be used for custom Id generation strategies. For this, you need to implement the `IdGenerator` interface and pass it to the `generator` attribute of the `@GeneratedId` annotation.
+- `@Column(name = "db_column_name")`: Explicitly maps a class field to a specific database column. If omitted, the framework typically falls back to the field name. Other useful fields are:
+    - `unique`: Specifies if the column should have a unique constraint. Default is false.
+    - `uniqueCombo`: Specifies if the column should be part of a unique combination of columns. Default is false.
+    - `defaultValue`: Specifies the default value for the column. Default is "".
+    - `cascadeDelete`: Specifies if the column should have a cascade delete constraint. Default is false.
+    - `foreign`: Specifies the foreign key class.
+    - `convertor`: Specifies the data persister for the column. 
+
 
 ### Example Entity
 
@@ -97,6 +122,12 @@ When you extend `BaseRepository`, your interface automatically inherits the foll
 ## 4. Custom Repositories & Dynamic Queries
 
 To interact with an entity, create an interface that extends `BaseRepository<T>` and annotate it with `@Repository`.
+
+### Annotations Overview
+
+- `@Repository`: Marks the interface as a repository.
+    - `name`: The name of the repository.
+    - `entity`: The entity class to be mapped.
 
 ### Creating a Repository
 
@@ -198,6 +229,48 @@ public class OrderService {
     }
 }
 ```
+
+## 7. DataPersisters
+
+The framework uses the `DataPersister` interface to handle the persistence of custom data types to and from the database. You can define your own custom data persister by implementing the `DataPersister` interface and passing it to the `convertor` attribute of the `@Column` annotation.
+
+### Example Custom Data Persister
+
+```java
+import org.monsoon.framework.db.interfaces.DataPersister;
+
+public class CustomDataPersister implements DataPersister<MyCustomType> {
+    @Override
+    public Object javaToSql(MyCustomType value) {
+        // Convert your custom type to a database-compatible value
+        return value.toString();
+    }
+
+    @Override
+    public MyCustomType sqlToJava(Object value) {
+        // Convert the database value back to your custom type
+        return MyCustomType.fromString(value.toString());
+    }
+}
+``` 
+
+## 8. IdGenerator
+
+The framework uses the `IdGenerator` interface to handle the generation of primary keys. You can define your own custom id generator by implementing the `IdGenerator` interface and passing it to the `generator` attribute of the `@GeneratedId` annotation.
+
+### Example Custom Id Generator
+
+```java
+import org.monsoon.framework.db.interfaces.IdGenerator;
+
+public class CustomIdGenerator implements IdGenerator {
+    @Override
+    public Object generate() {
+        // Generate your custom id
+        return java.util.UUID.randomUUID().toString();
+    }
+}
+``` 
 
 ---
 

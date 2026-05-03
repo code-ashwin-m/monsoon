@@ -14,12 +14,11 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class CreateTable {
     private static final Logger logger = LoggerFactory.getLogger(CreateTable.class);
+
     public static Boolean createTableIfNotExists(Connection conn, EntityMeta meta) throws SQLException {
         String dbType = Utils.detectDbType(conn);
 
@@ -45,77 +44,64 @@ public class CreateTable {
 
         List<Field> columns = meta.getColumns();
 
-//        CREATE TABLE "flight_period_leg" (
-//                "id"	INTEGER,
-//                "flight_period_id"	INTEGER,
-//                "leg"	TEXT,
-//                "departure_time"	TEXT,
-//                "arrival_time"	TEXT,
-//                "num_of_days"	TEXT,
-//                "acv_code"	TEXT,
-//                "configuration"	TEXT,
-//                "meal_codes"	TEXT,
-//                "codeshare"	TEXT,
-//                "departure_terminal"	TEXT,
-//                "arrival_terminal"	TEXT,
-//                "e_ticket"	INTEGER,
-//                PRIMARY KEY("id" AUTOINCREMENT),
-//                FOREIGN KEY("flight_period_id") REFERENCES "flight_period"("id")
-//        );
-
         for (int i = 0; i < columns.size(); i++) {
             Field field = columns.get(i);
             Column column = field.getAnnotation(Column.class);
             String columnName = !column.name().isEmpty() ? column.name() : field.getName();
             sql.append(columnName)
-                .append(" ")
-                .append(toSqlType(columns.get(i).getType(), dbType))
-                .append(setDefaultValue(field, column));
+                    .append(" ")
+                    .append(toSqlType(columns.get(i).getType(), dbType))
+                    .append(setDefaultValue(field, column));
 
-
-            if (columns.get(i).isAnnotationPresent(Id.class)){
+            if (columns.get(i).isAnnotationPresent(Id.class)) {
                 if (field.isAnnotationPresent(GeneratedId.class)) {
                     primaryKey.add(columnName);
                     GeneratedId gid = field.getAnnotation(GeneratedId.class);
-                    if ( gid.strategy() == GenerationType.AUTO ) {
-                        if (dbType.equals("sqlite")) primaryKey.add("AUTOINCREMENT");
+                    if (gid.strategy() == GenerationType.AUTO) {
+                        if (dbType.equals("sqlite"))
+                            primaryKey.add("AUTOINCREMENT");
                     }
                 }
             }
 
-            if (column.unique()){
+            if (column.unique()) {
                 uniqueDefs.add(", UNIQUE(" + columnName + ")");
             }
 
-            if (column.uniqueCombo()){
+            if (column.uniqueCombo()) {
                 uniqueComboDefs.add(columnName);
             }
 
             if (column.foreign() != Void.class) {
                 if (column.foreign().isAnnotationPresent(Entity.class)) {
                     Entity entity = column.foreign().getAnnotation(Entity.class);
-                    foreignDefs.add(", FOREIGN KEY(" + columnName + ") REFERENCES " + entity.tableName() + "(id) ON DELETE CASCADE");
+                    String ondelete = "";
+                    if (column.cascadeDelete()) {
+                        ondelete = " ON DELETE CASCADE";
+                    }
+                    foreignDefs.add(
+                            ", FOREIGN KEY(" + columnName + ") REFERENCES " + entity.tableName() + "(id)" + ondelete);
                 }
             }
 
-            if (i < columns.size() - 1){
+            if (i < columns.size() - 1) {
                 sql.append(", ");
             }
         }
 
-        if (!primaryKey.isEmpty()){
+        if (!primaryKey.isEmpty()) {
             String key = String.join(" ", primaryKey);
             sql.append(", PRIMARY KEY (")
-                .append(key)
-                .append(")");
+                    .append(key)
+                    .append(")");
         }
-        
-        if (!uniqueComboDefs.isEmpty()){
+
+        if (!uniqueComboDefs.isEmpty()) {
             String cols = String.join(", ", uniqueComboDefs);
             uniqueDefs.add(", UNIQUE(" + cols + ")");
         }
 
-        if (!uniqueDefs.isEmpty()){
+        if (!uniqueDefs.isEmpty()) {
             sql.append(String.join(", ", uniqueDefs));
         }
 
@@ -129,7 +115,7 @@ public class CreateTable {
     }
 
     private static String setDefaultValue(Field field, Column column) {
-        if (!column.defaultValue().isEmpty()){
+        if (!column.defaultValue().isEmpty()) {
             if (field.getType() == String.class) {
                 return " DEFAULT \"" + column.defaultValue() + "\"";
             }
@@ -140,25 +126,30 @@ public class CreateTable {
 
     private static String toSqlType(Class<?> type, String dbType) {
         if (type == int.class || type == Integer.class) {
-            if (dbType == "sqlite") return "INTEGER";
+            if (dbType == "sqlite")
+                return "INTEGER";
             return "INT";
         }
 
         if (type == long.class || type == Long.class) {
-            if (dbType == "sqlite") return "REAL";
+            if (dbType == "sqlite")
+                return "REAL";
             return "BIGINT";
         }
 
         if (type == String.class) {
-            if (dbType == "sqlite") return "TEXT";
+            if (dbType == "sqlite")
+                return "TEXT";
             return "VARCHAR(255)";
         }
         if (type == boolean.class || type == Boolean.class) {
-            if (dbType.equals("sqlite")) return "INTEGER";
+            if (dbType.equals("sqlite"))
+                return "INTEGER";
             return "BOOLEAN";
         }
         if (type == double.class || type == Double.class) {
-            if (dbType == "sqlite") return "REAL";
+            if (dbType == "sqlite")
+                return "REAL";
             return "DOUBLE";
         }
         return "TEXT";

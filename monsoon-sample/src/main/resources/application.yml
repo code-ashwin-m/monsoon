@@ -11,7 +11,9 @@ monsoon:
   datasource:
     enabled: true
     driver: org.sqlite.JDBC
-    url: jdbc:sqlite:test.db
+    database: test.db
+    path:
+    url: jdbc:sqlite
     username: root
     password: root
     enforceForeignKeys: true

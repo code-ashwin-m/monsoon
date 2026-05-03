@@ -27,8 +27,7 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
     public Object postProcessAfterInitialization(Object bean, Class<?> beanClass) {
         for (Method method : beanClass.getDeclaredMethods()) {
             if (method.isAnnotationPresent(Transactional.class)) {
-                Object newBean = createProxy(bean);
-                return newBean;
+                return createProxy(bean);
             }
         }
         return bean;
@@ -41,8 +40,7 @@ public class TransactionBeanPostProcessor implements BeanPostProcessor {
         enhancer.setSuperclass(beanClass);
         enhancer.setCallback(new TransactionInterceptor(dataSource, bean));
 
-        Object proxy = enhancer.create();
-        return proxy;
+        return enhancer.create();
     }
 
 }

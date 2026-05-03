@@ -9,9 +9,16 @@ import java.lang.annotation.*;
 @Target(ElementType.FIELD)
 public @interface Column {
     String name() default "";
+
     boolean unique() default false;
+
     boolean uniqueCombo() default false;
+
     String defaultValue() default "";
+
+    boolean cascadeDelete() default false;
+
     Class<?> foreign() default Void.class;
+
     Class<? extends DataPersister<?>> convertor() default DefaultDataPersister.class;
 }

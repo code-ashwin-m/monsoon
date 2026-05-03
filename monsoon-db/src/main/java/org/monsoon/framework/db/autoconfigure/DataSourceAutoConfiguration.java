@@ -19,7 +19,7 @@ public class DataSourceAutoConfiguration {
     @Bean
     public DataSource dataSource(){
         DataSourceProperty dataSourceProperty = PropertyBinder.bind(DataSourceProperty.class);
-        if (dataSourceProperty.isEnabled()) {
+        if (dataSourceProperty != null && dataSourceProperty.isEnabled()) {
             if (dataSourceProperty.getUrl() !=null && !dataSourceProperty.getUrl().isEmpty()){
                 DataSource dataSource = new DataSource(dataSourceProperty);
                 Monsoon.getContext().registerBeanPostProcessor(new TransactionBeanPostProcessor(dataSource));
