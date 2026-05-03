@@ -4,6 +4,7 @@ import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 import org.monsoon.framework.db.annotations.Transactional;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.sql.Connection;
 
@@ -31,6 +32,9 @@ public class TransactionInterceptor implements MethodInterceptor {
             Object result = method.invoke(bean, args);
             TransactionManager.commit();
             return result;
+        } catch (InvocationTargetException e) {
+            TransactionManager.rollback();
+            throw e.getTargetException();
         } catch (Throwable e) {
             TransactionManager.rollback();
             throw e;
