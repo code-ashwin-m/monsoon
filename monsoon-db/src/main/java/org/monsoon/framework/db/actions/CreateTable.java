@@ -29,12 +29,11 @@ public class CreateTable {
 
         try (Statement stmt = conn.createStatement()) {
             stmt.executeUpdate(sql);
+            return true;
         }
-
-        return true;
     }
 
-    private static SQLData generateSQL(EntityMeta meta, String dbType) {
+    static SQLData generateSQL(EntityMeta meta, String dbType) {
         List<String> uniqueDefs = new ArrayList<>();
         List<String> uniqueComboDefs = new ArrayList<>();
         List<String> primaryKey = new ArrayList<>();
@@ -51,7 +50,8 @@ public class CreateTable {
             sql.append(columnName)
                     .append(" ")
                     .append(toSqlType(columns.get(i).getType(), dbType))
-                    .append(setDefaultValue(field, column));
+                    .append(setNotNull(column))
+                    .append(setDefaultValue(field, column, dbType));
 
             if (columns.get(i).isAnnotationPresent(Id.class)) {
                 if (field.isAnnotationPresent(GeneratedId.class)) {
@@ -65,7 +65,7 @@ public class CreateTable {
             }
 
             if (column.unique()) {
-                uniqueDefs.add(", UNIQUE(" + columnName + ")");
+                uniqueDefs.add("UNIQUE(" + columnName + ")");
             }
 
             if (column.uniqueCombo()) {
@@ -80,7 +80,7 @@ public class CreateTable {
                         ondelete = " ON DELETE CASCADE";
                     }
                     foreignDefs.add(
-                            ", FOREIGN KEY(" + columnName + ") REFERENCES " + entity.tableName() + "(id)" + ondelete);
+                            "FOREIGN KEY(" + columnName + ") REFERENCES " + entity.tableName() + "(id)" + ondelete);
                 }
             }
 
@@ -98,15 +98,15 @@ public class CreateTable {
 
         if (!uniqueComboDefs.isEmpty()) {
             String cols = String.join(", ", uniqueComboDefs);
-            uniqueDefs.add(", UNIQUE(" + cols + ")");
+            uniqueDefs.add("UNIQUE(" + cols + ")");
         }
 
         if (!uniqueDefs.isEmpty()) {
-            sql.append(String.join(", ", uniqueDefs));
+            sql.append(", ").append(String.join(", ", uniqueDefs));
         }
 
         if (!foreignDefs.isEmpty()) {
-            sql.append(String.join(", ", foreignDefs));
+            sql.append(", ").append(String.join(", ", foreignDefs));
         }
 
         sql.append(")");
@@ -114,13 +114,38 @@ public class CreateTable {
         return new SQLData(sql.toString(), null);
     }
 
-    private static String setDefaultValue(Field field, Column column) {
-        if (!column.defaultValue().isEmpty()) {
-            if (field.getType() == String.class) {
-                return " DEFAULT \"" + column.defaultValue() + "\"";
-            }
-            return " DEFAULT " + column.defaultValue();
+    private static String setNotNull(Column column) {
+        if (!column.notNull())
+            return "";
+        return " NOT NULL";
+    }
+
+    private static String setDefaultValue(Field field, Column column, String dbType) {
+        String object = column.defaultValue();
+        if (object == null || object.isEmpty())
+            return "";
+
+        if (field.getType() == int.class || field.getType() == Integer.class) {
+            return " DEFAULT " + object;
         }
+        if (field.getType() == long.class || field.getType() == Long.class) {
+            return " DEFAULT " + object;
+        }
+        if (field.getType() == double.class || field.getType() == Double.class) {
+            return " DEFAULT " + object;
+        }
+
+        if (field.getType() == boolean.class || field.getType() == Boolean.class) {
+            if (dbType == "sqlite")
+                return " DEFAULT " + (object.equalsIgnoreCase("true") ? 1 : 0);
+            else
+                return " DEFAULT " + (object.equalsIgnoreCase("true") ? "true" : "false");
+        }
+
+        if (field.getType() == String.class) {
+            return " DEFAULT \"" + object + "\"";
+        }
+
         return "";
     }
 

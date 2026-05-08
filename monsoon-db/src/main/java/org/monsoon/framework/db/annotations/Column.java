@@ -20,5 +20,7 @@ public @interface Column {
 
     Class<?> foreign() default Void.class;
 
+    boolean notNull() default false;
+
     Class<? extends DataPersister<?>> convertor() default DefaultDataPersister.class;
 }
