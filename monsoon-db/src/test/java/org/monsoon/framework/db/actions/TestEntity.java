@@ -11,7 +11,7 @@ public class TestEntity {
     @Column(name = "id")
     private int id;
 
-    @Column(name = "name", notNull = true, defaultValue = "John Doe")
+    @Column(name = "name", notNull = true, defaultValue = "John Doe", width = 255)
     private String name;
 
     @Column(name = "age", unique = true)

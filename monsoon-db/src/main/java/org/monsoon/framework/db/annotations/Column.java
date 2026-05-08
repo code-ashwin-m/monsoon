@@ -22,5 +22,7 @@ public @interface Column {
 
     boolean notNull() default false;
 
+    int width() default 0;
+
     Class<? extends DataPersister<?>> convertor() default DefaultDataPersister.class;
 }

@@ -15,6 +15,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class CreateTable {
     private static final Logger logger = LoggerFactory.getLogger(CreateTable.class);
@@ -49,7 +50,7 @@ public class CreateTable {
             String columnName = !column.name().isEmpty() ? column.name() : field.getName();
             sql.append(columnName)
                     .append(" ")
-                    .append(toSqlType(columns.get(i).getType(), dbType))
+                    .append(toSqlType(columns.get(i).getType(), dbType, column.width()))
                     .append(setNotNull(column))
                     .append(setDefaultValue(field, column, dbType));
 
@@ -149,31 +150,34 @@ public class CreateTable {
         return "";
     }
 
-    private static String toSqlType(Class<?> type, String dbType) {
+    private static String toSqlType(Class<?> type, String dbType, int width) {
         if (type == int.class || type == Integer.class) {
-            if (dbType == "sqlite")
+            if (Objects.equals(dbType, "sqlite"))
                 return "INTEGER";
             return "INT";
         }
 
         if (type == long.class || type == Long.class) {
-            if (dbType == "sqlite")
+            if (Objects.equals(dbType, "sqlite"))
                 return "REAL";
             return "BIGINT";
         }
 
         if (type == String.class) {
-            if (dbType == "sqlite")
+            if (Objects.equals(dbType, "sqlite"))
                 return "TEXT";
-            return "VARCHAR(255)";
+
+            StringBuilder builder = new StringBuilder("VARCHAR");
+            if (width > 0) builder.append("(").append(width).append(")");
+            return builder.toString();
         }
         if (type == boolean.class || type == Boolean.class) {
-            if (dbType.equals("sqlite"))
+            if (Objects.equals(dbType, "sqlite"))
                 return "INTEGER";
             return "BOOLEAN";
         }
         if (type == double.class || type == Double.class) {
-            if (dbType == "sqlite")
+            if (Objects.equals(dbType, "sqlite"))
                 return "REAL";
             return "DOUBLE";
         }
